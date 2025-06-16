@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>➈ タッチスクリーンテスト</title>
+  <link rel="stylesheet" href="common-layout.css">
+  <style>
+    body {
+      background-color: #f0f8ff; /* 공통 배경 덮어씌우기 */
+      text-align: center;
+      padding: 60px;
+      font-family: sans-serif; /* 혹시 common-layout에 없으면 유지 */
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .start-button {
+      font-size: 20px;
+      padding: 16px 32px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .start-button:hover {
+      background-color: #388E3C;
+    }
+  </style>
+</head>
+<body>
+  <h1>➈ タッチスクリーンテスト</h1>
+  <p>画面全体をタッチしてみて、おかしい部分がないかチェック！😺</p>
+
+  <button class="start-button" onclick="startTest()">テストスタート</button>
+
+  <div class="nav-buttons">
+    <button onclick="navigateTo('rotation-test.html')">⬅ 前のテスト</button>
+    <button onclick="navigateTo('../index.html')">🏠 ホーム</button>
+    <button onclick="navigateTo('camera-test.html')">次のテスト ➡</button>
+  </div>
+
+  <script>
+    function startTest() {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen().then(() => {
+          location.href = 'touchscreen-test2.html';
+        });
+      } else {
+        location.href = 'touchscreen-test1.html';
+      }
+    }
+
+    function navigateTo(url) {
+      location.href = url;
+    }
+  </script>
+</body>
+</html>

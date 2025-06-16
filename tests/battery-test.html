@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+<title>バッテリーテスト</title>
+<link rel="stylesheet" href="common-layout.css">
+<style>
+/* 이 페이지에만 적용되는 스타일 */
+body {
+   font-family: sans-serif;
+background-color: #f0f8ff; /* common-layout.css의 배경색을 덮어씀 */
+}
+
+p {
+font-size: 18px;
+margin-top: 0px;
+margin-bottom: 30px;
+}
+
+img {
+    width: 730px;
+    max-width: 90%;
+    margin: 0 auto 10px auto; /* 중앙 정렬 및 하단 마진 */
+    display: block;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* 그림자 효과 추가 */
+}
+
+#input-area input {
+  font-size: 20px;
+  padding: 12px 16px;
+  width: 80%;
+  max-width: 350px;
+  border: 2px solid #7DB249;
+  box-sizing: border-box;
+}
+
+#input-area input.gray-input {
+  color: #aaa;
+}
+
+audio {
+display: none;
+}
+</style>
+</head>
+<body>
+<h1><a href="../index.html" class="title-link">バッテリーテスト</a></h1>
+
+
+<img src="../media/images/battery.png" alt="バッテリーイメージ">
+
+
+
+<div id="input-area">
+  <input type="text" id="userText" placeholder="ここにヘルスを書いてネ">
+  <button onclick="sendText()" style="border: 2px solid #7DB249;">転送</button>
+</div>
+
+<script>
+function saveBatteryText() {
+  const value = document.getElementById('batteryText').value;
+  localStorage.setItem('batteryHealth', value);
+}
+</script>
+
+<div class="nav-buttons">
+<button onclick="playAndNavigate('sound-previous', 'indi-test.html')">⬅ 前のテスト</button>
+<button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
+<button onclick="playAndNavigate('sound-next', 'bpage.html')">次のテスト ➡</button>
+</div>
+
+
+
+<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
+<audio id="sound-home" src="../media/audio/home-button-sound.mp3"></audio>
+<audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
+
+<script>
+function playAndNavigate(soundId, nextPage) {
+const audio = document.getElementById(soundId);
+if (!audio) {
+location.href = nextPage;
+return;
+}
+
+audio.currentTime = 0;
+audio.play().then(() => {
+setTimeout(() => {
+location.href = nextPage;
+}, 400);
+}).catch(() => {
+location.href = nextPage;
+});
+}
+
+function sendText() {
+    const userInput = document.getElementById("userText").value;
+    const sendBtn = document.querySelector('#input-area button');
+    const inputBox = document.getElementById("userText");
+    localStorage.setItem("batteryMessage", userInput);
+    if (userInput.trim()) {
+        sendBtn.disabled = true;
+        sendBtn.textContent = "転送済";
+        inputBox.classList.add('gray-input'); // 회색 효과!
+    } else {
+        alert("バッテリーヘルスを書いてくださいね");
+    }
+}
+
+document.getElementById('userText').addEventListener('input', function() {
+    const sendBtn = document.querySelector('#input-area button');
+    this.classList.remove('gray-input'); // 입력 시작하면 원래 색으로 복귀!
+    if (this.value.trim()) {
+        sendBtn.disabled = false;
+        sendBtn.textContent = '転送';
+    }
+});
+
+window.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        document.getElementById('userText').focus();
+    }, 300);
+    const inputBox = document.getElementById("userText");
+    const sendBtn = document.querySelector('#input-area button');
+    inputBox.value = localStorage.getItem("batteryMessage") || "";
+    // 페이지 열릴 때 값이 있으면 회색 효과와 버튼 비활성화 적용
+    if (inputBox.value.trim()) {
+        inputBox.classList.add('gray-input');
+        sendBtn.disabled = true;
+        sendBtn.textContent = "転送済";
+    } else {
+        inputBox.classList.remove('gray-input');
+        sendBtn.disabled = false;
+        sendBtn.textContent = "転送";
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>1040</title>
+  <style>
+    /* From Uiverse.io by Voxybuns */
+
+button {
+–button_radius: 0.75em;
+–button_color: #669d34;
+–button_outline_color: #000000;
+font-size: 17px;
+font-weight: bold;
+border: none;
+cursor: pointer;
+border-radius: var(–button_radius);
+background: none; /* ✨ 수정됨 */
+padding: 0;
+}
+.button_top {
+display: block;
+box-sizing: border-box;
+border: 2px solid var(–button_outline_color);
+border-radius: var(–button_radius);
+padding: 0.75em 1.5em;
+background: var(–button_color);
+color: var(–button_outline_color);
+user-select: none;
+}
+
+```
+button:focus {
+  outline: none;
+}
+
+/* 삭제됨: transform, transition 모두 제거 */
+
+/* 눌림 고정 상태용 클래스 */
+button.active .button_top {
+  background: #444444;
+  color: white;
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <!-- From Uiverse.io by Voxybuns -->
+
+  <button>
+    <span class="button_top"> 不合格 </span>
+  </button>
+
+  <button>
+    <span class="button_top"> 気になる </span>
+  </button>
+
+  <button>
+    <span class="button_top"> 合格 </span>
+  </button>
+
+  <script>
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+      });
+    });
+  </script>
+
+</body>
+</html>
+이 버튼을 누르면 반응이 한박자 느린 이유가 ? 오페라는 괜찮은데 크롬에서는 느려
