@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
  <meta charset="UTF-8">
-<title>👻Test Title👻</title>
-<link rel="stylesheet" href="common-layout.css">
+<title>カメラテスト</title>
+<link rel="stylesheet" href="common-layout2.css">
 <style>
 /* 이 페이지에만 적용되는 스타일 */
 body {
@@ -20,7 +20,7 @@ margin-bottom: 30px;
 img {
 width: 350px;
 max-width: 90%;
-margin: 0 auto 10px auto; /* 중앙 정렬 및 하단 마진 */
+margin: 20px auto 10px auto; /* 중앙 정렬 및 하단 마진 */
 display: block;
 }
 
@@ -31,17 +31,31 @@ display: none;
 </style>
 </head>
 <body>
-<h1><a href="../index.html" class="title-link">カメラ・テスト</a></h1>
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">カメラ・テスト</span>
+</h1>
 
 
-<img src="../media/images/camera1.png" alt="スリープイメージ">
+<img src="../media/images/camera1.png" alt="カメライメージ">
 
 
 
 <div class="nav-buttons">
-<button onclick="playAndNavigate('sound-previous', 'summary.html')">⬅ 前のテスト</button>
-<button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
-<button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次のテスト ➡</button>
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'summary.html')">⬅ 前のテスト</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">気になる</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次のテスト ➡</button>
+  </div>
 </div>
 
 <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
@@ -65,6 +79,21 @@ location.href = nextPage;
 location.href = nextPage;
 });
 }
+
+// 하단 중앙 3개 버튼 토글 기능
+function setBottomToggleButtons() {
+  document.querySelectorAll('.nav-center .button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        return;
+      }
+      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
 </script>
 </body>
 </html>
