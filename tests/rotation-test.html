@@ -50,7 +50,13 @@ display: none;
 </style>
 </head>
 <body>
-<h1><a href="../index.html" class="title-link">画面回転・テスト</a></h1>
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">画面回転・テスト</span>
+</h1>
 
 <img id="cat-image" src="../media/images/cat.png" alt="テストイメージ">
 
@@ -88,9 +94,17 @@ display: none;
 
 
 <div class="nav-buttons">
-<button onclick="playAndNavigate('sound-previous', 'keyboard-test.html')">⬅ 前のテスト</button>
-<button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
-<button onclick="playAndNavigate('sound-next', 'sleep-test.html')">次のテスト ➡</button>
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'keyboard-test.html')">⬅ 前のテスト</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">気になる</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'sleep-test.html')">次のテスト ➡</button>
+  </div>
 </div>
 
 <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
