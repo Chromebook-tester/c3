@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>タッチ入力 テスト</title>
-    <link rel="stylesheet" href="common-layout2.css">
+    <link rel="stylesheet" href="common-layout.css">
     <style>
         body {
             background-color: #f0f8ff;
@@ -84,91 +84,13 @@
             z-index: 10000;
             border: 3px solid #ffffff;
         }
-
-        h1 {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .header-left-group {
-            display: flex;
-            align-items: center;
-        }
-
-        .header-home-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-right: 10px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .header-home-btn:hover {
-            background-color: #0056b3;
-        }
-
-        .title-link {
-            font-size: 28px;
-            font-weight: bold;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .nav-left, .nav-right {
-            flex: 1;
-        }
-
-        .nav-center {
-            flex: 2;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-        .button.selected {
-            background-color: #28a745;
-        }
     </style>
 </head>
 <body>
-    <h1>
-      <div class="header-left-group">
-        <a href="../index.html" class="header-home-btn">ホーム</a>
-        <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
-      </div>
-      <span class="title-link">タッチスクリーン・テスト</span>
-    </h1>
+    <h1>タッチスクリーン・テスト</h1>
 
     <button class="start-button" onclick="startTest()">スタート</button>
-    <p>タッチできない部分がないか, 체크!😺</p>
+    <p>タッチできない部分がないか、チェック！😺</p>
 
     <div id="testArea">
         <div class="grid" id="grid"></div>
@@ -178,21 +100,15 @@
     </div>
 
     <div class="nav-buttons">
-      <div class="nav-left">
-        <button onclick="playAndNavigate('sound-previous', 'bluetooth-test.html')">⬅ 前のテスト</button>
-      </div>
-      <div class="nav-center">
-        <button class="button button3">不合格</button>
-        <button class="button button2">気になる</button>
-        <button class="button button1">合格</button>
-      </div>
-      <div class="nav-right">
+        <button onclick="playAndNavigate('sound-previous','youtube-test.html')">⬅ 前のテスト</button>
+        <button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
         <button onclick="playAndNavigate('sound-next', 'touchpen-test.html')">次のテスト ➡</button>
-      </div>
+
     </div>
-    <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
-    <audio id="sound-home" src="../media/audio/home-button-sound.mp3"></audio>
-    <audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
+
+      <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
+      <audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
+      <audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
 
 
     <script>
@@ -382,25 +298,12 @@
             audio.play().then(() => {
                 setTimeout(() => {
                     location.href = nextPage;
-                }, 400);
+                }, 400); // 0.4초 기다리고 이동
             }).catch(() => {
                 location.href = nextPage;
             });
         }
 
-        function setBottomToggleButtons() {
-          document.querySelectorAll('.nav-center .button').forEach(btn => {
-            btn.addEventListener('click', function() {
-              if (this.classList.contains('selected')) {
-                this.classList.remove('selected');
-                return;
-              }
-              document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
-              this.classList.add('selected');
-            });
-          });
-        }
-        window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
     </script>
 </body>
 </html>
