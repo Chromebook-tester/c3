@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
 <title>スリープテスト</title>
-<link rel="stylesheet" href="common-layout.css">
+<link rel="stylesheet" href="common-layout2.css">
 <style>
 /* 이 페이지에만 적용되는 스타일 */
 body {
@@ -32,41 +32,62 @@ display: none;
 </style>
 </head>
 <body>
-<h1><a href="../index.html" class="title-link">スリープテスト</a></h1>
-
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">スリープテスト</span>
+</h1>
 
 <img src="../media/images/sleep-fadeout.gif" alt="スリープイメージ">
 <p>フタを閉じて → 側面のランプが消えたらOK😺</p>
 
-
-
 <div class="nav-buttons">
-<button onclick="playAndNavigate('sound-previous', 'rotation-test.html')">⬅ 前のテスト</button>
-<button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
-<button onclick="playAndNavigate('sound-next', 'mac-test.html')">次のテスト ➡</button>
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'rotation-test.html')">⬅ 前のテスト</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">気になる</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'mac-test.html')">次のテスト ➡</button>
+  </div>
 </div>
-
 <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
 <audio id="sound-home" src="../media/audio/home-button-sound.mp3"></audio>
 <audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
-
 <script>
 function playAndNavigate(soundId, nextPage) {
-const audio = document.getElementById(soundId);
-if (!audio) {
-location.href = nextPage;
-return;
+  const audio = document.getElementById(soundId);
+  if (!audio) {
+    location.href = nextPage;
+    return;
+  }
+  audio.currentTime = 0;
+  audio.play().then(() => {
+    setTimeout(() => {
+      location.href = nextPage;
+    }, 400);
+  }).catch(() => {
+    location.href = nextPage;
+  });
 }
-
-audio.currentTime = 0;
-audio.play().then(() => {
-setTimeout(() => {
-location.href = nextPage;
-}, 400);
-}).catch(() => {
-location.href = nextPage;
-});
+function setBottomToggleButtons() {
+  document.querySelectorAll('.nav-center .button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        return;
+      }
+      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
 }
+window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
 </script>
 </body>
 </html>
