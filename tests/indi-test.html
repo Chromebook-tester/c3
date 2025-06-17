@@ -20,7 +20,7 @@ margin-bottom: 5px;
 img {
 width: 450px;
 max-width: 90%;
-margin: 0 auto 10px auto; /* 중앙 정렬 및 하단 마진 */
+margin: 20px auto 10px auto; /* 중앙 정렬 및 하단 마진 */
 display: block;
 box-shadow: 0 4px 16px rgba(0,0,0,0.3); /* 부드러운 그림자 효과 추가 */
 }
@@ -31,25 +31,70 @@ display: none;
 }
 </style>
 </head>
-<body>
-<h1><a href="../index.html" class="title-link">インジケーター(充電ランプ)・チェエク</a></h1>
 
+<body>
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">インジケーター・チェック</span>
+</h1>
 
 <img src="../media/images/indi6.gif" alt="インジケーターイメージ">
-<!--<p>アダプターをさすと、充電ランプが光るよ。</p>
-<p>バッテリーにもイナズママークが出る🤓</p>-->
-
 
 
 <div class="nav-buttons">
-<button onclick="playAndNavigate('sound-previous', 'bluetooth-test.html')">⬅ 前のテスト</button>
-<button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
-<button onclick="playAndNavigate('sound-next', 'battery-test.html')">次のテスト ➡</button>
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前のテスト</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">気になる</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次のテスト ➡</button>
+  </div>
 </div>
 
-<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
-<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
-<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
+<audio id="sound-home" src="../media/audio/home-button-sound.mp3"></audio>
+<audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
+
+<script>
+function playAndNavigate(soundId, nextPage) {
+const audio = document.getElementById(soundId);
+if (!audio) {
+location.href = nextPage;
+return;
+}
+
+audio.currentTime = 0;
+audio.play().then(() => {
+setTimeout(() => {
+location.href = nextPage;
+}, 400);
+}).catch(() => {
+location.href = nextPage;
+});
+}
+
+// 하단 중앙 3개 버튼 토글 기능 (CSS 우선순위 강화)
+function setBottomToggleButtons() {
+  document.querySelectorAll('.nav-center .button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        return;
+      }
+      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
+</script>
 
 
 <script>
