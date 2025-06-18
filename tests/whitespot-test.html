@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>ホワイトスポット・テストを</title>
+ <meta charset="UTF-8">
+<title>ホワイトスポット・チェック</title>
 <link rel="stylesheet" href="common-layout2.css">
 <style>
 html, body {
@@ -91,20 +91,32 @@ audio {
 
 
 <body>
-
-<h1><a href="../index.html" class="title-link">ホワイトスポット・テスト</a></h1>
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">ホワイトスポット・チェック</span>
+</h1>
 
 <img id="start" class="start-button" src="../media/images/whitespot-button.png" alt="スタート">
 <p class="instruction-text">画面に「白いシミ」や 「キズ」がないか、チェック😺</p>
 
 <p id="touch-instruction" class="hidden">タッチすると色が変わるよ🤩</p>
 
-<div id="nav" class="nav-buttons">
-  <button onclick="playAndNavigate('sound-previous', 'speaker-test.html')">⬅ 前のテスト</button>
-  <button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
-  <button onclick="playAndNavigate('sound-next', 'youtube-test.html')">次のテスト ➡</button>
+<div class="nav-buttons">
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前のテスト</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">気になる</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次のテスト ➡</button>
+  </div>
 </div>
-
 <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
 <audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
 <audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
@@ -117,7 +129,7 @@ const htmlEl = document.documentElement;
 const startButton = document.getElementById("start");
 const h1Title = document.querySelector('h1');
 const initialInstructionText = document.querySelector('p.instruction-text'); // 원래 있던 설명
-const navButtons = document.getElementById("nav");
+// const navButtons = document.getElementById("nav"); // navButtons 관련 코드 제거
 const touchInstructionMessage = document.getElementById("touch-instruction");
 
 function showInitialUIElements(show) {
@@ -125,12 +137,13 @@ function showInitialUIElements(show) {
     startButton.classList[action]("hidden");
     h1Title.classList[action]("hidden");
     initialInstructionText.classList[action]("hidden");
-    navButtons.classList[action]("hidden");
+    // navButtons.classList[action]("hidden"); // navButtons 관련 코드 제거
 }
 
 // 스타트 버튼 클릭/터치 시 호출될 함수
 function prepareForTest() {
     showInitialUIElements(false); // 시작 버튼, 제목, 기존 설명, 내비게이션 숨기기
+    showFooter(false); // 풋터 숨기기
     touchInstructionMessage.classList.remove("hidden"); // "화면 터치" 안내 메시지 보이기
     // 아직 testStarted = false 상태. 실제 터치가 있어야 테스트 시작.
 }
@@ -194,12 +207,21 @@ function endTest() {
 function restoreInitialUI() {
     htmlEl.classList.remove('fullscreen-active-mode');
     showInitialUIElements(true); // 숨겼던 UI 요소들 다시 보이기
+    showFooter(true); // 풋터 다시 보이기
     touchInstructionMessage.classList.add("hidden"); // 터치 안내 메시지도 확실히 숨기기
 
     // 배경색을 초기 상태(흰색)로 복원
     document.body.style.backgroundColor = "white";
     document.documentElement.style.backgroundColor = "white";
     document.body.style.cursor = "default"; // 커서 보이기
+}
+
+// 풋터를 숨기고 다시 보이게 하는 함수 추가
+function showFooter(show) {
+  const footer = document.querySelector('.nav-buttons');
+  if (footer) {
+    footer.style.display = show ? '' : 'none';
+  }
 }
 
 function showNextColor() {
@@ -231,6 +253,21 @@ function playAndNavigate(soundId, nextPage) {
     });
 }
 
+// 3색 버튼 토글 기능 복구
+function setBottomToggleButtons() {
+  document.querySelectorAll('.nav-center .button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        return;
+      }
+      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
+
 // --- 이벤트 리스너 설정 ---
 startButton.addEventListener("click", prepareForTest);
 startButton.addEventListener("touchstart", (e) => {
@@ -240,8 +277,8 @@ startButton.addEventListener("touchstart", (e) => {
 
 // 화면 전체에 대한 터치/클릭 이벤트 처리
 function handleBodyInteraction(event) {
-    // 스타트 버튼이나 네비게이션 버튼 클릭 시에는 이 핸들러가 반응하지 않도록
-    if (event.target === startButton || navButtons.contains(event.target)) {
+    // 스타트 버튼 클릭 시에는 이 핸들러가 반응하지 않도록
+    if (event.target === startButton) {
         return;
     }
 
@@ -256,8 +293,8 @@ function handleBodyInteraction(event) {
 
 document.body.addEventListener("click", handleBodyInteraction);
 document.body.addEventListener("touchstart", (e) => {
-    // 스타트 버튼이나 네비게이션 버튼 터치 시에는 이 핸들러가 반응하지 않도록
-    if (e.target === startButton || navButtons.contains(e.target)) {
+    // 스타트 버튼 터치 시에는 이 핸들러가 반응하지 않도록
+    if (e.target === startButton) {
         return;
     }
     e.preventDefault(); // 스크롤, 확대/축소 등 기본 동작 방지
@@ -281,5 +318,12 @@ document.addEventListener('fullscreenchange', () => {
 });
 </script>
 
-</body>
-</html>
+
+
+
+
+
+
+
+
+
