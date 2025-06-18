@@ -44,6 +44,23 @@
       margin-right: 10px;
       cursor: pointer;
     }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
   </style>
 </head>
 <body>
@@ -51,11 +68,49 @@
 
   <h2>結果まとめ(テスト中)😋😋</h2>
 
-  <ul>
-    <li><label><input type="checkbox" id="chk-gokaku"> 合格</label></li>
-    <li><label><input type="checkbox" id="chk-kininaru"> 気になる</label></li>
-    <li><label><input type="checkbox" id="chk-fugokaku"> 不合格</label></li>
-  </ul>
+  <!-- 3개로 나눈 결과 표 시작 -->
+  <div style="display: flex; gap: 30px; margin-bottom: 30px; justify-content: center;">
+    <!-- 합격 -->
+    <table id="pass-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
+      <tr><th style="padding:6px 0;">合格</th></tr>
+      <tr><td style="padding:6px 0;">1. Camera</td></tr>
+      <tr><td style="padding:6px 0;">2. Touchpad</td></tr>
+      <tr><td style="padding:6px 0;">3. Speaker</td></tr>
+      <tr><td style="padding:6px 0;">4. Whitespot</td></tr>
+      <tr><td style="padding:6px 0;">5. Youtube</td></tr>
+      <tr><td style="padding:6px 0;">7. Touchpen</td></tr>
+      <tr><td style="padding:6px 0;">8. Keyboard</td></tr>
+      <tr><td style="padding:6px 0;">9. Rotation</td></tr>
+      <tr><td style="padding:6px 0;">10. Sleep</td></tr>
+    </table>
+    <!-- 기니나루 -->
+    <table id="kininaru-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
+      <tr><th style="padding:6px 0;">気になる</th></tr>
+      <tr><td style="padding:6px 0;">6. Touchscreen</td></tr>
+      <tr><td style="padding:6px 0;">14. Battery</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+    </table>
+    <!-- 불합격 -->
+    <table id="fail-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
+      <tr><th style="padding:6px 0;">不合格</th></tr>
+      <tr><td style="padding:6px 0;">12. Bluetooth</td></tr>
+      <tr><td style="padding:6px 0;">13. Indi</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+    </table>
+  </div>
+  <!-- 3개로 나눈 결과 표 끝 -->
 
   <div id="text-result" style="margin-top: 30px; font-size: 20px; font-weight: bold;"></div>
   <div id="mac-result" style="margin-top: 30px; font-size: 20px; font-weight: bold; color: #1a237e;"></div>
@@ -72,45 +127,8 @@
   <audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
 
   <script>
-    const boxes = {
-      gokaku: document.getElementById("chk-gokaku"),
-      kininaru: document.getElementById("chk-kininaru"),
-      fugokaku: document.getElementById("chk-fugokaku")
-    };
-
-    function applySelection(result) {
-      Object.entries(boxes).forEach(([key, box]) => {
-        box.checked = key === result;
-      });
-    }
-
-    function handleChange(key, box) {
-      box.addEventListener("change", () => {
-        if (box.checked) {
-          // 하나만 체크되게
-          Object.values(boxes).forEach(b => {
-            if (b !== box) b.checked = false;
-          });
-          localStorage.setItem("result", key);
-        } else {
-          localStorage.removeItem("result");
-        }
-      });
-    }
-
-    // 초기 로딩 시 상태 적용
-    applySelection(localStorage.getItem("result"));
-
-    // 체크박스 변화 감지
-    Object.entries(boxes).forEach(([key, box]) => {
-      handleChange(key, box);
-    });
-
     // 다른 탭에서 localStorage가 변경되면 반영
     window.addEventListener("storage", (event) => {
-      if (event.key === "result") {
-        applySelection(event.newValue);
-      }
       if (event.key === "macMessage") {
         document.getElementById("mac-result").textContent =
           "・" + (event.newValue || "（入力なし）");
