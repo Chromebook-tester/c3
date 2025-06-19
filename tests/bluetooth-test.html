@@ -1,64 +1,55 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
- <meta charset="UTF-8">
-<title>Bluetoothテスト</title>
-<link rel="stylesheet" href="common-layout.css">
+<meta charset="UTF-8">
+<title>👻Test Title👻</title>
+<link rel="stylesheet" href="common-layout2.css">
 <style>
-/* 이 페이지에만 적용되는 스타일 */
-body {
-   font-family: sans-serif;
-background-color: #f0f8ff; /* common-layout.css의 배경색을 덮어씀 */
-}
-
-p {
-font-size: 18px;
-margin-top: 0px;
-margin-bottom: 10px;
-}
 
 img {
 width: 369px;
 max-width: 90%;
-margin: -10px auto 10px auto; /* 중앙 정렬, 위로 10px 이동 */
 display: block;
 border: 1px solid black;
+margin:30px auto 10px auto; /* 상하좌우 여백을 10px로 설정 */
+
 box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* 부드러운 그림자 효과 추가 */
 }
 
-audio {
-display: none;
-}
 </style>
+
 </head>
+
 <body>
-<h1><a href="../index.html" class="title-link">Bluetoothテスト</a></h1>
-<br>
-<img src="../media/images/bluetooth1.png" alt="テストイメージ" class="mac-img">
-<!--<p>ブルートゥースっていうのはイヤホンを無線で使える機能だよ🤓</p>-->
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">ブルートゥース・チェック</span>
+</h1>
 
-<br>
-<!--<img src="../media/images/bluetooth.gif" alt="テストイメージ" class="warning-img">-->
-
-
-
-
-
-
-
-
+<img src="../media/images/bluetooth1.png" alt="テストイメージ" class="bluetooth-img">
 
 
 
 <div class="nav-buttons">
-<button onclick="playAndNavigate('sound-previous', 'mac-test.html')">⬅ 前のテスト</button>
-<button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
-<button onclick="playAndNavigate('sound-next', 'indi-test.html')">次のテスト ➡</button>
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前のテスト</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">気になる</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次のテスト ➡</button>
+  </div>
 </div>
 
-<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
-<audio id="sound-home" src="../media/audio/home-button-sound.mp3"></audio>
-<audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
+<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
 
 <script>
 function playAndNavigate(soundId, nextPage) {
@@ -77,6 +68,23 @@ location.href = nextPage;
 location.href = nextPage;
 });
 }
+
+// 하단 중앙 3개 버튼 토글 기능 (CSS 우선순위 강화)
+function setBottomToggleButtons() {
+  document.querySelectorAll('.nav-center .button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        return;
+      }
+      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
 </script>
 </body>
+
+
 </html>
