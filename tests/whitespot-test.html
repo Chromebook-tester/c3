@@ -293,13 +293,16 @@ function handleBodyInteraction(event) {
 
 document.body.addEventListener("click", handleBodyInteraction);
 document.body.addEventListener("touchstart", (e) => {
-    // 스타트 버튼 터치 시에는 이 핸들러가 반응하지 않도록
-    if (e.target === startButton) {
+    if (
+      e.target === startButton ||
+      e.target.closest('.nav-buttons') // 👉 네비게이션 버튼 터치는 막지 않도록 예외 처리!
+    ) {
         return;
     }
-    e.preventDefault(); // 스크롤, 확대/축소 등 기본 동작 방지
-    handleBodyInteraction(e); // 이벤트 객체 전달은 필수는 아님
+    e.preventDefault(); // 나머지 터치는 기본동작 방지하고
+    handleBodyInteraction(e); // 테스트 시작 또는 색상 전환
 }, { passive: false });
+
 
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
@@ -317,7 +320,6 @@ document.addEventListener('fullscreenchange', () => {
     }
 });
 </script>
-
 
 
 
