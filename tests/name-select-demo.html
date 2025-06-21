@@ -23,7 +23,7 @@
   cursor: pointer;
   padding: 0 18px;
   font-size: 18px;
-  height: 40px;
+  height: 60px;
   min-width: 32px;
   line-height: 16px;
   box-sizing: border-box;
@@ -44,32 +44,50 @@
 
 
     .input-area {
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
     .input-area input {
       font-size: 20px;
-      padding: 6px 12px;
+      padding: 15px 15px;
       width: 220px;
       text-align: center;
       border-radius: 6px;
-      border: 1px solid #aaa;
+      border: 2px solid #aaa;
       margin-right: 10px;
     }
     .send-btn {
-      font-size: 18px;
-      padding: 7px 18px;
+      font-size: 20px;
+      padding: 15px 15px;
       border-radius: 6px;
       background: #1976d2;
       color: #fff;
-      border: none;
+      border: 2px solid #aaa;
       cursor: pointer;
+      min-width: 80px; /* 또는 width: 80px; */
     }
+    .send-btn:hover {
+      background: #1565c0;
+      border: 2px solid #ccc !important;
+    }
+
   .name-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin: 30px 0;
+    }
+
+    .gray-input {
+      background: #e0e0e0 !important;
+      color: #888 !important;
+      border: 2px solid #ccc !important; /* 두께까지 명확히! */
+    }
+    .send-btn:disabled {
+      background: #e0e0e0 !important;
+      color: #888 !important;
+      border: 2px solid #ccc !important;
+      cursor: not-allowed;
     }
 </style>
 </head>
@@ -89,7 +107,7 @@
 
 
   
-  <div class="input-area">
+  <div class="input-area" id="input-area">
     <input type="text" id="selectedName" placeholder="" readonly>
     <button class="send-btn" onclick="sendName()">転送</button>
   </div>
@@ -126,18 +144,55 @@
         document.getElementById('selectedName').value = this.textContent;
         document.querySelectorAll('.name-btn').forEach(b => b.classList.remove('selected'));
         this.classList.add('selected');
+        // 이름 선택하면 버튼/입력창 초기화
+        const sendBtn = document.querySelector('#input-area .send-btn');
+        const inputBox = document.getElementById('selectedName');
+        inputBox.classList.remove('gray-input');
+        sendBtn.disabled = false;
+        sendBtn.textContent = '転送';
+        sendBtn.classList.remove('gray-input'); // 버튼 회색 효과 해제
       });
     });
-    // 전송 버튼 클릭 시 localStorage에 이름 저장
+    // 전송 버튼 클릭 시 localStorage에 이름 저장 + 비활성화
     function sendName() {
       const name = document.getElementById('selectedName').value;
+      const sendBtn = document.querySelector('#input-area .send-btn');
+      const inputBox = document.getElementById('selectedName');
       if (!name) {
-        alert('이름을 선택해줘!');
         return;
       }
       localStorage.setItem('selectedName', name);
-      alert('이름이 summary.html에 전송됐어! summary.html을 새로고침해봐.');
+      sendBtn.disabled = true;
+      sendBtn.textContent = '転送済';
+      sendBtn.classList.add('gray-input'); // 버튼도 회색 효과
+      inputBox.classList.add('gray-input');
     }
+    // 입력창 값이 바뀌면(이름 선택 시) 버튼/입력창 초기화
+    document.getElementById('selectedName').addEventListener('input', function() {
+      const sendBtn = document.querySelector('#input-area .send-btn');
+      this.classList.remove('gray-input');
+      sendBtn.disabled = false;
+      sendBtn.textContent = '転送';
+      sendBtn.classList.remove('gray-input'); // 버튼 회색 효과 해제
+    });
+    // 페이지 로드 시 localStorage 값 있으면 상태 반영
+    window.addEventListener('DOMContentLoaded', function() {
+      const inputBox = document.getElementById('selectedName');
+      const sendBtn = document.querySelector('#input-area .send-btn');
+      inputBox.value = localStorage.getItem('selectedName') || '';
+      if (inputBox.value.trim()) {
+        inputBox.classList.add('gray-input');
+        sendBtn.disabled = true;
+        sendBtn.textContent = '転送済';
+        sendBtn.classList.add('gray-input');
+        inputBox.classList.add('gray-input');
+      } else {
+        inputBox.classList.remove('gray-input');
+        sendBtn.disabled = false;
+        sendBtn.textContent = '転送';
+        sendBtn.classList.remove('gray-input');
+      }
+    });
   </script>
 
 
