@@ -85,7 +85,19 @@
     <button class="name-btn">-----</button>
     <button class="name-btn">-----</button>
     <button class="name-btn">-----</button>
-
+  </div>
+  <div class="nav-buttons">
+    <div class="nav-left">
+      <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前のテスト</button>
+    </div>
+    <div class="nav-center">
+      <button class="button button3" disabled style="opacity:0.2; pointer-events:none;">不合格</button>
+      <button class="button button2" disabled style="opacity:0.2; pointer-events:none;">気になる</button>
+      <button class="button button1" disabled style="opacity:0.2; pointer-events:none;">合格</button>
+    </div>
+    <div class="nav-right">
+      <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次へ</button>
+    </div>
   </div>
   <script>
     // 버튼 클릭 시 입력창에 이름 표시
