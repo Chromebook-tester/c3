@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: #f0f8ff;
   padding-top: 60px;
   padding-bottom: 80px;
 }
@@ -147,6 +147,9 @@ button {
   border: 2px solid white;
 }
 
+
+
+
 .nav-center {
   display: flex;
   gap: 10px;
@@ -176,3 +179,5 @@ button {
 .nav-center .button.selected.button1 { background-color: #04AA6D; color: white; }
 .nav-center .button.selected.button2 { background-color: #aba30e; color: white; }
 .nav-center .button.selected.button3 { background-color: #f44336; color: white; }
+
+
