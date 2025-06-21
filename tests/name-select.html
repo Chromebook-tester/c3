@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>作業スタッフ</title>
+  <link rel="stylesheet" href="common-layout2.css">
+  <style>
+    .name-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 30px 0;
+    }
+    .name-btn {
+      padding: 12px 0;
+      font-size: 18px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      background: #f7f7f7;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .name-btn.selected {
+      background: #1976d2;
+      color: #fff;
+      font-weight: bold;
+    }
+    .input-area {
+      margin-bottom: 20px;
+    }
+    .input-area input {
+      font-size: 20px;
+      padding: 6px 12px;
+      width: 220px;
+      text-align: center;
+      border-radius: 6px;
+      border: 1px solid #aaa;
+      margin-right: 10px;
+    }
+    .send-btn {
+      font-size: 18px;
+      padding: 7px 18px;
+      border-radius: 6px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>作業スタッフ</h2>
+  <div class="input-area">
+    <input type="text" id="selectedName" placeholder="" readonly>
+    <button class="send-btn" onclick="sendName()">転送</button>
+  </div>
+  <div class="name-grid">
+    <button class="name-btn">エガシラ</button>
+    <button class="name-btn">ヤマオ</button>
+    <button class="name-btn">コダマ</button>
+    <button class="name-btn">ジョングク</button>
+    <button class="name-btn">ナカニ</button>
+    <button class="name-btn">サトウ</button>
+    <button class="name-btn">ジャッキー・チェン</button>
+    <button class="name-btn">サキタ</button>
+    <button class="name-btn">いくぴ</button>
+    <button class="name-btn">モリ♡グチ</button>
+    <button class="name-btn">外国人</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+    <button class="name-btn">-----</button>
+
+  </div>
+  <script>
+    // 버튼 클릭 시 입력창에 이름 표시
+    document.querySelectorAll('.name-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.getElementById('selectedName').value = this.textContent;
+        document.querySelectorAll('.name-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+    // 전송 버튼 클릭 시 localStorage에 이름 저장
+    function sendName() {
+      const name = document.getElementById('selectedName').value;
+      if (!name) {
+        alert('이름을 선택해줘!');
+        return;
+      }
+      localStorage.setItem('selectedName', name);
+      alert('이름이 summary.html에 전송됐어! summary.html을 새로고침해봐.');
+    }
+  </script>
+</body>
+</html>

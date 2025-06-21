@@ -94,15 +94,25 @@ display: none;
 
 
 <script>
-function sendText() {
-    const userInput = document.getElementById("userText").value;
-    const sendBtn = document.querySelector('#input-area button');
+function updateInputState() {
     const inputBox = document.getElementById("userText");
-    localStorage.setItem("macMessage", userInput);
-    if (userInput.trim()) {
+    const sendBtn = document.querySelector('#input-area button');
+    if (inputBox.value.trim()) {
+        inputBox.classList.add('gray-input');
         sendBtn.disabled = true;
         sendBtn.textContent = "転送済";
-        inputBox.classList.add('gray-input');
+    } else {
+        inputBox.classList.remove('gray-input');
+        sendBtn.disabled = false;
+        sendBtn.textContent = "転送";
+    }
+}
+
+function sendText() {
+    const userInput = document.getElementById("userText").value;
+    localStorage.setItem("macMessage", userInput);
+    if (userInput.trim()) {
+        updateInputState();
     } else {
         alert("MACを貼り付けてくださいね");
     }
@@ -143,18 +153,9 @@ window.addEventListener('DOMContentLoaded', function() {
         document.getElementById('userText').focus();
     }, 500);
     const inputBox = document.getElementById("userText");
-    const sendBtn = document.querySelector('#input-area button');
     inputBox.value = localStorage.getItem("macMessage") || "";
-    if (inputBox.value.trim()) {
-        inputBox.classList.add('gray-input');
-        sendBtn.disabled = true;
-        sendBtn.textContent = "転送済";
-    } else {
-        inputBox.classList.remove('gray-input');
-        sendBtn.disabled = false;
-        sendBtn.textContent = "転送";
-    }
-    setBottomToggleButtons(); // 토글 기능도 DOMContentLoaded에 같이 실행
+    updateInputState();
+    setBottomToggleButtons();
 });
 document.getElementById('userText').addEventListener('input', function() {
     const sendBtn = document.querySelector('#input-area button');

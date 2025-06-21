@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>크롬북 테스트 결과 대시보드</title>
+  <style>
+    body { font-family: sans-serif; background: #f8f8f8; padding: 30px; }
+    h2 { margin-top: 40px; }
+    .section { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 0 12px rgba(0,0,0,0.1); }
+    .item { margin: 8px 0; font-size: 18px; }
+    .passed { color: green; }
+    .failed { color: red; }
+    .unable { color: orange; }
+  </style>
+</head>
+<body>
+
+  <h1>📊 크롬북 테스트 결과</h1>
+
+  <div class="section">
+    <h2>🧪 System Test (하드웨어)</h2>
+    <div class="item passed">✅ CpuStress - Passed</div>
+    <div class="item passed">✅ CpuCache - Passed</div>
+    <div class="item passed">✅ CpuFloatingPoint - Passed</div>
+    <div class="item passed">✅ CpuPrime - Passed</div>
+    <div class="item passed">✅ Memory - Passed</div>
+  </div>
+
+  <div class="section">
+    <h2>🌐 Network Test (네트워크)</h2>
+    <div class="item passed">✅ GatewayCanBePinged - Passed</div>
+    <div class="item passed">✅ LanConnectivity - Passed</div>
+    <div class="item unable">⚠️ ArcPing - Unable to run</div>
+    <div class="item passed">✅ DnsResolverPresent - Passed</div>
+    <div class="item passed">✅ DnsResolution - Passed</div>
+    <div class="item passed">✅ DnsLatency - Passed</div>
+    <div class="item unable">⚠️ ArcDnsResolution - Unable to run</div>
+    <div class="item passed">✅ SignalStrength - Passed</div>
+    <div class="item passed">✅ CaptivePortal - Passed</div>
+    <div class="item passed">✅ HasSecureWiFiConnection - Passed</div>
+    <div class="item passed">✅ HttpsFirewall - Passed</div>
+    <div class="item passed">✅ HttpFirewall - Passed</div>
+    <div class="item passed">✅ HttpsLatency - Passed</div>
+    <div class="item unable">⚠️ ArcHttp - Unable to run</div>
+  </div>
+
+</body>
+</html>
