@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>結果まとめ</title>
+  <link rel="stylesheet" href="common-layout2.css">
+  <style>
+    /* 이 페이지에만 적용되는 스타일 */
+    body {
+      font-family: sans-serif;
+      background-color: #f0f8ff; /* common-layout.css의 배경색을 덕여쓰면 */
+      font-size: 18px;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    p {
+      font-size: 18px;
+      margin-top: 0px;
+      margin-bottom: 30px;
+    }
+
+    img {
+      width: 500px;
+      max-width: 90%;
+      margin: 0 auto 10px auto; /* 중앙 정렬 및 하단 만인 */
+      display: block;
+    }
+
+    audio {
+      display: none;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 12px 0;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.5);
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <h1><a href="../index.html" class="title-link">結果まとめ</a></h1>
+<br>
+  <h2>002354-PM25S // ASUS CR1 //  作業者: 藤岡 // 2025.06.19</h2>
+
+  <!-- 3개로 나눈 결과 표 시작 -->
+  <div style="display: flex; gap: 30px; margin-bottom: 30px; justify-content: center;">
+    <!-- 합격 -->
+    <table id="pass-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
+      <tr><th style="padding:6px 0;">合格</th></tr>
+      <tr><td style="padding:6px 0;"><a href="camera-test.html">1. Camera</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="touchpad-test.html">2. Touchpad</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="speaker-test.html">3. Speaker</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="whitespot-test.html">4. Whitespot</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="youtube-test.html">5. Youtube</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="touchpen-test.html">7. Touchpen</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="keyboard-test.html">8. Keyboard</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="rotation-test.html">9. Rotation</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="sleep-test.html">10. Sleep</a></td></tr>
+    </table>
+    <!-- 키니나루 -->
+    <table id="kininaru-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
+      <tr><th style="padding:6px 0;">気になる</th></tr>
+      <tr><td style="padding:6px 0;"><a href="touchscreen-test.html">6. Touchscreen</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="battery-test.html">14. Battery</a></td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+    </table>
+    <!-- 불합격 -->
+    <table id="fail-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
+      <tr><th style="padding:6px 0;">不合格</th></tr>
+      <tr><td style="padding:6px 0;"><a href="bluetooth-test.html">12. Bluetooth</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="indi-test.html">13. Indi</a></td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+    </table>
+  </div>
+  <!-- 3개로 나눈 결과 표 끝 -->
+
+  <div id="text-result" style="margin-top: 30px; font-size: 20px; font-weight: bold;"></div>
+  <div id="mac-result" style="margin-top: 30px; font-size: 20px; font-weight: bold; color: #1a237e;"></div>
+  <div id="battery-result" style="margin-top: 10px; font-size: 20px; font-weight: bold; color: #33691e;"></div>
+  <div id="name-result" style="margin-top: 20px; font-size: 20px; font-weight: bold; color: #1976d2;"></div>
+
+  <div class="nav-buttons">
+    <button onclick="playAndNavigate('sound-previous', 'battery-test.html')">⬅ 前のテスト</button>
+    <button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
+    <button onclick="playAndNavigateAndPrint('sound-next', 'summary.html')">プリント</button>
+  </div>
+
+  <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
+  <audio id="sound-home" src="../media/audio/home-button-sound.mp3"></audio>
+  <audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
+
+  <script>
+    // 결과 표시 함수 분리
+    function updateMacResult() {
+      const macText = localStorage.getItem("macMessage");
+      document.getElementById("mac-result").textContent =
+        "・" + (macText || "（入力なし）");
+    }
+    function updateBatteryResult() {
+      const batteryText = localStorage.getItem("batteryMessage");
+      document.getElementById("battery-result").textContent =
+        "・バッテリーヘルス:" + (batteryText || "（入力なし）");
+    }
+    function updateNameResult() {
+      const name = localStorage.getItem('selectedName');
+      document.getElementById('name-result').textContent = name ? '선택된 이름: ' + name : '';
+    }
+
+    // storage 이벤트에서 함수 호출
+    window.addEventListener("storage", (event) => {
+      if (event.key === "macMessage") updateMacResult();
+      if (event.key === "batteryMessage") updateBatteryResult();
+      if (event.key === "selectedName") updateNameResult();
+    });
+
+    // 페이지 로드 시 한 번에 모두 표시
+    updateMacResult();
+    updateBatteryResult();
+    updateNameResult();
+
+    function playAndNavigate(soundId, nextPage) {
+      const audio = document.getElementById(soundId);
+      if (!audio) {
+        location.href = nextPage;
+        return;
+      }
+
+      audio.currentTime = 0;
+      audio.play().then(() => {
+        setTimeout(() => {
+          location.href = nextPage;
+        }, 400);
+      }).catch(() => {
+        location.href = nextPage;
+      });
+    }
+
+    function playAndNavigateAndPrint(soundId, nextPage) {
+      const audio = document.getElementById(soundId);
+      if (!audio) {
+        window.print(); // ctrl+p와 동일한 동작
+        location.href = nextPage;
+        return;
+      }
+      audio.currentTime = 0;
+      audio.play().then(() => {
+        setTimeout(() => {
+          window.print(); // ctrl+p와 동일한 동작
+          location.href = nextPage;
+        }, 400);
+      }).catch(() => {
+        window.print();
+        location.href = nextPage;
+      });
+    }
+  </script>
+<div style="height: 300px;"></div>
+
+</body>|
+
+</html>

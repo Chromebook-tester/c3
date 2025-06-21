@@ -108,6 +108,7 @@
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
     </table>
     <!-- 불합격 -->
     <table id="fail-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
@@ -141,44 +142,33 @@
   <audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
 
   <script>
-    // 다른 탭에서 localStorage가 변경되면 반영
+    // 결과 표시 함수 분리
+    function updateMacResult() {
+      const macText = localStorage.getItem("macMessage");
+      document.getElementById("mac-result").textContent =
+        "・" + (macText || "（入力なし）");
+    }
+    function updateBatteryResult() {
+      const batteryText = localStorage.getItem("batteryMessage");
+      document.getElementById("battery-result").textContent =
+        "・バッテリーヘルス:" + (batteryText || "（入力なし）");
+    }
+    function updateNameResult() {
+      const name = localStorage.getItem('selectedName');
+      document.getElementById('name-result').textContent = name ? '선택된 이름: ' + name : '';
+    }
+
+    // storage 이벤트에서 함수 호출
     window.addEventListener("storage", (event) => {
-      if (event.key === "macMessage") {
-        document.getElementById("mac-result").textContent =
-          "・" + (event.newValue || "（入力なし）");
-      }
-      if (event.key === "batteryMessage") {
-        document.getElementById("battery-result").textContent =
-          "・バッテリーヘルス:" + (event.newValue || "（入力なし）");
-      }
-      // 이름 표시
-      if (event.key === "selectedName") {
-        document.getElementById("name-result").textContent =
-          "선택된 이름: " + (event.newValue || "");
-      }
+      if (event.key === "macMessage") updateMacResult();
+      if (event.key === "batteryMessage") updateBatteryResult();
+      if (event.key === "selectedName") updateNameResult();
     });
 
-    // MAC-test.html에서 입력한 텍스트 불러오기
-    const macText = localStorage.getItem("macMessage");
-    document.getElementById("mac-result").textContent =
-      "・" + (macText || "（入力なし）");
-
-    // battery-test.html에서 입력한 텍스트 불러오기
-    const batteryText = localStorage.getItem("batteryMessage");
-    document.getElementById("battery-result").textContent =
-      "・バッテリーヘルス:" + (batteryText || "（入力なし）");
-
-    // 이름 표시
-    function showNameFromStorage() {
-      const name = localStorage.getItem('selectedName');
-      if (name) {
-        document.getElementById('name-result').textContent = '선택된 이름: ' + name;
-      } else {
-        document.getElementById('name-result').textContent = '';
-      }
-    }
-    showNameFromStorage();
-    window.addEventListener('storage', showNameFromStorage);
+    // 페이지 로드 시 한 번에 모두 표시
+    updateMacResult();
+    updateBatteryResult();
+    updateNameResult();
 
     function playAndNavigate(soundId, nextPage) {
       const audio = document.getElementById(soundId);
