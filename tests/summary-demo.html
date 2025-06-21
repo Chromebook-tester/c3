@@ -77,24 +77,32 @@
   <h1><a href="../index.html" class="title-link">結果まとめ</a></h1>
 <br>
   <h2>002354-PM25S // ASUS CR1 //  作業者: 藤岡 // 2025.06.19</h2>
+  <div style="display: flex; gap: 30px; align-items: flex-end; margin-bottom: 10px; justify-content: center;">
+    <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #1a237e;"></div>
+    <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #33691e;"></div>
+  </div>
 
   <!-- 3개로 나눈 결과 표 시작 -->
   <div style="display: flex; gap: 30px; margin-bottom: 30px; justify-content: center;">
-    <!-- 합격 -->
-    <table id="pass-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
-      <tr><th style="padding:6px 0;">合格</th></tr>
-      <tr><td style="padding:6px 0;"><a href="camera-test.html">1. Camera</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="touchpad-test.html">2. Touchpad</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="speaker-test.html">3. Speaker</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="whitespot-test.html">4. Whitespot</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="youtube-test.html">5. Youtube</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="touchpen-test.html">7. Touchpen</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="keyboard-test.html">8. Keyboard</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="rotation-test.html">9. Rotation</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="sleep-test.html">10. Sleep</a></td></tr>
+
+      <!-- 불합격 -->
+    <table id="fail-table" style="width:140px; min-width:140px; max-width:140px; height:420px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse; vertical-align:top;">
+      <tr><th style="padding:6px 0;">不合格</th></tr>
+      <tr><td style="padding:6px 0;"><a href="bluetooth-test.html">12. Bluetooth</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="indi-test.html">13. Indi</a></td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
     </table>
+
+
     <!-- 키니나루 -->
-    <table id="kininaru-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
+    <table id="kininaru-table" style="width:140px; min-width:140px; max-width:140px; height:420px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse; vertical-align:top;">
       <tr><th style="padding:6px 0;">気になる</th></tr>
       <tr><td style="padding:6px 0;"><a href="touchscreen-test.html">6. Touchscreen</a></td></tr>
       <tr><td style="padding:6px 0;"><a href="battery-test.html">14. Battery</a></td></tr>
@@ -106,29 +114,26 @@
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
     </table>
-    <!-- 불합격 -->
-    <table id="fail-table" style="width:140px; min-width:140px; max-width:140px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse;">
-      <tr><th style="padding:6px 0;">不合格</th></tr>
-      <tr><td style="padding:6px 0;"><a href="bluetooth-test.html">12. Bluetooth</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="indi-test.html">13. Indi</a></td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+
+
+        <!-- 합격 -->
+    <table id="pass-table" style="width:140px; min-width:140px; max-width:140px; height:420px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse; vertical-align:top;">
+      <tr><th style="padding:6px 0;">合格</th></tr>
+      <tr><td style="padding:6px 0;"><a href="camera-test.html">1. Camera</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="touchpad-test.html">2. Touchpad</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="speaker-test.html">3. Speaker</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="whitespot-test.html">4. Whitespot</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="youtube-test.html">5. Youtube</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="touchpen-test.html">7. Touchpen</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="keyboard-test.html">8. Keyboard</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="rotation-test.html">9. Rotation</a></td></tr>
+      <tr><td style="padding:6px 0;"><a href="sleep-test.html">10. Sleep</a></td></tr>
     </table>
   </div>
   <!-- 3개로 나눈 결과 표 끝 -->
 
   <div id="text-result" style="margin-top: 30px; font-size: 20px; font-weight: bold;"></div>
-  <div id="mac-result" style="margin-top: 30px; font-size: 20px; font-weight: bold; color: #1a237e;"></div>
-  <div id="battery-result" style="margin-top: 10px; font-size: 20px; font-weight: bold; color: #33691e;"></div>
   <div id="name-result" style="margin-top: 20px; font-size: 20px; font-weight: bold; color: #1976d2;"></div>
 
   <div class="nav-buttons">
@@ -150,8 +155,12 @@
     }
     function updateBatteryResult() {
       const batteryText = localStorage.getItem("batteryMessage");
+      let display = "（入力なし）";
+      if (batteryText && batteryText.trim()) {
+        display = batteryText.trim() + "%";
+      }
       document.getElementById("battery-result").textContent =
-        "・バッテリーヘルス:" + (batteryText || "（入力なし）");
+        "・バッテリーヘルス:" + display;
     }
     function updateNameResult() {
       const name = localStorage.getItem('selectedName');
