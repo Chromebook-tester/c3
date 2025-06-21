@@ -1,63 +1,115 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>スタッフ</title>
-  <link rel="stylesheet" href="common-layout2.css">
-  <style>
+<meta charset="UTF-8">
+<title>スタッフ選択</title>
+<link rel="stylesheet" href="common-layout2.css">
+
+<style>
+
     .name-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin: 30px 0;
     }
-    .name-btn {
-      padding: 12px 0;
-      font-size: 18px;
-      border-radius: 8px;
-      border: 1px solid #aaa;
-      background: #f7f7f7;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .name-btn.selected {
-      background: #1976d2;
-      color: #fff;
-      font-weight: bold;
-    }
+
+
+.name-btn {
+  background-color: #DDE7C7;
+  color: rgb(0, 0, 0);
+  border: 2px solid #8eb938;
+  border-radius: 16px;
+  cursor: pointer;
+  padding: 0 18px;
+  font-size: 18px;
+  height: 60px;
+  min-width: 32px;
+  line-height: 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  z-index: 10;
+  text-decoration: none;
+  margin: 0;
+}
+
+.name-btn:hover {
+  background-color: #2196F3;
+  border: 2px solid white;
+}
+
+
+
     .input-area {
-      margin-bottom: 20px;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
     .input-area input {
       font-size: 20px;
-      padding: 6px 12px;
+      padding: 15px 15px;
       width: 220px;
       text-align: center;
       border-radius: 6px;
-      border: 1px solid #aaa;
+      border: 2px solid #aaa;
       margin-right: 10px;
     }
     .send-btn {
-      font-size: 18px;
-      padding: 7px 18px;
+      font-size: 20px;
+      padding: 15px 15px;
       border-radius: 6px;
-      background: #1976d2;
+      background: #2196F3;
       color: #fff;
-      border: none;
+      border: 2px solid #aaa;
       cursor: pointer;
+      min-width: 100px; /* 버튼 크기 고정! */
+      width: 100px;
+      box-sizing: border-box;
     }
-  </style>
+    .send-btn:hover {
+      background: #1c7fd0;
+      border: 2px solid #ccc !important;
+    }
+
+  .name-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .gray-input {
+      background: #e0e0e0 !important;
+      color: #888 !important;
+      border: 2px solid #ccc !important; /* 두께까지 명확히! */
+    }
+    .send-btn:disabled {
+      background: #e0e0e0 !important;
+      color: #888 !important;
+      border: 2px solid #ccc !important;
+      cursor: not-allowed;
+    }
+</style>
 </head>
+
+
+
+
 <body>
-  <h1>
-    <div class="header-left-group">
-      <a href="../index.html" class="header-home-btn">ホーム</a>
-      <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
-    </div>
-    <span class="title-link">作業スタッフ</span>
-  </h1>
-  <h2 style="margin-top: 24px;">作業スタッフ</h2>
-  <div class="input-area">
+    
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">スタッフさん</span>
+</h1>
+
+
+  
+  <div class="input-area" id="input-area">
     <input type="text" id="selectedName" placeholder="" readonly>
     <button class="send-btn" onclick="sendName()">転送</button>
   </div>
@@ -85,19 +137,7 @@
     <button class="name-btn">-----</button>
     <button class="name-btn">-----</button>
     <button class="name-btn">-----</button>
-  </div>
-  <div class="nav-buttons">
-    <div class="nav-left">
-      <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前のテスト</button>
-    </div>
-    <div class="nav-center">
-      <button class="button button3" disabled style="opacity:0.2; pointer-events:none;">不合格</button>
-      <button class="button button2" disabled style="opacity:0.2; pointer-events:none;">気になる</button>
-      <button class="button button1" disabled style="opacity:0.2; pointer-events:none;">合格</button>
-    </div>
-    <div class="nav-right">
-      <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次へ</button>
-    </div>
+
   </div>
   <script>
     // 버튼 클릭 시 입력창에 이름 표시
@@ -106,18 +146,117 @@
         document.getElementById('selectedName').value = this.textContent;
         document.querySelectorAll('.name-btn').forEach(b => b.classList.remove('selected'));
         this.classList.add('selected');
+        // 이름 선택하면 버튼/입력창 초기화
+        const sendBtn = document.querySelector('#input-area .send-btn');
+        const inputBox = document.getElementById('selectedName');
+        inputBox.classList.remove('gray-input');
+        sendBtn.disabled = false;
+        sendBtn.textContent = '転送';
+        sendBtn.classList.remove('gray-input'); // 버튼 회색 효과 해제
       });
     });
-    // 전송 버튼 클릭 시 localStorage에 이름 저장
+    // 전송 버튼 클릭 시 localStorage에 이름 저장 + 비활성화
     function sendName() {
       const name = document.getElementById('selectedName').value;
+      const sendBtn = document.querySelector('#input-area .send-btn');
+      const inputBox = document.getElementById('selectedName');
       if (!name) {
-        alert('이름을 선택해줘!');
         return;
       }
       localStorage.setItem('selectedName', name);
-      alert('이름이 summary.html에 전송됐어! summary.html을 새로고침해봐.');
+      sendBtn.disabled = true;
+      sendBtn.textContent = '転送済';
+      sendBtn.classList.add('gray-input'); // 버튼도 회색 효과
+      inputBox.classList.add('gray-input');
     }
+    // 입력창 값이 바뀌면(이름 선택 시) 버튼/입력창 초기화
+    document.getElementById('selectedName').addEventListener('input', function() {
+      const sendBtn = document.querySelector('#input-area .send-btn');
+      this.classList.remove('gray-input');
+      sendBtn.disabled = false;
+      sendBtn.textContent = '転送';
+      sendBtn.classList.remove('gray-input'); // 버튼 회색 효과 해제
+    });
+    // 페이지 로드 시 localStorage 값 있으면 상태 반영
+    window.addEventListener('DOMContentLoaded', function() {
+      const inputBox = document.getElementById('selectedName');
+      const sendBtn = document.querySelector('#input-area .send-btn');
+      inputBox.value = localStorage.getItem('selectedName') || '';
+      if (inputBox.value.trim()) {
+        inputBox.classList.add('gray-input');
+        sendBtn.disabled = true;
+        sendBtn.textContent = '転送済';
+        sendBtn.classList.add('gray-input');
+        inputBox.classList.add('gray-input');
+      } else {
+        inputBox.classList.remove('gray-input');
+        sendBtn.disabled = false;
+        sendBtn.textContent = '転送';
+        sendBtn.classList.remove('gray-input');
+      }
+    });
   </script>
+
+
+
+
+
+
+
+
+
+<div class="nav-buttons">
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前へ</button>
+  </div>
+<div class="nav-center">
+    <button class="button button3" disabled style="opacity:0.2; pointer-events:none;">不合格</button>
+    <button class="button button2" disabled style="opacity:0.2; pointer-events:none;">気になる</button>
+    <button class="button button1" disabled style="opacity:0.2; pointer-events:none;">合格</button>
+</div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次へ ➡</button>
+  </div>
+</div>
+
+<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
+
+<script>
+function playAndNavigate(soundId, nextPage) {
+const audio = document.getElementById(soundId);
+if (!audio) {
+location.href = nextPage;
+return;
+}
+
+audio.currentTime = 0;
+audio.play().then(() => {
+setTimeout(() => {
+location.href = nextPage;
+}, 400);
+}).catch(() => {
+location.href = nextPage;
+});
+}
+
+// 하단 중앙 3개 버튼 토글 기능 (CSS 우선순위 강화)
+function setBottomToggleButtons() {
+  document.querySelectorAll('.nav-center .button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        return;
+      }
+      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
+</script>
 </body>
+
+
 </html>
