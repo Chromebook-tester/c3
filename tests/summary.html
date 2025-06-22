@@ -123,6 +123,7 @@
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
     </table>
 
 
@@ -195,8 +196,14 @@
     
     function updateReferNumber() {
       const refer = localStorage.getItem('referNumber');
+      let display = '';
+      if (refer && refer.length === 4) {
+        display = '00' + refer + '-PM25S';
+      } else {
+        display = refer ? refer : '';
+      }
       document.getElementById('refer-number').textContent =
-        '管理番号: ' + (refer ? refer : '');
+        '管理番号: ' + display;
     }
 
 
