@@ -13,6 +13,10 @@
       overflow-y: auto;
     }
 
+    h1 {
+      margin-bottom: 30px;
+    }
+
     p {
       font-size: 18px;
       margin-top: 0px;
@@ -83,7 +87,7 @@
 
 
 <br>
-  <h2 id="staff-title">002354-PM25S ・ 作業スタッフ: </h2>
+  <h2 id="staff-title">002354-PM25S ・ 作業スタッフ표시되는 부분: </h2>
   <div style="display: flex; gap: 30px; align-items: flex-end; margin-bottom: 10px; justify-content: center;">
     <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
     <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
@@ -102,6 +106,8 @@
       <tr><th style="padding:6px 0;">不合格</th></tr>
       <tr><td style="padding:6px 0;"><a href="bluetooth-test.html" class="atext">12. Bluetooth</a></td></tr>
       <tr><td style="padding:6px 0;"><a href="indi-test.html" class="atext">13. Indi</a></td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
@@ -166,7 +172,7 @@
     function updateMacResult() {
       const macText = localStorage.getItem("macMessage");
       document.getElementById("mac-result").textContent =
-        "・" + (macText || "（入力なし）");
+        "" + (macText || "（入力なし）");
     }
     function updateBatteryResult() {
       const batteryText = localStorage.getItem("batteryMessage");
@@ -175,7 +181,7 @@
         display = batteryText.trim() + "%";
       }
       document.getElementById("battery-result").textContent =
-        "・バッテリーヘルス:" + display;
+        "バッテリーヘルス:" + display;
     }
     function updateNameResult() {
       const name = localStorage.getItem('selectedName');
