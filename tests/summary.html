@@ -87,7 +87,7 @@
 
 
 <br>
-  <h2 id="staff-title"> 作業スタッフ표시되는 부분: </h2>
+  <h2 id="refer-number"> 관리번호 표시되는 부분 </h2><h2 id="staff-title"> 作業スタッフ표시되는 부분: </h2>
   <div style="display: flex; gap: 30px; align-items: flex-end; margin-bottom: 10px; justify-content: center;">
     <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
     <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
@@ -188,6 +188,14 @@
       document.getElementById('staff-title').textContent =
         '作業スタッフ: ' + (name ? name : '');
     }
+
+    
+    function updateNameResult() {
+      const name = localStorage.getItem('selectedName');
+      document.getElementById('refer-number').textContent =
+        '管理番号: ' + (name ? name : '');
+    }
+
 
     // storage 이벤트에서 함수 호출
     window.addEventListener("storage", (event) => {
