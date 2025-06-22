@@ -173,14 +173,43 @@
         sendBtn.textContent = '転送';
         sendBtn.classList.remove('gray-input');
       }
+
+      // 키보드 입력 시 버튼/입력창 상태 갱신
+      inputBox.addEventListener('input', function() {
+        let digits = inputBox.value.replace(/\D/g, '').slice(0, 4);
+        inputBox.value = digits;
+        if (digits.length === 4) {
+          sendBtn.disabled = false;
+          sendBtn.textContent = '転送';
+          sendBtn.classList.remove('gray-input');
+          inputBox.classList.remove('gray-input');
+        } else {
+          sendBtn.disabled = true;
+          sendBtn.classList.add('gray-input');
+          inputBox.classList.remove('gray-input');
+          sendBtn.textContent = '転送';
+        }
+      });
+
       // 숫자패드 버튼 클릭 시 입력창에 연속 입력 (이벤트 연결을 DOMContentLoaded 안으로 이동)
       let digits = saved || '';
       document.querySelectorAll('.num-cell').forEach(cell => {
         cell.addEventListener('mousedown', function(e) {
           e.preventDefault();
           if (this.classList.contains('empty')) return;
+          // 입력창이 비활성화면 리셋/고양이 버튼 외에는 무시
+          if (inputBox.disabled && !this.classList.contains('reset') && this.textContent !== '🐱') {
+            return;
+          }
           if (this.classList.contains('reset')) {
             digits = '';
+            inputBox.value = '';
+            inputBox.disabled = false; // 입력창 다시 활성화!
+            inputBox.classList.remove('gray-input');
+            sendBtn.disabled = true;
+            sendBtn.textContent = '転送';
+            sendBtn.classList.remove('gray-input');
+            return;
           } else if (this.textContent === '🐱') {
             // 고양이 버튼 누르면 daisuki 오디오 재생 (id: daisuki, preload)
             let catAudio = document.getElementById('daisuki');
