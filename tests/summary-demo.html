@@ -7,8 +7,7 @@
   <style>
     /* 이 페이지에만 적용되는 스타일 */
     body {
-      font-family: sans-serif;
-      background-color: #f0f8ff; /* common-layout.css의 배경색을 덕여쓰면 */
+      background-color: #ffffff; /* common-layout.css의 배경색을 덕여쓰면 */
       font-size: 18px;
       padding: 30px;
       overflow-y: auto;
@@ -84,10 +83,10 @@
 
 
 <br>
-  <h2 id="staff-title">002354-PM25S / 作業スタッフ: </h2>
+  <h2 id="staff-title">002354-PM25S ・ 作業スタッフ: </h2>
   <div style="display: flex; gap: 30px; align-items: flex-end; margin-bottom: 10px; justify-content: center;">
-    <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #1a237e;"></div>
-    <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #33691e;"></div>
+    <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
+    <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
   </div>
 
 
@@ -181,7 +180,7 @@
     function updateNameResult() {
       const name = localStorage.getItem('selectedName');
       document.getElementById('staff-title').textContent =
-        '002354-PM25S / 作業スタッフ: ' + (name ? name : '');
+        '002354-PM25S ・ 作業スタッフ: ' + (name ? name : '');
     }
 
     // storage 이벤트에서 함수 호출
