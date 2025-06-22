@@ -58,8 +58,15 @@
 
     th, td {
       border: 1px solid #ccc;
-      padding: 8px;
+      padding: 0;
       text-align: center;
+      height: 15px;
+      width: 33.3%;
+      word-break: break-all;
+      overflow-wrap: break-word;
+      font-size: 18px;
+      line-height: 1;
+      vertical-align: middle;
     }
 
     th {
@@ -69,6 +76,7 @@
     .atext {
       text-decoration: none;
       color: inherit;
+      font-size: 18px;
     }
     .atext:hover {
       text-decoration: underline;
@@ -87,7 +95,7 @@
 
 
 <br>
-  <h2 id="refer-number"> 관리번호 표시되는 부분 </h2><h2 id="staff-title"> 작업자 표시되는 부분: </h2>
+  <h2 id="refer-number"> 管理番号 표시되는 부분 </h2><h2 id="staff-title"> 작업자 표시되는 부분: </h2>
   <div style="display: flex; gap: 30px; align-items: flex-end; margin-bottom: 10px; justify-content: center;">
     <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
     <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
@@ -100,63 +108,16 @@
 
   <!-- 3개로 나눈 결과 표 시작 -->
   <div style="display: flex; gap: 30px; margin-bottom: 30px; justify-content: center;">
-
-      <!-- 불합격 -->
-    <table id="fail-table" style="width:140px; min-width:140px; max-width:140px; height:420px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse; vertical-align:top;">
-      <tr><th style="padding:6px 0;">不合格</th></tr>
-      <tr><td style="padding:6px 0;"><a href="bluetooth-test.html" class="atext">12. Bluetooth</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="indi-test.html" class="atext">13. Indi</a></td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-    </table>
-
-
-    <!-- 키니나루 -->
-    <table id="kininaru-table" style="width:140px; min-width:140px; max-width:140px; height:420px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse; vertical-align:top;">
-      <tr><th style="padding:6px 0;">気になる</th></tr>
-      <tr><td style="padding:6px 0;"><a href="touchscreen-test.html" class="atext">6. Touchscreen</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="battery-test.html" class="atext">14. Battery</a></td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
-    </table>
-
-
-        <!-- 합격 -->
-    <table id="pass-table" style="width:140px; min-width:140px; max-width:140px; height:420px; display:inline-table; table-layout:fixed; margin:0; border-collapse:collapse; vertical-align:top;">
-      <tr><th style="padding:6px 0;">合格</th></tr>
-      <tr><td style="padding:6px 0;"><a href="camera-test.html" class="atext">1. Camera</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="touchpad-test.html" class="atext">2. Touchpad</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="speaker-test.html" class="atext">3. Speaker</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="whitespot-test.html" class="atext">4. Whitespot</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="youtube-test.html" class="atext">5. Youtube</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="touchpen-test.html" class="atext">7. Touchpen</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="keyboard-test.html" class="atext">8. Keyboard</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="rotation-test.html" class="atext">9. Rotation</a></td></tr>
-      <tr><td style="padding:6px 0;"><a href="sleep-test.html" class="atext">10. Sleep</a></td></tr>
+    <table id="result-table" style="width: 540px; min-width: 540px; max-width: 540px; height: 960px; table-layout: fixed; border-collapse: collapse;">
+      <tr>
+        <th style="padding:0; width: 33.3%;">不合格</th>
+        <th style="padding:0; width: 33.3%;">気になる</th>
+        <th style="padding:0; width: 33.3%;">合格</th>
+      </tr>
+      <!-- 결과 14행 (빈칸 포함) -->
+      <tbody id="result-table-body">
+        <!-- JS로 채움 -->
+      </tbody>
     </table>
   </div>
   <!-- 3개로 나눈 결과 표 끝 -->
@@ -192,7 +153,6 @@
       document.getElementById('staff-title').textContent =
         '作業スタッフ: ' + (name ? name : '');
     }
-
     
     function updateReferNumber() {
       const refer = localStorage.getItem('referNumber');
@@ -206,6 +166,72 @@
         '管理番号: ' + display;
     }
 
+    // 테스트명 리스트 (index.html에서 テスト 빼고 간단하게)
+    const testList = [
+      { key: 'カメラ', label: 'Camera', link: 'camera-test.html' },
+      { key: 'タッチパット', label: 'Touchpad', link: 'touchpad-test.html' },
+      { key: 'スピーカー', label: 'Speaker', link: 'speaker-test.html' },
+      { key: 'ホワイトスポット', label: 'Whitespot', link: 'whitespot-test.html' },
+      { key: 'Youtube', label: 'Youtube', link: 'youtube-test.html' },
+      { key: 'タッチペン', label: 'Touchpen', link: 'touchpen-test.html' },
+      { key: 'キーボード', label: 'Keyboard', link: 'keyboard-test.html' },
+      { key: '回転', label: 'Rotation', link: 'rotation-test.html' },
+      { key: 'スリープ', label: 'Sleep', link: 'sleep-test.html' },
+      { key: 'バッテリー', label: 'Battery', link: 'battery-test.html' },
+      { key: 'Bluetooth', label: 'Bluetooth', link: 'bluetooth-test.html' },
+      { key: 'Indi', label: 'Indi', link: 'indi-test.html' },
+      { key: 'タッチスクリーン', label: 'Touchscreen', link: 'touchscreen-test.html' },
+      // 필요시 추가
+    ];
+
+    function updateTestResultTables() {
+      // 결과를 3개의 배열로 분류
+      const fail = [], kininaru = [], pass = [];
+      testList.forEach(test => {
+        const result = localStorage.getItem('testResult_' + test.key);
+        if (result === '不合格') fail.push(test);
+        else if (result === '気になる') kininaru.push(test);
+        else if (result === '合格') pass.push(test);
+      });
+      // 19행(헤더 제외) 고정
+      const maxRows = 19;
+      const tbody = document.getElementById('result-table-body');
+      tbody.innerHTML = '';
+      for (let i = 0; i < maxRows; i++) {
+        const tr = document.createElement('tr');
+        // 불합격
+        const td1 = document.createElement('td');
+        if (fail[i]) {
+          const a = document.createElement('a');
+          a.href = fail[i].link;
+          a.className = 'atext';
+          a.textContent = fail[i].key;
+          td1.appendChild(a);
+        }
+        tr.appendChild(td1);
+        // 키니나루
+        const td2 = document.createElement('td');
+        if (kininaru[i]) {
+          const a = document.createElement('a');
+          a.href = kininaru[i].link;
+          a.className = 'atext';
+          a.textContent = kininaru[i].key;
+          td2.appendChild(a);
+        }
+        tr.appendChild(td2);
+        // 합격
+        const td3 = document.createElement('td');
+        if (pass[i]) {
+          const a = document.createElement('a');
+          a.href = pass[i].link;
+          a.className = 'atext';
+          a.textContent = pass[i].key;
+          td3.appendChild(a);
+        }
+        tr.appendChild(td3);
+        tbody.appendChild(tr);
+      }
+    }
 
     // storage 이벤트에서 함수 호출
     window.addEventListener("storage", (event) => {
@@ -213,6 +239,7 @@
       if (event.key === "batteryMessage") updateBatteryResult();
       if (event.key === "selectedName") updateNameResult();
       if (event.key === "referNumber") updateReferNumber();
+      if (event.key && event.key.startsWith('testResult_')) updateTestResultTables();
     });
 
     // 페이지 로드 시 한 번에 모두 표시
@@ -220,6 +247,7 @@
     updateBatteryResult();
     updateReferNumber();
     updateNameResult();
+    updateTestResultTables();
 
     function playAndNavigate(soundId, nextPage) {
       const audio = document.getElementById(soundId);
