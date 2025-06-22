@@ -205,8 +205,13 @@
       const inputBox = document.getElementById('referNumber');
       const sendBtn = document.querySelector('#input-area .send-btn');
       const saved = localStorage.getItem('referNumber') || '';
-      updateReferNumberInput(saved);
-      if (saved && saved.length === 4) {
+      let digits = saved;
+      // 만약 saved가 '00'으로 시작하고 'PM25S'로 끝나면, 4자리 숫자만 추출
+      if (/^00\d{4} - PM25S$/.test(saved)) {
+        digits = saved.slice(2, 6);
+      }
+      updateReferNumberInput(digits);
+      if (digits && digits.length === 4) {
         inputBox.classList.add('gray-input');
         sendBtn.disabled = true;
         sendBtn.textContent = '転送済';
@@ -219,7 +224,6 @@
         sendBtn.classList.remove('gray-input');
       }
       // 숫자패드 버튼 클릭 시 입력창에 연속 입력 (이벤트 연결을 DOMContentLoaded 안으로 이동)
-      let digits = saved || '';
       document.querySelectorAll('.num-cell').forEach(cell => {
         cell.addEventListener('mousedown', function(e) {
           e.preventDefault();
