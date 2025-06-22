@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>oneko</title>
- 
-</head>
-<body>
-
-
-
-<script>
- // oneko.js: https://github.com/adryd325/oneko.js
-
+// oneko.js: https://github.com/adryd325/oneko.js
 
 (function oneko() {
   const isReducedMotion =
@@ -250,7 +237,3 @@
 
   init();
 })();
-</script>
-
-</body>
-</html>
