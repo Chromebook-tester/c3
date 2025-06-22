@@ -7,41 +7,6 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script>
 <style>
 
-    .name-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin: 30px 0;
-    }
-
-
-.name-btn {
-  background-color: #DDE7C7;
-  color: rgb(0, 0, 0);
-  border: 2px solid #8eb938;
-  border-radius: 16px;
-  cursor: pointer;
-  padding: 0 18px;
-  font-size: 18px;
-  height: 60px;
-  min-width: 32px;
-  line-height: 16px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-  z-index: 10;
-  text-decoration: none;
-  margin: 0;
-}
-
-.name-btn:hover {
-  background-color: #2196F3;
-  border: 2px solid white;
-}
-
-
 
     .input-area {
       margin-top: 40px;
@@ -106,7 +71,7 @@
 
   
   <div class="input-area" id="input-area">
-    <input type="text" id="referNumber" placeholder="4자리 숫자">
+    <input type="text" id="referNumber" placeholder="4桁">
     <button class="send-btn" onclick="sendName()">転送</button>
   </div>
   <div class="number-pad-grid" style="display: grid; grid-template-columns: repeat(3, 80px); grid-template-rows: repeat(4, 80px); gap: 0; max-width: 240px; margin: 30px auto; border: 2px solid #8eb938; background: #DDE7C7; user-select: none;">
@@ -188,6 +153,7 @@
       sendBtn.textContent = '転送済';
       sendBtn.classList.add('gray-input');
       inputBox.classList.add('gray-input');
+      inputBox.disabled = true; // 입력창 비활성화!
     }
     // 페이지 로드 시 localStorage 값 있으면 상태 반영
     window.addEventListener('DOMContentLoaded', function() {
@@ -207,14 +173,43 @@
         sendBtn.textContent = '転送';
         sendBtn.classList.remove('gray-input');
       }
+
+      // 키보드 입력 시 버튼/입력창 상태 갱신
+      inputBox.addEventListener('input', function() {
+        let digits = inputBox.value.replace(/\D/g, '').slice(0, 4);
+        inputBox.value = digits;
+        if (digits.length === 4) {
+          sendBtn.disabled = false;
+          sendBtn.textContent = '転送';
+          sendBtn.classList.remove('gray-input');
+          inputBox.classList.remove('gray-input');
+        } else {
+          sendBtn.disabled = true;
+          sendBtn.classList.add('gray-input');
+          inputBox.classList.remove('gray-input');
+          sendBtn.textContent = '転送';
+        }
+      });
+
       // 숫자패드 버튼 클릭 시 입력창에 연속 입력 (이벤트 연결을 DOMContentLoaded 안으로 이동)
       let digits = saved || '';
       document.querySelectorAll('.num-cell').forEach(cell => {
         cell.addEventListener('mousedown', function(e) {
           e.preventDefault();
           if (this.classList.contains('empty')) return;
+          // 입력창이 비활성화면 리셋/고양이 버튼 외에는 무시
+          if (inputBox.disabled && !this.classList.contains('reset') && this.textContent !== '🐱') {
+            return;
+          }
           if (this.classList.contains('reset')) {
             digits = '';
+            inputBox.value = '';
+            inputBox.disabled = false; // 입력창 다시 활성화!
+            inputBox.classList.remove('gray-input');
+            sendBtn.disabled = true;
+            sendBtn.textContent = '転送';
+            sendBtn.classList.remove('gray-input');
+            return;
           } else if (this.textContent === '🐱') {
             // 고양이 버튼 누르면 daisuki 오디오 재생 (id: daisuki, preload)
             let catAudio = document.getElementById('daisuki');
