@@ -132,16 +132,27 @@ location.href = nextPage;
 });
 }
 
-// 하단 중앙 3개 버튼 토글 기능 복구
+// 하단 중앙 3개 버튼 토글 + 결과 저장/해제 기능
 function setBottomToggleButtons() {
-  document.querySelectorAll('.nav-center .button').forEach(btn => {
+  const key = 'testResult_画面回転';
+  const btns = document.querySelectorAll('.nav-center .button');
+  // 진입 시 localStorage 값에 따라 선택 복원
+  const saved = localStorage.getItem(key);
+  btns.forEach(btn => {
+    if (btn.textContent === saved) {
+      btn.classList.add('selected');
+    } else {
+      btn.classList.remove('selected');
+    }
     btn.addEventListener('click', function() {
       if (this.classList.contains('selected')) {
         this.classList.remove('selected');
+        localStorage.removeItem(key); // 선택 해제 시 삭제
         return;
       }
-      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      btns.forEach(b => b.classList.remove('selected'));
       this.classList.add('selected');
+      localStorage.setItem(key, this.textContent); // 선택 시 저장
     });
   });
 }
