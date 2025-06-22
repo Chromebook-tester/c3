@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>고양이 추적기</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #fff5e1;
+    }
+
+    #cat {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<img id="cat" src="../media/images/cat-chaser.gif" alt="cat">
+
+
+<script>
+  const cat = document.getElementById("cat");
+  let mouseX = 0;
+  let mouseY = 0;
+  let catX = 100;
+  let catY = 100;
+
+  // 마우스 움직일 때 좌표 저장
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animate() {
+    // 고양이가 마우스를 따라가도록 위치 보정 (천천히 따라가게)
+    const speed = 0.1; // 이 값을 줄이면 더 느리게 따라옴
+    catX += (mouseX - catX) * speed;
+    catY += (mouseY - catY) * speed;
+
+    cat.style.left = catX - 40 + "px";
+    cat.style.top = catY - 40 + "px";
+
+    requestAnimationFrame(animate); // 다음 프레임에서 계속 실행
+  }
+
+  animate(); // 애니메이션 시작
+</script>
+
+</body>
+</html>
