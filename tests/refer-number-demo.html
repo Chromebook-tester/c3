@@ -106,7 +106,7 @@
 
   
   <div class="input-area" id="input-area">
-    <input type="text" id="referNumber" placeholder="00xxxx - PM25S" readonly>
+    <input type="text" id="referNumber" placeholder="" readonly>
     <button class="send-btn" onclick="sendName()">転送</button>
   </div>
   <div class="number-pad-grid" style="display: grid; grid-template-columns: repeat(3, 80px); grid-template-rows: repeat(4, 80px); gap: 0; max-width: 240px; margin: 30px auto; border: 2px solid #8eb938; background: #DDE7C7; user-select: none;">
@@ -160,17 +160,7 @@
     }
   </style>
   <script>
-    // 템플릿 관련 상수
-    const TEMPLATE_PREFIX = '00';
-    const TEMPLATE_SUFFIX = ' - PM25S';
-    const MAX_DIGITS = 4;
-    // 입력창에 템플릿 형태로 표시
-    function updateReferNumberInput(digits) {
-      const inputBox = document.getElementById('referNumber');
-      const padded = (digits || '').padStart(MAX_DIGITS, '');
-      inputBox.value = TEMPLATE_PREFIX + padded + TEMPLATE_SUFFIX;
-    }
-    // 버튼 클릭 시 입력창에 이름 표시 (이름 버튼 기능은 그대로)
+    // 버튼 클릭 시 입력창에 이름 표시
     document.querySelectorAll('.name-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.getElementById('referNumber').value = this.textContent;
@@ -185,33 +175,34 @@
         sendBtn.classList.remove('gray-input'); // 버튼 회색 효과 해제
       });
     });
-    // 전송 버튼 클릭 시 localStorage에 4자리만 저장 + 비활성화
+    // 전송 버튼 클릭 시 localStorage에 이름 저장 + 비활성화
     function sendName() {
-      const inputBox = document.getElementById('referNumber');
-      // 4자리만 추출
-      const digits = inputBox.value.slice(2, 6);
+      const name = document.getElementById('referNumber').value;
       const sendBtn = document.querySelector('#input-area .send-btn');
-      if (!/^\d{4}$/.test(digits)) {
+      const inputBox = document.getElementById('referNumber');
+      if (!name) {
         return;
       }
-      localStorage.setItem('referNumber', inputBox.value);
+      localStorage.setItem('referNumber', name);
       sendBtn.disabled = true;
       sendBtn.textContent = '転送済';
-      sendBtn.classList.add('gray-input');
+      sendBtn.classList.add('gray-input'); // 버튼도 회색 효과
       inputBox.classList.add('gray-input');
     }
+    // 입력창 값이 바뀌면(이름 선택 시) 버튼/입력창 초기화
+    document.getElementById('referNumber').addEventListener('input', function() {
+      const sendBtn = document.querySelector('#input-area .send-btn');
+      this.classList.remove('gray-input');
+      sendBtn.disabled = false;
+      sendBtn.textContent = '転送';
+      sendBtn.classList.remove('gray-input'); // 버튼 회색 효과 해제
+    });
     // 페이지 로드 시 localStorage 값 있으면 상태 반영
     window.addEventListener('DOMContentLoaded', function() {
       const inputBox = document.getElementById('referNumber');
       const sendBtn = document.querySelector('#input-area .send-btn');
-      const saved = localStorage.getItem('referNumber') || '';
-      let digits = saved;
-      // 만약 saved가 '00'으로 시작하고 'PM25S'로 끝나면, 4자리 숫자만 추출
-      if (/^00\d{4} - PM25S$/.test(saved)) {
-        digits = saved.slice(2, 6);
-      }
-      updateReferNumberInput(digits);
-      if (digits && digits.length === 4) {
+      inputBox.value = localStorage.getItem('referNumber') || '';
+      if (inputBox.value.trim()) {
         inputBox.classList.add('gray-input');
         sendBtn.disabled = true;
         sendBtn.textContent = '転送済';
@@ -223,13 +214,15 @@
         sendBtn.textContent = '転送';
         sendBtn.classList.remove('gray-input');
       }
+
       // 숫자패드 버튼 클릭 시 입력창에 연속 입력 (이벤트 연결을 DOMContentLoaded 안으로 이동)
       document.querySelectorAll('.num-cell').forEach(cell => {
         cell.addEventListener('mousedown', function(e) {
-          e.preventDefault();
+          e.preventDefault(); // 모바일에서 포커스 방지
+          const input = document.getElementById('referNumber');
           if (this.classList.contains('empty')) return;
           if (this.classList.contains('reset')) {
-            digits = '';
+            input.value = '';
           } else if (this.textContent === '🐱') {
             // 고양이 버튼 누르면 daisuki 오디오 재생 (id: daisuki, preload)
             let catAudio = document.getElementById('daisuki');
@@ -253,19 +246,16 @@
             // 입력창에는 아무 변화 없음
             return;
           } else {
-            if (digits.length < MAX_DIGITS) {
-              digits += this.textContent.replace(/\D/g, '');
-            }
+            input.value = input.value + this.textContent.replace(/\D/g, '');
           }
-          // 4자리까지만 입력
-          digits = digits.slice(0, MAX_DIGITS);
-          updateReferNumberInput(digits);
           // 입력값 바뀌면 버튼/입력창 초기화
           const sendBtn = document.querySelector('#input-area .send-btn');
-          inputBox.classList.remove('gray-input');
+          input.classList.remove('gray-input');
           sendBtn.disabled = false;
           sendBtn.textContent = '転送';
           sendBtn.classList.remove('gray-input');
+          // input 이벤트 강제 발생
+          input.dispatchEvent(new Event('input'));
         });
       });
     });
