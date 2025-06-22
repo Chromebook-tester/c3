@@ -194,7 +194,7 @@
       if (!/^\d{4}$/.test(digits)) {
         return;
       }
-      localStorage.setItem('referNumber', digits);
+      localStorage.setItem('referNumber', inputBox.value);
       sendBtn.disabled = true;
       sendBtn.textContent = '転送済';
       sendBtn.classList.add('gray-input');
