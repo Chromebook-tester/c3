@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>管理番号入力</title>
 <link rel="stylesheet" href="common-layout2.css">
-
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script>
 <style>
 
     .name-grid {
@@ -156,7 +156,7 @@
       font-size: 18px;
     }
     .num-cell.reset:hover {
-      background: #b71c1c;
+      background: #55b5e5;
     }
   </style>
   <script>
@@ -223,6 +223,28 @@
           if (this.classList.contains('empty')) return;
           if (this.classList.contains('reset')) {
             input.value = '';
+          } else if (this.textContent === '🐱') {
+            // 고양이 버튼 누르면 daisuki 오디오 재생 (id: daisuki, preload)
+            let catAudio = document.getElementById('daisuki');
+            if (!catAudio) {
+              catAudio = document.createElement('audio');
+              catAudio.id = 'daisuki';
+              catAudio.src = '../media/audio/daisuki.mp3';
+              catAudio.preload = 'auto';
+              document.body.appendChild(catAudio);
+            }
+            catAudio.currentTime = 0;
+            catAudio.play();
+            // confetti 효과 추가
+            if (window.confetti) {
+              confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { y: 0.6 }
+              });
+            }
+            // 입력창에는 아무 변화 없음
+            return;
           } else {
             input.value = input.value + this.textContent.replace(/\D/g, '');
           }
