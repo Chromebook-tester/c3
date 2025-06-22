@@ -143,33 +143,67 @@
 
   
   <div class="input-area" id="input-area">
-    <input type="text" id="selectedName" placeholder="" readonly>
+    <input type="text" id="referNumber" placeholder="" readonly>
     <button class="send-btn" onclick="sendName()">転送</button>
   </div>
-  <div class="number-pad">
-    <button class="num-btn">1</button>
-    <button class="num-btn">2</button>
-    <button class="num-btn">3</button>
-    <button class="num-btn">4</button>
-    <button class="num-btn">5</button>
-    <button class="num-btn">6</button>
-    <button class="num-btn">7</button>
-    <button class="num-btn">8</button>
-    <button class="num-btn">9</button>
-    <button class="num-btn">0</button>
-    <button class="num-btn" id="num-clear">リセット</button>
-    
+  <div class="number-pad-grid" style="display: grid; grid-template-columns: repeat(3, 60px); grid-template-rows: repeat(4, 60px); gap: 0; max-width: 180px; margin: 30px auto; border: 2px solid #8eb938; background: #DDE7C7; user-select: none;">
+    <div class="num-cell">1</div>
+    <div class="num-cell">2</div>
+    <div class="num-cell">3</div>
+    <div class="num-cell">4</div>
+    <div class="num-cell">5</div>
+    <div class="num-cell">6</div>
+    <div class="num-cell">7</div>
+    <div class="num-cell">8</div>
+    <div class="num-cell">9</div>
+    <div class="num-cell empty"></div>
+    <div class="num-cell">0</div>
+    <div class="num-cell reset">リセット</div>
   </div>
+  <style>
+    .num-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      border: 1px solid #8eb938;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.2s;
+      height: 60px;
+      width: 60px;
+      box-sizing: border-box;
+      user-select: none;
+    }
+    .num-cell:hover {
+      background: #2196F3;
+      color: #fff;
+    }
+    .num-cell.empty {
+      background: none;
+      border: none;
+      cursor: default;
+    }
+    .num-cell.reset {
+      color: #fff;
+      background: #f44336;
+      border: 1px solid #f44336;
+      font-size: 18px;
+    }
+    .num-cell.reset:hover {
+      background: #b71c1c;
+    }
+  </style>
   <script>
     // 버튼 클릭 시 입력창에 이름 표시
     document.querySelectorAll('.name-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        document.getElementById('selectedName').value = this.textContent;
+        document.getElementById('referNumber').value = this.textContent;
         document.querySelectorAll('.name-btn').forEach(b => b.classList.remove('selected'));
         this.classList.add('selected');
         // 이름 선택하면 버튼/입력창 초기화
         const sendBtn = document.querySelector('#input-area .send-btn');
-        const inputBox = document.getElementById('selectedName');
+        const inputBox = document.getElementById('referNumber');
         inputBox.classList.remove('gray-input');
         sendBtn.disabled = false;
         sendBtn.textContent = '転送';
@@ -178,20 +212,20 @@
     });
     // 전송 버튼 클릭 시 localStorage에 이름 저장 + 비활성화
     function sendName() {
-      const name = document.getElementById('selectedName').value;
+      const name = document.getElementById('referNumber').value;
       const sendBtn = document.querySelector('#input-area .send-btn');
-      const inputBox = document.getElementById('selectedName');
+      const inputBox = document.getElementById('referNumber');
       if (!name) {
         return;
       }
-      localStorage.setItem('selectedName', name);
+      localStorage.setItem('referNumber', name);
       sendBtn.disabled = true;
       sendBtn.textContent = '転送済';
       sendBtn.classList.add('gray-input'); // 버튼도 회색 효과
       inputBox.classList.add('gray-input');
     }
     // 입력창 값이 바뀌면(이름 선택 시) 버튼/입력창 초기화
-    document.getElementById('selectedName').addEventListener('input', function() {
+    document.getElementById('referNumber').addEventListener('input', function() {
       const sendBtn = document.querySelector('#input-area .send-btn');
       this.classList.remove('gray-input');
       sendBtn.disabled = false;
@@ -200,9 +234,9 @@
     });
     // 페이지 로드 시 localStorage 값 있으면 상태 반영
     window.addEventListener('DOMContentLoaded', function() {
-      const inputBox = document.getElementById('selectedName');
+      const inputBox = document.getElementById('referNumber');
       const sendBtn = document.querySelector('#input-area .send-btn');
-      inputBox.value = localStorage.getItem('selectedName') || '';
+      inputBox.value = localStorage.getItem('referNumber') || '';
       if (inputBox.value.trim()) {
         inputBox.classList.add('gray-input');
         sendBtn.disabled = true;
@@ -215,31 +249,27 @@
         sendBtn.textContent = '転送';
         sendBtn.classList.remove('gray-input');
       }
-    });
-    // '지우기' 버튼 클릭 시 입력란 및 선택 초기화
-    document.getElementById('num-clear').addEventListener('click', function() {
-      document.getElementById('selectedName').value = '';
-      document.querySelectorAll('.name-btn').forEach(b => b.classList.remove('selected'));
-      const sendBtn = document.querySelector('#input-area .send-btn');
-      sendBtn.disabled = false;
-      sendBtn.textContent = '転送';
-      sendBtn.classList.remove('gray-input');
-    });
-    // 숫자패드 버튼 클릭 시 입력창에 연속 입력
-    document.querySelectorAll('.num-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const input = document.getElementById('selectedName');
-        if (this.id === 'num-clear') {
-          input.value = '';
-        } else {
-          input.value += this.textContent;
-        }
-        // 입력값 바뀌면 버튼/입력창 초기화
-        const sendBtn = document.querySelector('#input-area .send-btn');
-        input.classList.remove('gray-input');
-        sendBtn.disabled = false;
-        sendBtn.textContent = '転送';
-        sendBtn.classList.remove('gray-input');
+
+      // 숫자패드 버튼 클릭 시 입력창에 연속 입력 (이벤트 연결을 DOMContentLoaded 안으로 이동)
+      document.querySelectorAll('.num-cell').forEach(cell => {
+        cell.addEventListener('mousedown', function(e) {
+          e.preventDefault(); // 모바일에서 포커스 방지
+          const input = document.getElementById('referNumber');
+          if (this.classList.contains('empty')) return;
+          if (this.classList.contains('reset')) {
+            input.value = '';
+          } else {
+            input.value = input.value + this.textContent.replace(/\D/g, '');
+          }
+          // 입력값 바뀌면 버튼/입력창 초기화
+          const sendBtn = document.querySelector('#input-area .send-btn');
+          input.classList.remove('gray-input');
+          sendBtn.disabled = false;
+          sendBtn.textContent = '転送';
+          sendBtn.classList.remove('gray-input');
+          // input 이벤트 강제 발생
+          input.dispatchEvent(new Event('input'));
+        });
       });
     });
   </script>
@@ -254,7 +284,7 @@
 
 <div class="nav-buttons">
   <div class="nav-left">
-    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前へ</button>
+    <button onclick="playAndNavigate('sound-previous', '../index.html')">⬅ 前へ</button>
   </div>
 <div class="nav-center">
     <button class="button button3" disabled style="opacity:0.2; pointer-events:none;">不合格</button>
@@ -262,7 +292,7 @@
     <button class="button button1" disabled style="opacity:0.2; pointer-events:none;">合格</button>
 </div>
   <div class="nav-right">
-    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次へ ➡</button>
+    <button onclick="playAndNavigate('sound-next', 'name-select.html')">次へ ➡</button>
   </div>
 </div>
 
