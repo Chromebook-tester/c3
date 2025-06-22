@@ -78,10 +78,10 @@
 <h1>
   <div class="header-left-group">
     <a href="../index.html" class="header-home-btn">ホーム</a>
-
-  </div>
-  <span class="title-link">👻Test Title👻</span>
+ </div>
+  <span class="title-link" id="title-main">結果まとめ</span><span id="today-date" style="margin-left:10px; font-size:18px; color:#555;"></span>
 </h1>
+
 
 <br>
   <h2>002354-PM25S // ASUS CR1 //  作業スタッフ: いくぴ // 2025.06.19</h2>
@@ -111,6 +111,7 @@
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
     </table>
 
 
@@ -119,6 +120,7 @@
       <tr><th style="padding:6px 0;">気になる</th></tr>
       <tr><td style="padding:6px 0;"><a href="touchscreen-test.html">6. Touchscreen</a></td></tr>
       <tr><td style="padding:6px 0;"><a href="battery-test.html">14. Battery</a></td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
@@ -225,6 +227,16 @@
         location.href = nextPage;
       });
     }
+
+    // 오늘 날짜를 'YYYY.MM.DD' 형식으로 표시
+    function setTodayDate() {
+      const now = new Date();
+      const yyyy = now.getFullYear();
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
+      document.getElementById('today-date').textContent = `${yyyy}.${mm}.${dd}`;
+    }
+    setTodayDate();
   </script>
 <div style="height: 300px;"></div>
 
