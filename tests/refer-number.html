@@ -143,7 +143,7 @@
 
   
   <div class="input-area" id="input-area">
-    <input type="text" id="selectedName" placeholder="" readonly>
+    <input type="text" id="referNumber" placeholder="" readonly>
     <button class="send-btn" onclick="sendName()">転送</button>
   </div>
   <div class="number-pad">
@@ -164,12 +164,12 @@
     // 버튼 클릭 시 입력창에 이름 표시
     document.querySelectorAll('.name-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        document.getElementById('selectedName').value = this.textContent;
+        document.getElementById('referNumber').value = this.textContent;
         document.querySelectorAll('.name-btn').forEach(b => b.classList.remove('selected'));
         this.classList.add('selected');
         // 이름 선택하면 버튼/입력창 초기화
         const sendBtn = document.querySelector('#input-area .send-btn');
-        const inputBox = document.getElementById('selectedName');
+        const inputBox = document.getElementById('referNumber');
         inputBox.classList.remove('gray-input');
         sendBtn.disabled = false;
         sendBtn.textContent = '転送';
@@ -178,20 +178,20 @@
     });
     // 전송 버튼 클릭 시 localStorage에 이름 저장 + 비활성화
     function sendName() {
-      const name = document.getElementById('selectedName').value;
+      const name = document.getElementById('referNumber').value;
       const sendBtn = document.querySelector('#input-area .send-btn');
-      const inputBox = document.getElementById('selectedName');
+      const inputBox = document.getElementById('referNumber');
       if (!name) {
         return;
       }
-      localStorage.setItem('selectedName', name);
+      localStorage.setItem('referNumber', name);
       sendBtn.disabled = true;
       sendBtn.textContent = '転送済';
       sendBtn.classList.add('gray-input'); // 버튼도 회색 효과
       inputBox.classList.add('gray-input');
     }
     // 입력창 값이 바뀌면(이름 선택 시) 버튼/입력창 초기화
-    document.getElementById('selectedName').addEventListener('input', function() {
+    document.getElementById('referNumber').addEventListener('input', function() {
       const sendBtn = document.querySelector('#input-area .send-btn');
       this.classList.remove('gray-input');
       sendBtn.disabled = false;
@@ -200,9 +200,9 @@
     });
     // 페이지 로드 시 localStorage 값 있으면 상태 반영
     window.addEventListener('DOMContentLoaded', function() {
-      const inputBox = document.getElementById('selectedName');
+      const inputBox = document.getElementById('referNumber');
       const sendBtn = document.querySelector('#input-area .send-btn');
-      inputBox.value = localStorage.getItem('selectedName') || '';
+      inputBox.value = localStorage.getItem('referNumber') || '';
       if (inputBox.value.trim()) {
         inputBox.classList.add('gray-input');
         sendBtn.disabled = true;
@@ -218,7 +218,7 @@
     });
     // '지우기' 버튼 클릭 시 입력란 및 선택 초기화
     document.getElementById('num-clear').addEventListener('click', function() {
-      document.getElementById('selectedName').value = '';
+      document.getElementById('referNumber').value = '';
       document.querySelectorAll('.name-btn').forEach(b => b.classList.remove('selected'));
       const sendBtn = document.querySelector('#input-area .send-btn');
       sendBtn.disabled = false;
@@ -228,7 +228,7 @@
     // 숫자패드 버튼 클릭 시 입력창에 연속 입력
     document.querySelectorAll('.num-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        const input = document.getElementById('selectedName');
+        const input = document.getElementById('referNumber');
         if (this.id === 'num-clear') {
           input.value = '';
         } else {
