@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>管理番号入力</title>
 <link rel="stylesheet" href="common-layout2.css">
-
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script>
 <style>
 
     .name-grid {
@@ -73,12 +73,6 @@
       border: 2px solid #ccc !important;
     }
 
-  .name-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin: 30px 0;
-    }
 
     .gray-input {
       background: #e0e0e0 !important;
@@ -92,38 +86,7 @@
       cursor: not-allowed;
     }
 
-    .number-pad {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 300px;
-      margin: 30px auto;
-    }
-    .num-btn {
-      background-color: #DDE7C7;
-      color: #000;
-      border: 2px solid #8eb938;
-      border-radius: 16px;
-      cursor: pointer;
-      font-size: 24px;
-      height: 60px;
-      min-width: 60px;
-      box-sizing: border-box;
-      transition: background-color 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .num-btn:hover {
-      background-color: #2196F3;
-      color: #fff;
-    }
-    #num-clear {
-      grid-column: span 3;
-      background-color: #f44336;
-      color: #fff;
-      border: 2px solid #f44336;
-    }
+  
   </style>
 </head>
 
@@ -146,7 +109,7 @@
     <input type="text" id="referNumber" placeholder="" readonly>
     <button class="send-btn" onclick="sendName()">転送</button>
   </div>
-  <div class="number-pad-grid" style="display: grid; grid-template-columns: repeat(3, 60px); grid-template-rows: repeat(4, 60px); gap: 0; max-width: 180px; margin: 30px auto; border: 2px solid #8eb938; background: #DDE7C7; user-select: none;">
+  <div class="number-pad-grid" style="display: grid; grid-template-columns: repeat(3, 80px); grid-template-rows: repeat(4, 80px); gap: 0; max-width: 240px; margin: 30px auto; border: 2px solid #8eb938; background: #DDE7C7; user-select: none;">
     <div class="num-cell">1</div>
     <div class="num-cell">2</div>
     <div class="num-cell">3</div>
@@ -156,22 +119,24 @@
     <div class="num-cell">7</div>
     <div class="num-cell">8</div>
     <div class="num-cell">9</div>
-    <div class="num-cell empty"></div>
+    <div class="num-cell">🐱</div>
     <div class="num-cell">0</div>
     <div class="num-cell reset">リセット</div>
   </div>
+
+
   <style>
     .num-cell {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      font-size: 27px;
       border: 1px solid #8eb938;
       cursor: pointer;
       background: transparent;
       transition: background 0.2s;
-      height: 60px;
-      width: 60px;
+      height: 80px;
+      width: 80px;
       box-sizing: border-box;
       user-select: none;
     }
@@ -186,12 +151,12 @@
     }
     .num-cell.reset {
       color: #fff;
-      background: #f44336;
-      border: 1px solid #f44336;
+      background-color: #607D8B;
+      border: 1px solid #607D8B;
       font-size: 18px;
     }
     .num-cell.reset:hover {
-      background: #b71c1c;
+      background: #55b5e5;
     }
   </style>
   <script>
@@ -258,6 +223,28 @@
           if (this.classList.contains('empty')) return;
           if (this.classList.contains('reset')) {
             input.value = '';
+          } else if (this.textContent === '🐱') {
+            // 고양이 버튼 누르면 daisuki 오디오 재생 (id: daisuki, preload)
+            let catAudio = document.getElementById('daisuki');
+            if (!catAudio) {
+              catAudio = document.createElement('audio');
+              catAudio.id = 'daisuki';
+              catAudio.src = '../media/audio/daisuki.mp3';
+              catAudio.preload = 'auto';
+              document.body.appendChild(catAudio);
+            }
+            catAudio.currentTime = 0;
+            catAudio.play();
+            // confetti 효과 추가
+            if (window.confetti) {
+              confetti({
+                particleCount: 90,
+                spread: 80,
+                origin: { y: 0.6 }
+              });
+            }
+            // 입력창에는 아무 변화 없음
+            return;
           } else {
             input.value = input.value + this.textContent.replace(/\D/g, '');
           }
