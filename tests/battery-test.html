@@ -182,16 +182,27 @@ location.href = nextPage;
 });
 }
 
-// 하단 중앙 3개 버튼 토글 기능 (CSS 우선순위 강화)
+// 하단 중앙 3개 버튼 토글 기능 + 결과 저장/복원
 function setBottomToggleButtons() {
-  document.querySelectorAll('.nav-center .button').forEach(btn => {
+  const testKey = 'バッテリー';
+  const storageKey = 'testResult_' + testKey;
+  const btns = document.querySelectorAll('.nav-center .button');
+  // 선택 복원
+  const saved = localStorage.getItem(storageKey);
+  btns.forEach(btn => {
+    if (btn.textContent === saved) btn.classList.add('selected');
+    else btn.classList.remove('selected');
+  });
+  btns.forEach(btn => {
     btn.addEventListener('click', function() {
       if (this.classList.contains('selected')) {
         this.classList.remove('selected');
+        localStorage.removeItem(storageKey);
         return;
       }
-      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      btns.forEach(b => b.classList.remove('selected'));
       this.classList.add('selected');
+      localStorage.setItem(storageKey, this.textContent);
     });
   });
 }
