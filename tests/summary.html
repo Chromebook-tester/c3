@@ -7,11 +7,14 @@
   <style>
     /* 이 페이지에만 적용되는 스타일 */
     body {
-      font-family: sans-serif;
-      background-color: #f0f8ff; /* common-layout.css의 배경색을 덕여쓰면 */
+      background-color: #ffffff; /* common-layout.css의 배경색을 덕여쓰면 */
       font-size: 18px;
       padding: 30px;
       overflow-y: auto;
+    }
+
+    h1 {
+      margin-bottom: 30px;
     }
 
     p {
@@ -79,15 +82,15 @@
   <div class="header-left-group">
     <a href="../index.html" class="header-home-btn">ホーム</a>
  </div>
-  <span class="title-link" id="title-main">結果まとめ</span><span id="today-date" style="margin-left:10px; font-size:18px; color:#555;"></span>
+  <span class="title-link" id="title-main">結果まとめ</span><span id="today-date" style="margin-left:10px; font-size:20px; color:#000000;"></span>
 </h1>
 
 
 <br>
-  <h2>002354-PM25S / 作業スタッフ: いくぴ </h2>
+  <h2 id="staff-title">002354-PM25S ・ 作業スタッフ표시되는 부분: </h2>
   <div style="display: flex; gap: 30px; align-items: flex-end; margin-bottom: 10px; justify-content: center;">
-    <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #1a237e;"></div>
-    <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #33691e;"></div>
+    <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
+    <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
   </div>
 
 
@@ -103,6 +106,9 @@
       <tr><th style="padding:6px 0;">不合格</th></tr>
       <tr><td style="padding:6px 0;"><a href="bluetooth-test.html" class="atext">12. Bluetooth</a></td></tr>
       <tr><td style="padding:6px 0;"><a href="indi-test.html" class="atext">13. Indi</a></td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
+      <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
       <tr><td style="padding:6px 0;">&nbsp;</td></tr>
@@ -152,7 +158,6 @@
   <!-- 3개로 나눈 결과 표 끝 -->
 
   <div id="text-result" style="margin-top: 30px; font-size: 20px; font-weight: bold;"></div>
-  <div id="name-result" style="margin-top: 20px; font-size: 20px; font-weight: bold; color: #1976d2;"></div>
 
   <div class="nav-buttons">
     <button onclick="playAndNavigate('sound-previous', 'battery-test.html')">⬅ 前のテスト</button>
@@ -167,7 +172,7 @@
     function updateMacResult() {
       const macText = localStorage.getItem("macMessage");
       document.getElementById("mac-result").textContent =
-        "・" + (macText || "（入力なし）");
+        "" + (macText || "（入力なし）");
     }
     function updateBatteryResult() {
       const batteryText = localStorage.getItem("batteryMessage");
@@ -176,11 +181,12 @@
         display = batteryText.trim() + "%";
       }
       document.getElementById("battery-result").textContent =
-        "・バッテリーヘルス:" + display;
+        "バッテリーヘルス:" + display;
     }
     function updateNameResult() {
       const name = localStorage.getItem('selectedName');
-      document.getElementById('name-result').textContent = name ? '선택된 이름: ' + name : '';
+      document.getElementById('staff-title').textContent =
+        '002354-PM25S ・ 作業スタッフ: ' + (name ? name : '');
     }
 
     // storage 이벤트에서 함수 호출
