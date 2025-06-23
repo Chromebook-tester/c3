@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -14,62 +13,64 @@
       padding: 20px;
     }
 
+    .title-link {
+      text-decoration: none;
+      color: inherit;
+    }
 
-.title-link {
-  text-decoration: none;
-  color: inherit;
-}
+    canvas {
+      border: 2px solid #aaa;
+      border-radius: 8px;
+      margin: 70px auto 20px auto;
+      display: block;
+      touch-action: none !important;
+      width: 90vw;
+      height: 30vh;
+    }
 
-canvas {
-  border: 2px solid #aaa;
-  border-radius: 8px;
-  margin: 70px auto 20px auto; /* 기존 margin에서 top을 40px로 변경하여 20px 아래로 내림 */
-  display: block;
-  touch-action: none;
-  width: 90vw;
-  height: 30vh;
-}
-
-.reset-button {
-  background-color: #35526182;
-  color: white;
-  padding: 10px 20px;
-  font-size: 18px;
-  border: 2px solid #355261;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-
-
+    .reset-button {
+      background-color: #35526182;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: 2px solid #355261;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
   </style>
 </head>
+
 <body>
-<h1>
-  <div class="header-left-group">
-    <a href="../index.html" class="header-home-btn">ホーム</a>
-    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
-  </div>
-  <span class="title-link">タッチペン・テスト</span>
-</h1>
+  <h1>
+    <div class="header-left-group">
+      <a href="../index.html" class="header-home-btn">ホーム</a>
+      <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+    </div>
+    <span class="title-link">タッチペン・テスト</span>
+  </h1>
+
   <canvas id="write-canvas"></canvas>
   <p>✏️タッチペンで、数字をなぞってみよう!</p>
   <button class="reset-button" onclick="clearCanvas()">リセット</button>
-<div class="nav-buttons">
-  <div class="nav-left">
-    <button onclick="playAndNavigate('sound-previous', 'touchscreen-test.html')">⬅ 前のテスト</button>
-  </div>
-  <div class="nav-center">
-    <button class="button button3">不合格</button>
-    <button class="button button2">気になる</button>
-    <button class="button button1">合格</button>
-  </div>
-  <div class="nav-right">
-    <button onclick="playAndNavigate('sound-next', 'keyboard-test.html')">次のテスト ➡</button>
-  </div>
-</div>
 
+  <div class="nav-buttons">
+    <div class="nav-left">
+      <button onclick="playAndNavigate('sound-previous', 'touchscreen-test.html')">⬅ 前のテスト</button>
+    </div>
+    <div class="nav-center">
+      <button class="button button3">不合格</button>
+      <button class="button button2">気になる</button>
+      <button class="button button1">合格</button>
+    </div>
+    <div class="nav-right">
+      <button onclick="playAndNavigate('sound-next', 'keyboard-test.html')">次のテスト ➡</button>
+    </div>
+  </div>
+
+  <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
+  <audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
+  <audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
 
   <script>
     const canvas = document.getElementById('write-canvas');
@@ -89,11 +90,11 @@ canvas {
       ctx.fillStyle = 'rgba(100, 100, 100, 0.2)';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      
+
       const numbers = ['1', '2', '3', '4', '5'];
       const margin = canvas.width * 0.1;
       const spacing = (canvas.width - margin * 2) / (numbers.length - 1);
-      
+
       numbers.forEach((num, i) => {
         ctx.fillText(num, margin + spacing * i, canvas.height / 2);
       });
@@ -132,60 +133,58 @@ canvas {
       isDrawing = false;
     });
 
+    // 안정화 처리
+    window.addEventListener('DOMContentLoaded', () => {
+      canvas.style.touchAction = 'none';
+      canvas.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+      canvas.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
+      resizeCanvas();
+    });
 
-    window.addEventListener('load', resizeCanvas);
-    window.addEventListener('resize', resizeCanvas);
-  </script>
+    window.addEventListener('resize', () => {
+      setTimeout(resizeCanvas, 100);
+    });
 
-<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
-<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
-<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
-
-<script>
-function playAndNavigate(soundId, nextPage) {
-  const audio = document.getElementById(soundId);
-  if (!audio) {
-    location.href = nextPage;
-    return;
-  }
-
-  audio.currentTime = 0;
-  audio.play().then(() => {
-    setTimeout(() => {
-      location.href = nextPage;
-    }, 400);
-  }).catch(() => {
-    location.href = nextPage;
-  });
-}
-
-// 하단 중앙 3개 버튼 토글 + 결과 저장/해제 기능
-function setBottomToggleButtons() {
-  const key = 'testResult_タッチペン';
-  const btns = document.querySelectorAll('.nav-center .button');
-  // 진입 시 localStorage 값에 따라 선택 복원
-  const saved = localStorage.getItem(key);
-  btns.forEach(btn => {
-    if (btn.textContent === saved) {
-      btn.classList.add('selected');
-    } else {
-      btn.classList.remove('selected');
-    }
-    btn.addEventListener('click', function() {
-      if (this.classList.contains('selected')) {
-        this.classList.remove('selected');
-        localStorage.removeItem(key); // 선택 해제 시 삭제
+    function playAndNavigate(soundId, nextPage) {
+      const audio = document.getElementById(soundId);
+      if (!audio) {
+        location.href = nextPage;
         return;
       }
-      btns.forEach(b => b.classList.remove('selected'));
-      this.classList.add('selected');
-      localStorage.setItem(key, this.textContent); // 선택 시 저장
-    });
-  });
-}
-window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
-</script>
+      audio.currentTime = 0;
+      audio.play().then(() => {
+        setTimeout(() => {
+          location.href = nextPage;
+        }, 400);
+      }).catch(() => {
+        location.href = nextPage;
+      });
+    }
 
+    function setBottomToggleButtons() {
+      const key = 'testResult_タッチペン';
+      const btns = document.querySelectorAll('.nav-center .button');
+      const saved = localStorage.getItem(key);
+      btns.forEach(btn => {
+        if (btn.textContent === saved) {
+          btn.classList.add('selected');
+        } else {
+          btn.classList.remove('selected');
+        }
+        btn.addEventListener('click', function () {
+          if (this.classList.contains('selected')) {
+            this.classList.remove('selected');
+            localStorage.removeItem(key);
+            return;
+          }
+          btns.forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          localStorage.setItem(key, this.textContent);
+        });
+      });
+    }
 
+    window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
+  </script>
 </body>
 </html>
