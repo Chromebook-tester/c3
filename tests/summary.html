@@ -129,6 +129,7 @@
 
   <div class="nav-buttons">
     <button onclick="playAndNavigate('sound-previous', 'battery-test.html')">⬅ 前のテスト</button>
+    <button onclick="playAndShare('https://www.pairdrop.net')">送る</button>
     <button onclick="playAndPrint('sound-next')">プリント</button>
   </div>
 
@@ -284,6 +285,10 @@
       }).catch(() => {
         window.print();
       });
+    }
+
+    function playAndShare(url) {
+      window.open(url, '_blank');
     }
 
     // 오늘 날짜를 'YYYY.MM.DD' 형식으로 표시
