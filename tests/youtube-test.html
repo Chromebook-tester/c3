@@ -96,21 +96,51 @@
 
  <!-- YouTube API 불러오기 -->
 <script src="https://www.youtube.com/iframe_api"></script>
-
 <script>
   let player1;
+  let retryCount = 0;
+  const maxRetries = 3;
+  const retryDelay = 2000;
 
   function onYouTubeIframeAPIReady() {
+    createPlayer();
+  }
+
+  function createPlayer() {
     player1 = new YT.Player('player1', {
       height: '215',
       width: '360',
-      videoId: 'CipMHKbezBk', // 첫 번째 영상 ID
+      videoId: 'CipMHKbezBk',
       playerVars: {
         'autoplay': 0,
         'controls': 1,
         'rel': 0
+      },
+      events: {
+        'onReady': function() {
+          // 플레이어가 준비되면 아무것도 안 함 (조용히 성공)
+        },
+        'onError': function() {
+          retryLoadPlayer();
+        }
       }
     });
+    // 혹시 onReady가 안 불리면 3초 후 재시도
+    setTimeout(() => {
+      if (!player1 || typeof player1.getPlayerState !== 'function') {
+        retryLoadPlayer();
+      }
+    }, retryDelay);
+  }
+
+  function retryLoadPlayer() {
+    retryCount++;
+    if (retryCount <= maxRetries) {
+      const playerDiv = document.getElementById('player1');
+      if (playerDiv) playerDiv.innerHTML = '';
+      setTimeout(createPlayer, retryDelay);
+    }
+    // maxRetries 넘으면 그냥 멈춤 (메시지 없음)
   }
 </script>
 
