@@ -95,7 +95,10 @@
 
 
 <br>
-  <h2 id="refer-number"> 管理番号 표시되는 부분 </h2><h2 id="staff-title"> 작업자 표시되는 부분: </h2>
+  <div style="display:flex; gap:20px; justify-content:center;">
+    <h2 id="refer-number"> 管理番号 표시되는 부분 </h2>
+    <h2 id="staff-title"> 작업자 표시되는 부분: </h2>
+  </div>
   <div style="display: flex; gap: 30px; align-items: flex-end; margin-bottom: 10px; justify-content: center;">
     <div id="mac-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
     <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
@@ -108,7 +111,7 @@
 
   <!-- 3개로 나눈 결과 표 시작 -->
   <div style="display: flex; gap: 30px; margin-bottom: 30px; justify-content: center;">
-    <table id="result-table" style="width: 540px; min-width: 540px; max-width: 540px; height: 960px; table-layout: fixed; border-collapse: collapse;">
+    <table id="result-table" style="width: 540px; min-width: 540px; max-width: 540px; table-layout: fixed; border-collapse: collapse;">
       <tr>
         <th style="padding:0; width: 33.3%;">不合格</th>
         <th style="padding:0; width: 33.3%;">気になる</th>
