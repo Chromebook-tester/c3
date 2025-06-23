@@ -126,7 +126,7 @@
 
   <div class="nav-buttons">
     <button onclick="playAndNavigate('sound-previous', 'battery-test.html')">⬅ 前のテスト</button>
-    <button onclick="playAndNavigateAndPrint('sound-next', 'summary.html')">プリント</button>
+    <button onclick="playAndPrint('sound-next')">プリント</button>
   </div>
 
   <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
@@ -267,22 +267,19 @@
       });
     }
 
-    function playAndNavigateAndPrint(soundId, nextPage) {
+    function playAndPrint(soundId) {
       const audio = document.getElementById(soundId);
       if (!audio) {
-        window.print(); // ctrl+p와 동일한 동작
-        location.href = nextPage;
+        window.print();// ctrl+p와 동일한 동작
         return;
       }
       audio.currentTime = 0;
       audio.play().then(() => {
         setTimeout(() => {
-          window.print(); // ctrl+p와 동일한 동작
-          location.href = nextPage;
+          window.print();// ctrl+p와 동일한 동작
         }, 400);
       }).catch(() => {
         window.print();
-        location.href = nextPage;
       });
     }
 
