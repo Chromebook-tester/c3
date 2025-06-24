@@ -306,7 +306,8 @@ document.body.addEventListener("click", handleBodyInteraction);
 document.body.addEventListener("touchstart", (e) => {
     if (
       e.target === startButton ||
-      e.target.closest('.nav-buttons') // 👉 네비게이션 버튼 터치는 막지 않도록 예외 처리!
+      e.target.closest('.nav-buttons') || //네비게이션 버튼은 예외
+      e.target.closest('.header-left-group') // 홈, 결과 버튼도 예외
     ) {
         return;
     }
