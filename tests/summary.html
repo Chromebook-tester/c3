@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>結果まとめ</title>
+  <title>Summary</title>
   <link rel="stylesheet" href="common-layout2.css">
   <style>
     /* 이 페이지에만 적용되는 스타일 */
@@ -92,8 +92,30 @@
       opacity: 1;
     }
     @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color: #000 !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        filter: none !important;
+      }
+      th, td {
+        background: #fff !important;
+        color: #000 !important;
+        border-color: #000 !important;
+      }
       .link-icon {
         display: none !important;
+      }
+      .header-left-group, .nav-buttons, audio, #sound-previous, #sound-next {
+        display: none !important;
+      }
+      h1 {
+        border: 2px solid #000 !important;
+        box-shadow: none !important;
+        background: none !important;
       }
     }
   </style>
@@ -118,28 +140,114 @@
     <div id="battery-result" style="font-size: 20px; font-weight: bold; color: #000000;"></div>
   </div>
 
+  <div id="text-result" style="margin-top: 30px; font-size: 20px; font-weight: bold;"></div>
 
-
-
-
-
-  <!-- 3개로 나눈 결과 표 시작 -->
   <div style="display: flex; gap: 30px; margin-bottom: 30px; justify-content: center;">
-    <table id="result-table" style="width: 540px; min-width: 540px; max-width: 540px; table-layout: fixed; border-collapse: collapse;">
+    <table style="width: 600px; max-width: 100%; border-collapse: collapse; table-layout: fixed;">
       <tr>
-        <th style="padding:6px 0; width: 33.3%;">不合格</th>
-        <th style="padding:6px 0; width: 33.3%;">気になる</th>
-        <th style="padding:6px 0; width: 33.3%;">合格</th>
+        <th style="width: 30%;">テスト項目</th>
+        <th style="width: 20%;">不合格</th>
+        <th style="width: 20%;">気になる</th>
+        <th style="width: 20%;">合格</th>
       </tr>
-      <!-- 결과 14행 (빈칸 포함) -->
-      <tbody id="result-table-body">
-        <!-- JS로 채움 -->
-      </tbody>
+      <tr>
+        <td><a href="camera-test.html" class="atext">カメラ<span class="link-icon">🔗</span></a></td>
+        <td id="mark-カメラ-不合格" class="mark"></td>
+        <td id="mark-カメラ-気になる" class="mark"></td>
+        <td id="mark-カメラ-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="touchpad-test.html" class="atext">タッチパット<span class="link-icon">🔗</span></a></td>
+        <td id="mark-タッチパット-不合格" class="mark"></td>
+        <td id="mark-タッチパット-気になる" class="mark"></td>
+        <td id="mark-タッチパット-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="whitespot-test.html" class="atext">ホワイトスポット<span class="link-icon">🔗</span></a></td>
+        <td id="mark-ホワイトスポット-不合格" class="mark"></td>
+        <td id="mark-ホワイトスポット-気になる" class="mark"></td>
+        <td id="mark-ホワイトスポット-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="rotation-test.html" class="atext">画面回転<span class="link-icon">🔗</span></a></td>
+        <td id="mark-画面回転-不合格" class="mark"></td>
+        <td id="mark-画面回転-気になる" class="mark"></td>
+        <td id="mark-画面回転-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="speaker-test.html" class="atext">スピーカー<span class="link-icon">🔗</span></a></td>
+        <td id="mark-スピーカー-不合格" class="mark"></td>
+        <td id="mark-スピーカー-気になる" class="mark"></td>
+        <td id="mark-スピーカー-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="keyboard-test.html" class="atext">キーボード<span class="link-icon">🔗</span></a></td>
+        <td id="mark-キーボード-不合格" class="mark"></td>
+        <td id="mark-キーボード-気になる" class="mark"></td>
+        <td id="mark-キーボード-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="sleep-test.html" class="atext">スリープ<span class="link-icon">🔗</span></a></td>
+        <td id="mark-スリープ-不合格" class="mark"></td>
+        <td id="mark-スリープ-気になる" class="mark"></td>
+        <td id="mark-スリープ-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="youtube-test.html" class="atext">インタネット接続<span class="link-icon">🔗</span></a></td>
+        <td id="mark-インタネット接続-不合格" class="mark"></td>
+        <td id="mark-インタネット接続-気になる" class="mark"></td>
+        <td id="mark-インタネット接続-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="touchscreen-test.html" class="atext">タッチスクリーン<span class="link-icon">🔗</span></a></td>
+        <td id="mark-タッチスクリーン-不合格" class="mark"></td>
+        <td id="mark-タッチスクリーン-気になる" class="mark"></td>
+        <td id="mark-タッチスクリーン-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="touchpen-test.html" class="atext">タッチペン<span class="link-icon">🔗</span></a></td>
+        <td id="mark-タッチペン-不合格" class="mark"></td>
+        <td id="mark-タッチペン-気になる" class="mark"></td>
+        <td id="mark-タッチペン-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="indi-test.html" class="atext">インジケーター<span class="link-icon">🔗</span></a></td>
+        <td id="mark-インジケーター-不合格" class="mark"></td>
+        <td id="mark-インジケーター-気になる" class="mark"></td>
+        <td id="mark-インジケーター-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="bluetooth-test.html" class="atext">Bluetooth<span class="link-icon">🔗</span></a></td>
+        <td id="mark-Bluetooth-不合格" class="mark"></td>
+        <td id="mark-Bluetooth-気になる" class="mark"></td>
+        <td id="mark-Bluetooth-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="battery-test.html" class="atext">バッテリー<span class="link-icon">🔗</span></a></td>
+        <td id="mark-バッテリー-不合格" class="mark"></td>
+        <td id="mark-バッテリー-気になる" class="mark"></td>
+        <td id="mark-バッテリー-合格" class="mark"></td>
+      </tr>
+       <tr>
+        <td><a href="battery-test.html" class="atext"></td>
+        <td id="mark-バッテリー-不合格" class="mark"></td>
+        <td id="mark-バッテリー-気になる" class="mark"></td>
+        <td id="mark-バッテリー-合格" class="mark"></td>
+      </tr>
+       <tr>
+        <td><a href="battery-test.html" class="atext"></td>
+        <td id="mark-バッテリー-不合格" class="mark"></td>
+        <td id="mark-バッテリー-気になる" class="mark"></td>
+        <td id="mark-バッテリー-合格" class="mark"></td>
+      </tr>
+      <tr>
+        <td><a href="battery-test.html" class="atext"></td>
+        <td id="mark-バッテリー-不合格" class="mark"></td>
+        <td id="mark-バッテリー-気になる" class="mark"></td>
+        <td id="mark-バッテリー-合格" class="mark"></td>
+      </tr>
     </table>
   </div>
-  <!-- 3개로 나눈 결과 표 끝 -->
-
-  <div id="text-result" style="margin-top: 30px; font-size: 20px; font-weight: bold;"></div>
 
   <div class="nav-buttons">
     <button onclick="playAndNavigate('sound-previous', 'battery-test.html')">⬅ 前のテスト</button>
@@ -171,7 +279,6 @@
       document.getElementById('staff-title').textContent =
         '作業スタッフ: ' + (name ? name : '');
     }
-    
     function updateReferNumber() {
       const refer = localStorage.getItem('referNumber');
       let display = '';
@@ -184,73 +291,23 @@
         '管理番号: ' + display;
     }
 
-    // 테스트명 리스트 (index.html에서 テスト 빼고 간단하게)
+    // 표 ○표시 기능 (summary-demo.html 전용)
     const testList = [
-      { key: 'カメラ', label: 'Camera', link: 'camera-test.html' },
-      { key: 'タッチパット', label: 'Touchpad', link: 'touchpad-test.html' },
-      { key: 'スピーカー', label: 'Speaker', link: 'speaker-test.html' },
-      { key: 'ホワイトスポット', label: 'Whitespot', link: 'whitespot-test.html' },
-      { key: 'インタネット接続', label: 'Youtube', link: 'youtube-test.html' },
-      { key: 'タッチペン', label: 'Touchpen', link: 'touchpen-test.html' },
-      { key: 'キーボード', label: 'Keyboard', link: 'keyboard-test.html' },
-      { key: '画面回転', label: '画面回転', link: 'rotation-test.html' },
-      { key: 'スリープ', label: 'Sleep', link: 'sleep-test.html' },
-      { key: 'バッテリー', label: 'Battery', link: 'battery-test.html' },
-      { key: 'Bluetooth', label: 'Bluetooth', link: 'bluetooth-test.html' },
-      { key: 'インジケーター', label: 'インジケーター', link: 'indi-test.html' },
-      { key: 'タッチスクリーン', label: 'Touchscreen', link: 'touchscreen-test.html' },
-      { key: 'MACアドレス', label: 'MACアドレス', link: 'mac-test.html' },
-      // 필요시 추가
+      'カメラ','タッチパット','ホワイトスポット','画面回転','スピーカー','キーボード','スリープ','インタネット接続','タッチスクリーン','タッチペン','インジケーター','Bluetooth','バッテリー'
     ];
-
-    function updateTestResultTables() {
-      // 결과를 3개의 배열로 분류
-      const fail = [], kininaru = [], pass = [];
+    const resultTypes = ['不合格','気になる','合格'];
+    function updateTableMarks() {
       testList.forEach(test => {
-        const result = localStorage.getItem('testResult_' + test.key);
-        if (result === '不合格') fail.push(test);
-        else if (result === '気になる') kininaru.push(test);
-        else if (result === '合格') pass.push(test);
+        resultTypes.forEach(type => {
+          const cell = document.getElementById(`mark-${test}-${type}`);
+          if (!cell) return;
+          const result = localStorage.getItem('testResult_' + test);
+          cell.textContent = (result === type) ? '●' : '';
+        });
       });
-      // 19행(헤더 제외) 고정
-      const maxRows = 13;
-      const tbody = document.getElementById('result-table-body');
-      tbody.innerHTML = '';
-      for (let i = 0; i < maxRows; i++) {
-        const tr = document.createElement('tr');
-        // 불합격
-        const td1 = document.createElement('td');
-        if (fail[i]) {
-          const a = document.createElement('a');
-          a.href = fail[i].link;
-          a.className = 'atext';
-          a.innerHTML = fail[i].key + '<span class="link-icon">🔗</span>';
-          td1.appendChild(a);
-        }
-        tr.appendChild(td1);
-        // 키니나루
-        const td2 = document.createElement('td');
-        if (kininaru[i]) {
-          const a = document.createElement('a');
-          a.href = kininaru[i].link;
-          a.className = 'atext';
-          a.innerHTML = kininaru[i].key + '<span class="link-icon">🔗</span>';
-          td2.appendChild(a);
-        }
-        tr.appendChild(td2);
-        // 합격
-        const td3 = document.createElement('td');
-        if (pass[i]) {
-          const a = document.createElement('a');
-          a.href = pass[i].link;
-          a.className = 'atext';
-          a.innerHTML = pass[i].key + '<span class="link-icon">🔗</span>';
-          td3.appendChild(a);
-        }
-        tr.appendChild(td3);
-        tbody.appendChild(tr);
-      }
     }
+    window.addEventListener('storage', updateTableMarks);
+    updateTableMarks();
 
     // storage 이벤트에서 함수 호출
     window.addEventListener("storage", (event) => {
@@ -258,7 +315,6 @@
       if (event.key === "batteryMessage") updateBatteryResult();
       if (event.key === "selectedName") updateNameResult();
       if (event.key === "referNumber") updateReferNumber();
-      if (event.key && event.key.startsWith('testResult_')) updateTestResultTables();
     });
 
     // 페이지 로드 시 한 번에 모두 표시
@@ -266,7 +322,6 @@
     updateBatteryResult();
     updateReferNumber();
     updateNameResult();
-    updateTestResultTables();
 
     function playAndNavigate(soundId, nextPage) {
       const audio = document.getElementById(soundId);
