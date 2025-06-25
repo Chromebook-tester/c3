@@ -50,7 +50,7 @@ display: none;
   </div>
   <div class="nav-center">
     <button class="button button3">不合格</button>
-    <button class="button button2">気になる</button>
+    <button class="button button2">判定保留</button>
     <button class="button button1">合格</button>
   </div>
   <div class="nav-right">
@@ -93,7 +93,7 @@ function setBottomToggleButtons() {
       }
       document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
       this.classList.add('selected');
-      // 결과 저장 (不合格/気になる/合格)
+      // 결과 저장 (不合格/判定保留/合格)
       localStorage.setItem('testResult_' + testName, this.textContent);
     });
   });
