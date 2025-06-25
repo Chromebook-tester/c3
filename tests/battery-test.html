@@ -7,7 +7,6 @@
 <style>
 /* 이 페이지에만 적용되는 스타일 */
 body {
-
 background-color: #f0f8ff; /* common-layout.css의 배경색을 덮어씀 */
 }
 
@@ -25,17 +24,74 @@ img {
     box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* 그림자 효과 추가 */
 }
 
-#input-area input {
+/* input 영역을 중앙에 배치하는 새로운 스타일 */
+#input-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  /* gap: 0;  불필요하므로 제거 (기본값 0) */
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex; /* inline-block → flex로 변경하여 일관성 유지 */
+  align-items: center;
+}
+
+.input-wrapper input {
   font-size: 20px;
-  padding: 12px 16px;
-  width: 80%;
-  max-width: 350px;
+  padding: 12px 32px 12px 16px; /* 오른쪽에 % 공간 확보 */
+  width: 150px;
   border: 2px solid #7DB249;
+  border-radius: 4px 4px 4px 4px; /* 왼쪽만 둥글게 */
   box-sizing: border-box;
+  outline: none;
+}
+
+.input-wrapper .percent-sign {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#input-area button {
+  font-size: 20px;
+  padding: 0 20px;
+  border: 2px solid #7DB249;
+  border-left: none; /* input과 연결되도록 왼쪽 테두리 제거 */
+  border-radius: 4px; /* 양쪽 모두 둥글게 */
+  background-color: #7DB249;
+  color: white;
+  cursor: pointer;
+  height: 48px; /* input과 같은 높이 */
+  line-height: 48px;   /* 버튼 높이와 동일하게! */
+  box-sizing: border-box;
+}
+
+#input-area button:hover {
+  background-color: #6ba038;
+}
+
+#input-area button:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
 }
 
 #input-area input.gray-input {
   color: #aaa;
+  background-color: #f9f9f9;
 }
 
 audio {
@@ -45,35 +101,43 @@ display: none;
 </head>
 
 <body>
-<h1><a href="../index.html" class="title-link">バッテリーヘルス</a></h1>
-
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">バッテリーヘルス</span>
+</h1>
 
 <img src="../media/images/battery.png" alt="バッテリーイメージ">
 
-
-
 <div id="input-area">
-  <input type="text" id="userText" placeholder="ここにヘルスを書いてネ">
-  <button onclick="sendText()" style="border: 2px solid #7DB249;">転送</button>
+  <div class="input-group">
+    <div class="input-wrapper">
+      <input type="text" id="userText" placeholder="ヘルスを書いてネ">
+      <span class="percent-sign">%</span>
+    </div>
+    <button onclick="sendText()">転送</button>
+  </div>
 </div>
-
-<script>
-function saveBatteryText() {
-  const value = document.getElementById('batteryText').value;
-  localStorage.setItem('batteryHealth', value);
-}
-</script>
 
 <div class="nav-buttons">
-<button onclick="playAndNavigate('sound-previous', 'indi-test.html')">⬅ 前のテスト</button>
-<button onclick="playAndNavigate('sound-next', 'bpage.html')">次のテスト ➡</button>
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'indi-test.html')">⬅ 前のテスト</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">判定保留</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'summary.html')">次のテスト ➡</button>
+  </div>
 </div>
 
-
-
-<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3"></audio>
-<audio id="sound-home" src="../media/audio/home-button-sound.mp3"></audio>
-<audio id="sound-next" src="../media/audio/next-button-sound.mp3"></audio>
+<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
 
 <script>
 function playAndNavigate(soundId, nextPage) {
@@ -92,8 +156,6 @@ location.href = nextPage;
 location.href = nextPage;
 });
 }
-
-
 
 function sendText() {
     const userInput = document.getElementById("userText").value;
@@ -135,51 +197,9 @@ window.addEventListener('DOMContentLoaded', function() {
         sendBtn.disabled = false;
         sendBtn.textContent = "転送";
     }
+    
+    setBottomToggleButtons();
 });
-</script>
-<h1>
-  <div class="header-left-group">
-    <a href="../index.html" class="header-home-btn">ホーム</a>
-    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
-  </div>
-  <span class="title-link">バッテリーヘルス</span>
-</h1>
-
-<div class="nav-buttons">
-  <div class="nav-left">
-    <button onclick="playAndNavigate('sound-previous', 'indi-test.html')">⬅ 前のテスト</button>
-  </div>
-  <div class="nav-center">
-    <button class="button button3">不合格</button>
-    <button class="button button2">判定保留</button>
-    <button class="button button1">合格</button>
-  </div>
-  <div class="nav-right">
-    <button onclick="playAndNavigate('sound-next', 'summary.html')">次のテスト ➡</button>
-  </div>
-</div>
-
-<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
-<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
-<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
-
-<script>
-function playAndNavigate(soundId, nextPage) {
-const audio = document.getElementById(soundId);
-if (!audio) {
-location.href = nextPage;
-return;
-}
-
-audio.currentTime = 0;
-audio.play().then(() => {
-setTimeout(() => {
-location.href = nextPage;
-}, 400);
-}).catch(() => {
-location.href = nextPage;
-});
-}
 
 // 하단 중앙 3개 버튼 토글 기능 + 결과 저장/복원
 function setBottomToggleButtons() {
@@ -205,9 +225,6 @@ function setBottomToggleButtons() {
     });
   });
 }
-window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
 </script>
 </body>
-
-
 </html>
