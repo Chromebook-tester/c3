@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>テストアプリ</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script>
   <style>
     body {
       
@@ -69,6 +70,16 @@
       img.addEventListener('click', function() {
         audio.currentTime = 0;
         audio.play();
+
+        //confetti효과추가
+        if (window.confetti){
+            confetti({
+                particleCount:90,
+                spread: 100,
+                origin:{y:0.4}
+
+            });
+        }
       });
     });
   </script>
@@ -79,14 +90,14 @@
 
   <div class="fixed-top-right" style="text-align:left;">
   このアプリを森口さんに捧げる。敬意を込めて。<br>
-  Chromebook test application<b>「YUMI」</b>ver.260625<br><br>
+  Chromebook test application<b>「YUMI」</b>ver.260629<br><br>
   <b>Y</b>our<br>
   <b>U</b>ser-friendly<br>
   <b>M</b>aintenance <br>
   <b>I</b>nterface<br><br>
   
   ♡Huge thanks to our test contributors:<br>
-  ikupi, Kosaki, Sumoto, 미호, KDM, NKN, ST, YMT 
+  ikupi, Kosaki, Sumoto, 미호, KDM, NKN, ST, YMT, SMZ
 </div>
 
   <script>

@@ -1,48 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>管理番号入力</title>
-<link rel="stylesheet" href="common-layout2.css">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script>
-<style>
-
-    .name-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin: 30px 0;
-    }
-
-
-.name-btn {
-  background-color: #DDE7C7;
-  color: rgb(0, 0, 0);
-  border: 2px solid #8eb938;
-  border-radius: 16px;
-  cursor: pointer;
-  padding: 0 18px;
-  font-size: 18px;
-  height: 60px;
-  min-width: 32px;
-  line-height: 16px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-  z-index: 10;
-  text-decoration: none;
-  margin: 0;
-}
-
-.name-btn:hover {
-  background-color: #2196F3;
-  border: 2px solid white;
-}
-
-
-
+  <meta charset="UTF-8">
+  <title>管理番号入力</title>
+  <link rel="stylesheet" href="common-layout2.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script>
+  <style>
     .input-area {
       margin-top: 40px;
       margin-bottom: 40px;
@@ -64,68 +27,25 @@
       color: #fff;
       border: 2px solid #aaa;
       cursor: pointer;
-      min-width: 100px; /* 버튼 크기 고정! */
+      min-width: 100px;
       width: 100px;
       box-sizing: border-box;
     }
     .send-btn:hover {
       background: #1c7fd0;
-      border: 2px solid #ccc !important;
+      border: 2px solid #ccc;
     }
-
-
     .gray-input {
-      background: #e0e0e0 !important;
-      color: #888 !important;
-      border: 2px solid #ccc !important; /* 두께까지 명확히! */
+      background: #e0e0e0;
+      color: #888;
+      border: 2px solid #ccc;
     }
     .send-btn:disabled {
-      background: #e0e0e0 !important;
-      color: #888 !important;
-      border: 2px solid #ccc !important;
+      background: #e0e0e0;
+      color: #888;
+      border: 2px solid #ccc;
       cursor: not-allowed;
     }
-
-  
-  </style>
-</head>
-
-
-
-
-<body>
-    
-<h1>
-  <div class="header-left-group">
-    <a href="../index.html" class="header-home-btn">ホーム</a>
-    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
-  </div>
-  <span class="title-link">管理番号入力</span>
-</h1>
-
-
-  
-  <div class="input-area" id="input-area">
-    <input type="text" id="referNumber" placeholder="" readonly>
-    <button class="send-btn" onclick="sendName()">転送</button>
-  </div>
-  <div class="number-pad-grid" style="display: grid; grid-template-columns: repeat(3, 80px); grid-template-rows: repeat(4, 80px); gap: 0; max-width: 240px; margin: 30px auto; border: 2px solid #8eb938; background: #DDE7C7; user-select: none;">
-    <div class="num-cell">1</div>
-    <div class="num-cell">2</div>
-    <div class="num-cell">3</div>
-    <div class="num-cell">4</div>
-    <div class="num-cell">5</div>
-    <div class="num-cell">6</div>
-    <div class="num-cell">7</div>
-    <div class="num-cell">8</div>
-    <div class="num-cell">9</div>
-    <div class="num-cell">🐱</div>
-    <div class="num-cell">0</div>
-    <div class="num-cell reset">リセット</div>
-  </div>
-
-
-  <style>
     .num-cell {
       display: flex;
       align-items: center;
@@ -159,125 +79,171 @@
       background: #55b5e5;
     }
   </style>
-  <script>
-    // 버튼 클릭 시 입력창에 이름 표시
-    document.querySelectorAll('.name-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.getElementById('referNumber').value = this.textContent;
-        document.querySelectorAll('.name-btn').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-        // 이름 선택하면 버튼/입력창 초기화
-        const sendBtn = document.querySelector('#input-area .send-btn');
-        const inputBox = document.getElementById('referNumber');
-        inputBox.classList.remove('gray-input');
-        sendBtn.disabled = false;
-        sendBtn.textContent = '転送';
-        sendBtn.classList.remove('gray-input'); // 버튼 회색 효과 해제
+</head>
+<body>
+
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">管理番号入力</span>
+</h1>
+
+<div class="input-area" id="input-area">
+  <input type="text" id="referNumber" placeholder="4桁">
+  <button class="send-btn" onclick="sendName()">転送</button>
+</div>
+
+<div class="number-pad-grid" style="display: grid; grid-template-columns: repeat(3, 80px); grid-template-rows: repeat(4, 80px); gap: 0; max-width: 240px; margin: 30px auto; border: 2px solid #8eb938; background: #DDE7C7; user-select: none;">
+  <div class="num-cell">1</div>
+  <div class="num-cell">2</div>
+  <div class="num-cell">3</div>
+  <div class="num-cell">4</div>
+  <div class="num-cell">5</div>
+  <div class="num-cell">6</div>
+  <div class="num-cell">7</div>
+  <div class="num-cell">8</div>
+  <div class="num-cell">9</div>
+  <div class="num-cell">🐱</div>
+  <div class="num-cell">0</div>
+  <div class="num-cell reset">リセット</div>
+</div>
+
+<script>
+  function drawHeart(ctx) {
+    const x = 0, y = 0, r = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.bezierCurveTo(x, y - r / 2, x - r, y - r / 2, x - r, y);
+    ctx.bezierCurveTo(x - r, y + r / 1.5, x, y + r, x, y + r * 1.5);
+    ctx.bezierCurveTo(x, y + r, x + r, y + r / 1.5, x + r, y);
+    ctx.bezierCurveTo(x + r, y - r / 2, x, y - r / 2, x, y);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function launchHeartConfetti() {
+    if (window.confetti) {
+      confetti({
+        particleCount: 90,
+        spread: 80,
+        origin: { y: 0.6 },
+        shapes: ['heart'],
+        shapeOptions: {
+          heart: {
+            draw: drawHeart
+          }
+        },
+        colors: ['#e91e63', '#f06292', '#f8bbd0']
       });
-    });
-    // 전송 버튼 클릭 시 localStorage에 이름 저장 + 비활성화
-    function sendName() {
-      const name = document.getElementById('referNumber').value;
-      const sendBtn = document.querySelector('#input-area .send-btn');
-      const inputBox = document.getElementById('referNumber');
-      if (!name) {
-        return;
-      }
-      localStorage.setItem('referNumber', name);
+    }
+  }
+
+  function sendName() {
+    const inputBox = document.getElementById('referNumber');
+    const digits = inputBox.value.replace(/\D/g, '').slice(0, 4);
+    const sendBtn = document.querySelector('#input-area .send-btn');
+    if (!/^\d{4}$/.test(digits)) return;
+    localStorage.setItem('referNumber', digits);
+    sendBtn.disabled = true;
+    sendBtn.textContent = '転送済';
+    sendBtn.classList.add('gray-input');
+    inputBox.classList.add('gray-input');
+    inputBox.disabled = true;
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    const inputBox = document.getElementById('referNumber');
+    const sendBtn = document.querySelector('#input-area .send-btn');
+    const saved = localStorage.getItem('referNumber') || '';
+    inputBox.value = saved;
+
+    if (saved && saved.length === 4) {
+      inputBox.classList.add('gray-input');
       sendBtn.disabled = true;
       sendBtn.textContent = '転送済';
-      sendBtn.classList.add('gray-input'); // 버튼도 회색 효과
-      inputBox.classList.add('gray-input');
-    }
-    // 입력창 값이 바뀌면(이름 선택 시) 버튼/입력창 초기화
-    document.getElementById('referNumber').addEventListener('input', function() {
-      const sendBtn = document.querySelector('#input-area .send-btn');
-      this.classList.remove('gray-input');
+      sendBtn.classList.add('gray-input');
+    } else {
+      inputBox.classList.remove('gray-input');
       sendBtn.disabled = false;
       sendBtn.textContent = '転送';
-      sendBtn.classList.remove('gray-input'); // 버튼 회색 효과 해제
-    });
-    // 페이지 로드 시 localStorage 값 있으면 상태 반영
-    window.addEventListener('DOMContentLoaded', function() {
-      const inputBox = document.getElementById('referNumber');
-      const sendBtn = document.querySelector('#input-area .send-btn');
-      inputBox.value = localStorage.getItem('referNumber') || '';
-      if (inputBox.value.trim()) {
-        inputBox.classList.add('gray-input');
-        sendBtn.disabled = true;
-        sendBtn.textContent = '転送済';
-        sendBtn.classList.add('gray-input');
-        inputBox.classList.add('gray-input');
+      sendBtn.classList.remove('gray-input');
+    }
+
+    inputBox.addEventListener('input', function() {
+      let digits = inputBox.value.replace(/\D/g, '').slice(0, 4);
+      inputBox.value = digits;
+      if (digits.length === 4) {
+        sendBtn.disabled = false;
+        sendBtn.textContent = '転送';
+        sendBtn.classList.remove('gray-input');
+        inputBox.classList.remove('gray-input');
       } else {
+        sendBtn.disabled = true;
+        sendBtn.classList.add('gray-input');
+        inputBox.classList.remove('gray-input');
+        sendBtn.textContent = '転送';
+      }
+    });
+
+    let digits = saved || '';
+    document.querySelectorAll('.num-cell').forEach(cell => {
+      cell.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        if (this.classList.contains('empty')) return;
+
+        if (inputBox.disabled && !this.classList.contains('reset') && this.textContent !== '🐱') {
+          return;
+        }
+
+        if (this.classList.contains('reset')) {
+          digits = '';
+          inputBox.value = '';
+          inputBox.disabled = false;
+          inputBox.classList.remove('gray-input');
+          sendBtn.disabled = true;
+          sendBtn.textContent = '転送';
+          sendBtn.classList.remove('gray-input');
+          return;
+        } else if (this.textContent === '🐱') {
+          let catAudio = document.getElementById('daisuki');
+          if (!catAudio) {
+            catAudio = document.createElement('audio');
+            catAudio.id = 'daisuki';
+            catAudio.src = '../media/audio/daisuki.mp3';
+            catAudio.preload = 'auto';
+            document.body.appendChild(catAudio);
+          }
+          catAudio.currentTime = 0;
+          catAudio.play();
+          launchHeartConfetti(); // ❤️ 하트!
+          return;
+        } else {
+          if (digits.length < 4) {
+            digits += this.textContent.replace(/\D/g, '');
+          }
+        }
+        digits = digits.slice(0, 4);
+        inputBox.value = digits;
         inputBox.classList.remove('gray-input');
         sendBtn.disabled = false;
         sendBtn.textContent = '転送';
         sendBtn.classList.remove('gray-input');
-      }
-
-      // 숫자패드 버튼 클릭 시 입력창에 연속 입력 (이벤트 연결을 DOMContentLoaded 안으로 이동)
-      document.querySelectorAll('.num-cell').forEach(cell => {
-        cell.addEventListener('mousedown', function(e) {
-          e.preventDefault(); // 모바일에서 포커스 방지
-          const input = document.getElementById('referNumber');
-          if (this.classList.contains('empty')) return;
-          if (this.classList.contains('reset')) {
-            input.value = '';
-          } else if (this.textContent === '🐱') {
-            // 고양이 버튼 누르면 daisuki 오디오 재생 (id: daisuki, preload)
-            let catAudio = document.getElementById('daisuki');
-            if (!catAudio) {
-              catAudio = document.createElement('audio');
-              catAudio.id = 'daisuki';
-              catAudio.src = '../media/audio/daisuki.mp3';
-              catAudio.preload = 'auto';
-              document.body.appendChild(catAudio);
-            }
-            catAudio.currentTime = 0;
-            catAudio.play();
-            // confetti 효과 추가
-            if (window.confetti) {
-              confetti({
-                particleCount: 90,
-                spread: 80,
-                origin: { y: 0.6 }
-              });
-            }
-            // 입력창에는 아무 변화 없음
-            return;
-          } else {
-            input.value = input.value + this.textContent.replace(/\D/g, '');
-          }
-          // 입력값 바뀌면 버튼/입력창 초기화
-          const sendBtn = document.querySelector('#input-area .send-btn');
-          input.classList.remove('gray-input');
-          sendBtn.disabled = false;
-          sendBtn.textContent = '転送';
-          sendBtn.classList.remove('gray-input');
-          // input 이벤트 강제 발생
-          input.dispatchEvent(new Event('input'));
-        });
       });
     });
-  </script>
-
-
-
-
-
-
-
-
+  });
+</script>
 
 <div class="nav-buttons">
   <div class="nav-left">
     <button onclick="playAndNavigate('sound-previous', '../index.html')">⬅ 前へ</button>
   </div>
-<div class="nav-center">
+  <div class="nav-center">
     <button class="button button3" disabled style="opacity:0.2; pointer-events:none;">不合格</button>
     <button class="button button2" disabled style="opacity:0.2; pointer-events:none;">気になる</button>
     <button class="button button1" disabled style="opacity:0.2; pointer-events:none;">合格</button>
-</div>
+  </div>
   <div class="nav-right">
     <button onclick="playAndNavigate('sound-next', 'name-select.html')">次へ ➡</button>
   </div>
@@ -288,39 +254,36 @@
 <audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
 
 <script>
-function playAndNavigate(soundId, nextPage) {
-const audio = document.getElementById(soundId);
-if (!audio) {
-location.href = nextPage;
-return;
-}
-
-audio.currentTime = 0;
-audio.play().then(() => {
-setTimeout(() => {
-location.href = nextPage;
-}, 400);
-}).catch(() => {
-location.href = nextPage;
-});
-}
-
-// 하단 중앙 3개 버튼 토글 기능 (CSS 우선순위 강화)
-function setBottomToggleButtons() {
-  document.querySelectorAll('.nav-center .button').forEach(btn => {
-    btn.addEventListener('click', function() {
-      if (this.classList.contains('selected')) {
-        this.classList.remove('selected');
-        return;
-      }
-      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
-      this.classList.add('selected');
+  function playAndNavigate(soundId, nextPage) {
+    const audio = document.getElementById(soundId);
+    if (!audio) {
+      location.href = nextPage;
+      return;
+    }
+    audio.currentTime = 0;
+    audio.play().then(() => {
+      setTimeout(() => {
+        location.href = nextPage;
+      }, 400);
+    }).catch(() => {
+      location.href = nextPage;
     });
-  });
-}
-window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
+  }
+
+  function setBottomToggleButtons() {
+    document.querySelectorAll('.nav-center .button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (this.classList.contains('selected')) {
+          this.classList.remove('selected');
+          return;
+        }
+        document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+  }
+  window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
 </script>
+
 </body>
-
-
 </html>
