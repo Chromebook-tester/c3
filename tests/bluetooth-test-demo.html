@@ -51,38 +51,36 @@ margin-left: 30px; /* 合格과 次のテスト 사이 */
   </div>
   <div class="nav-center">
     <!-- 기존 nav-left의 버튼을 이 위치로 이동 -->
-    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')" class="nav-btn prev">&lt;&lt; 前のテスト</button>
+    <button onclick="location.href='whitespot-test.html'" class="nav-btn prev">&lt;&lt; 前のテスト</button>
     <button class="button button3">不合格</button>
-    <button class="button button2">気になる</button>
+    <button class="button button2">判定保留</button>
     <button class="button button1">合格</button>
     <!-- 기존 nav-right의 버튼을 이 위치로 이동 -->
-    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')" class="nav-btn next">次のテスト &gt;&gt;</button>
+    <button onclick="location.href='touchpad-test.html'" class="nav-btn next">次のテスト &gt;&gt;</button>
   </div>
   <div class="nav-right">
     <!-- 기존 버튼 삭제 -->
   </div>
 </div>
 
-<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
-<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
-<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
+
 
 <script>
+// 필요 없으니 삭제해도 됨!
 function playAndNavigate(soundId, nextPage) {
-const audio = document.getElementById(soundId);
-if (!audio) {
-location.href = nextPage;
-return;
-}
-
-audio.currentTime = 0;
-audio.play().then(() => {
-setTimeout(() => {
-location.href = nextPage;
-}, 400);
-}).catch(() => {
-location.href = nextPage;
-});
+  const audio = document.getElementById(soundId);
+  if (!audio) {
+    location.href = nextPage;
+    return;
+  }
+  audio.currentTime = 0;
+  audio.play().then(() => {
+    setTimeout(() => {
+      location.href = nextPage;
+    }, 400);
+  }).catch(() => {
+    location.href = nextPage;
+  });
 }
 
 // 하단 중앙 3개 버튼 토글 기능 (CSS 우선순위 강화)
