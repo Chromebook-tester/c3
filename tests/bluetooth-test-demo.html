@@ -16,6 +16,13 @@ margin:30px auto 10px auto; /* 상하좌우 여백을 10px로 설정 */
 box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* 부드러운 그림자 효과 추가 */
 }
 
+/* 버튼 간격 조정 */
+.nav-center > button.button3 {
+margin-left: 30px; /* 前のテスト와 不合格 사이 */
+}
+.nav-center > button.nav-btn.next {
+margin-left: 30px; /* 合格과 次のテスト 사이 */
+}
 </style>
 
 </head>
@@ -44,7 +51,7 @@ box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* 부드러운 그림자 효과 추가 
     <button class="button button2">気になる</button>
     <button class="button button1">合格</button>
     <!-- 기존 nav-right의 버튼을 이 위치로 이동 -->
-    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')">次のテスト &gt;&gt;</button>
+    <button onclick="playAndNavigate('sound-next', 'touchpad-test.html')" class="nav-btn next">次のテスト &gt;&gt;</button>
   </div>
   <div class="nav-right">
     <!-- 기존 버튼 삭제 -->
