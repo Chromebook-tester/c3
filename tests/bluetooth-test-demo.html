@@ -23,6 +23,11 @@ margin-left: 30px; /* 前のテスト와 不合格 사이 */
 .nav-center > button.nav-btn.next {
 margin-left: 30px; /* 合格과 次のテスト 사이 */
 }
+
+.nav-center > button.nav-btn.prev,
+.nav-center > button.nav-btn.next {
+  min-width: 200px; /* 원하는 가로폭(px)으로 조절 */
+}
 </style>
 
 </head>
@@ -46,7 +51,7 @@ margin-left: 30px; /* 合格과 次のテスト 사이 */
   </div>
   <div class="nav-center">
     <!-- 기존 nav-left의 버튼을 이 위치로 이동 -->
-    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">&lt;&lt; 前のテスト</button>
+    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')" class="nav-btn prev">&lt;&lt; 前のテスト</button>
     <button class="button button3">不合格</button>
     <button class="button button2">気になる</button>
     <button class="button button1">合格</button>
