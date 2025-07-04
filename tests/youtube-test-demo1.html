@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>インタネット接続 - 안정적인 버전</title>
+<link rel="stylesheet" href="common-layout2.css">
+<style>
+  .video-container {
+   display: flex;
+   flex-direction: row;
+   justify-content: center; 
+   align-items: center;
+   gap: 20px;
+   margin-top: 50px;
+  }
+  
+  .video-wrapper {
+    position: relative;
+    width: 360px;
+    height: 215px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  .status {
+   margin-top: 10px;
+   font-size: 15px;
+  }
+  
+  audio {
+   display: none;
+  }
+</style>
+</head>
+
+<body>
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">インタネット・テスト</span>
+</h1>
+
+<div class="video-container">
+  <div class="video-wrapper">
+    <iframe 
+      src="https://www.youtube.com/embed/1u6fRer9oVw" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<div class="status">
+  <p>➀ 動画が20秒以上、再生できればOK</p>
+  <p>➁ 再生中に、輝度と音量テストもしてネ</p>
+</div>
+
+<a href="https://youtu.be/1u6fRer9oVw" target="_blank">
+  Youtubeがが出て来ない場合はここをクリック
+</a>
+
+<div class="nav-buttons">
+  <button class="nav-button" onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前のテスト</button>
+  <button class="nav-button" onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
+  <button class="nav-button" onclick="playAndNavigate('sound-next', 'touchscreen-test.html')">次のテスト ➡</button>
+</div>
+
+<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
+
+<div class="nav-buttons">
+  <div class="nav-left">
+    <button onclick="playAndNavigate('sound-previous', 'whitespot-test.html')">⬅ 前のテスト</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">判定保留</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
+    <button onclick="playAndNavigate('sound-next', 'touchscreen-test.html')">次のテスト ➡</button>
+  </div>
+</div>
+
+<script>
+  /**
+   * 사운드 재생 후 지정된 페이지로 이동하는 함수
+   * @param {string} soundId - 재생할 audio 요소의 ID
+   * @param {string} nextPage - 이동할 페이지 URL
+   */
+  function playAndNavigate(soundId, nextPage) {
+    const audio = document.getElementById(soundId);
+    if (!audio) {
+      location.href = nextPage;
+      return;
+    }
+    audio.currentTime = 0;
+    audio.play().then(() => {
+      setTimeout(() => { location.href = nextPage; }, 400);
+    }).catch(() => {
+      location.href = nextPage;
+    });
+  }
+
+  /**
+   * 하단 '합격/불합격' 버튼의 상태를 설정하고 localStorage에 저장하는 함수
+   */
+  function setBottomToggleButtons() {
+    const testKey = 'インタネット接続';
+    const storageKey = 'testResult_' + testKey;
+    const btns = document.querySelectorAll('.nav-center .button');
+
+    const saved = localStorage.getItem(storageKey);
+    btns.forEach(btn => {
+      if (btn.textContent === saved) {
+        btn.classList.add('selected');
+      } else {
+        btn.classList.remove('selected');
+      }
+    });
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (this.classList.contains('selected')) {
+          this.classList.remove('selected');
+          localStorage.removeItem(storageKey);
+          return;
+        }
+        btns.forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        localStorage.setItem(storageKey, this.textContent);
+      });
+    });
+  }
+
+  // 페이지 로드 시 초기화
+  document.addEventListener('DOMContentLoaded', () => {
+    setBottomToggleButtons();
+  });
+</script>
+</body>
+</html>
