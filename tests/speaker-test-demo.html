@@ -177,6 +177,27 @@ function setBottomToggleButtons() {
   });
 }
 window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
+
+// river.mp3 재생 시 다른 오디오 멈춤
+document.addEventListener('DOMContentLoaded', function() {
+  const riverAudio = document.getElementById('river-audio');
+  riverAudio.addEventListener('play', function() {
+    // center, left, right 오디오 모두 멈춤
+    ['left', 'right', 'center'].forEach(id => {
+      const audio = document.getElementById(id);
+      if (audio && !audio.paused) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
+    // 버튼 선택 해제
+    if (window.currentButton) {
+      window.currentButton.classList.remove('selected');
+      window.currentButton = null;
+    }
+    window.currentAudio = null;
+  });
+});
   </script>
 
 </body>
