@@ -2,17 +2,17 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>スピーカーテスト</title>
-  <link rel="stylesheet" href="common-layout.css">
+  <title>テストアプリ</title>
+  <link rel="stylesheet" href="common-layout2.css">
   
   <style>
     /* 이 페이지에만 적용되는 스타일 */
     .button {
       background-color: #ffffff;
       border: none;
-      padding: 16px 32px;
+      padding: 11px 32px;
       font-size: 16px;
-      margin: 10px;
+      margin: 2px,4px;
       cursor: pointer;
       border-radius: 6px;
       font-weight: bold;
@@ -35,33 +35,60 @@
     audio {
       display: none;
     }
+    #river-audio{
+      display: inline-block;
+    }
+
+    #audio-player-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 16px 0;
+    }
+
+    #river-audio {
+      width: 320px;           /* 플레이어 전체 너비 */
+      background: #f8f8ff;    /* 배경색 */
+      border: 2px solid #000000; /* 테두리 색상 */
+      border-radius: 8px;     /* 둥근 테두리 */
+      padding: 3px;           /* 안쪽 여백 */
+    }
   </style>
 </head>
 <body>
-
-  <h1><a href="../index.html" class="title-link">スピーカーテスト </a></h1>
+<h1>
+  <div class="header-left-group">
+    <a href="../index.html" class="header-home-btn">ホーム</a>
+    <a href="summary.html" class="header-home-btn" style="margin-left:5px;">結果まとめ</a>
+  </div>
+  <span class="title-link">スピーカーテスト</span>
+</h1>
 
   <!-- 버튼으로 교체된 영역 -->
 
-  <div style="text-align: center; margin-bottom: 20px;">
-  <!-- 첫 줄: 좌/우 -->
+  <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
   <button class="button button1" onclick="toggleAudio('left', this)">左スピーカー</button>
   <button class="button button2" onclick="toggleAudio('right', this)">右スピーカー</button>
-
-  <!-- 줄 바꿈 후: 좌우 -->
   <div style="margin-top: 12px;">
     <button class="button button3" onclick="toggleAudio('center', this)">左右スピーカー</button>
   </div>
 </div>
-
-  <hr style="margin: 10px auto; width: 20%; border: 1px solid #ccc;"> 
-  <p class="explanation-text">ちゃんと音が出たらOK😺</p>
-
-  <div class="nav-buttons">
+<div id="audio-player-wrap">
+  <audio id="river-audio" src="../media/audio/river.mp3" controls></audio>
+</div>
+<p class="explanation-text">プレイボタンを押して音量テストもしてネ😺</p>
+<div class="nav-buttons">
+  <div class="nav-left">
     <button onclick="playAndNavigate('sound-previous', 'touchpad-test.html')">⬅ 前のテスト</button>
-    <button onclick="playAndNavigate('sound-home', '../index.html')">🏠 ホーム</button>
+  </div>
+  <div class="nav-center">
+    <button class="button button3">不合格</button>
+    <button class="button button2">判定保留</button>
+    <button class="button button1">合格</button>
+  </div>
+  <div class="nav-right">
     <button onclick="playAndNavigate('sound-next', 'whitespot-test.html')">次のテスト ➡</button>
   </div>
+</div>
 
   <audio id="left" src="../media/audio/left-speaker.mp3"></audio>
   <audio id="right" src="../media/audio/right-speaker.mp3"></audio>
@@ -124,6 +151,32 @@
         location.href = nextPage;
       });
     }
+
+    // 하단 중앙 3개 버튼 토글 + 결과 저장/해제 기능
+function setBottomToggleButtons() {
+  const key = 'testResult_スピーカー';
+  const btns = document.querySelectorAll('.nav-center .button');
+  // 진입 시 localStorage 값에 따라 선택 복원
+  const saved = localStorage.getItem(key);
+  btns.forEach(btn => {
+    if (btn.textContent === saved) {
+      btn.classList.add('selected');
+    } else {
+      btn.classList.remove('selected');
+    }
+    btn.addEventListener('click', function() {
+      if (this.classList.contains('selected')) {
+        this.classList.remove('selected');
+        localStorage.removeItem(key); // 선택 해제 시 삭제
+        return;
+      }
+      btns.forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      localStorage.setItem(key, this.textContent); // 선택 시 저장
+    });
+  });
+}
+window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
   </script>
 
 </body>
