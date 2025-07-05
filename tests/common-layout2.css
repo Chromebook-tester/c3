@@ -158,7 +158,7 @@ button {
 .button {
   background-color: #ffffff;
   border: none;
-  padding: 11px 32px;
+  padding: 11px 10px;
   font-size: 16px;
   margin: 2px, 4px;
   cursor: pointer;
@@ -180,4 +180,12 @@ button {
 .nav-center .button.selected.button2 { background-color: #aba30e; color: white; }
 .nav-center .button.selected.button3 { background-color: #f44336; color: white; }
 
+audio {
+      display: none;}
+      
+.nav-center .button {
+  width: 150px;
+  display: inline-block;
+  text-align: center;
+}
 

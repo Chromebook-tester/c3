@@ -21,26 +21,26 @@
     }
 
     .button1 { border-color: #04AA6D; color: #04AA6D; }
-    .button4 { border-color: #008CBA; color: #008CBA; }
+    .button2 { border-color: #008CBA; color: #008CBA; }
     .button3 { border-color: #f44336; color: #f44336; }
-    .button2 { border-color: #ff9800;color:  #ff9800; }
+    .button4 { border-color: #ff9800; color: #ff9800; }
 
     .button1:hover { background-color: #04AA6D; color: white; }
-    .button4:hover { background-color: #008CBA; color: white; }
+    .button2:hover { background-color: #008CBA; color: white; }
     .button3:hover { background-color: #f44336; color: white; }
-    .button2:hover { background-color: #ff9800; color: white; }
+    .button4:hover { background-color: #ff9800; color: white; }
 
     .selected.button1 { background-color: #04AA6D; color: white; }
-    .selected.button4 { background-color: #008CBA; color: white; }
+    .selected.button2 { background-color: #008CBA; color: white; }
     .selected.button3 { background-color: #f44336; color: white; }
-    .selected.button2 { background-color: #ff9800; color: white; }
+    .selected.button4 { background-color: #ff9800; color: white; }
 
     audio {
       display: none;
     }
   
     .button3,
-    .button4 {
+    .button2 {
       width: 200px; /* 원하는 동일한 크기로 지정 */
       display: inline-block;
     }
@@ -62,12 +62,12 @@
 
   <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
   <button class="button button1" onclick="toggleAudio('left', this)">左スピーカー</button>
-  <button class="button button2" onclick="toggleAudio('right', this)">右スピーカー</button>
+  <button class="button button4" onclick="toggleAudio('right', this)">右スピーカー</button>
   <div style="margin-top: 12px;">
     <button class="button button3" onclick="toggleAudio('center', this)">左右スピーカー</button>
   </div>
   <div style="margin-top: 12px;">
-    <button class="button button4" onclick="toggleAudio('river', this)">ボリュームテスト</button>
+    <button class="button button2" onclick="toggleAudio('river', this)">ボリュームテスト</button>
   </div>
 </div>
 
@@ -76,6 +76,8 @@
   <div class="nav-left">
     <button onclick="playAndNavigate('sound-previous', 'touchpad-test.html')">⬅ 前のテスト</button>
   </div>
+
+
   <div class="nav-center">
     <button class="button button3">不合格</button>
     <button class="button button2">判定保留</button>
