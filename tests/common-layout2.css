@@ -75,7 +75,7 @@ button {
 
 .nav-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: 0;
   padding: 0px 0;
@@ -187,5 +187,21 @@ audio {
   width: 150px;
   display: inline-block;
   text-align: center;
+}
+
+.nav-left,
+.nav-right {
+  flex: 1 1 0;
+  display: flex;
+}
+
+.nav-left button {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.nav-right button {
+  width: 100%;
+  justify-content: flex-end;
 }
 
