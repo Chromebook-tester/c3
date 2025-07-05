@@ -157,6 +157,7 @@
     }
     // 페이지 로드 시 localStorage 값 있으면 상태 반영
     window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('referNumber').focus(); // ★ 이 한 줄 추가!
       const inputBox = document.getElementById('referNumber');
       const sendBtn = document.querySelector('#input-area .send-btn');
       const saved = localStorage.getItem('referNumber') || '';
