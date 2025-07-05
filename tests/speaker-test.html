@@ -23,24 +23,30 @@
     .button1 { border-color: #04AA6D; color: #04AA6D; }
     .button2 { border-color: #008CBA; color: #008CBA; }
     .button3 { border-color: #f44336; color: #f44336; }
+    .button4 { border-color: #ff9800; color: #ff9800; }
 
     .button1:hover { background-color: #04AA6D; color: white; }
     .button2:hover { background-color: #008CBA; color: white; }
     .button3:hover { background-color: #f44336; color: white; }
+    .button4:hover { background-color: #ff9800; color: white; }
 
     .selected.button1 { background-color: #04AA6D; color: white; }
     .selected.button2 { background-color: #008CBA; color: white; }
     .selected.button3 { background-color: #f44336; color: white; }
+    .selected.button4 { background-color: #ff9800; color: white; }
 
     audio {
       display: none;
     }
-
-    .nav-center .button {
-      width: 150px;      /* 원하는 가로폭(px)으로 조절 */
+  
+    .button3,
+    .button2 {
+      width: 200px; /* 원하는 동일한 크기로 지정 */
       display: inline-block;
-      text-align: center;
     }
+  
+   
+  
   </style>
 </head>
 <body>
@@ -56,18 +62,22 @@
 
   <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
   <button class="button button1" onclick="toggleAudio('left', this)">左スピーカー</button>
-  <button class="button button2" onclick="toggleAudio('right', this)">右スピーカー</button>
+  <button class="button button4" onclick="toggleAudio('right', this)">右スピーカー</button>
   <div style="margin-top: 12px;">
     <button class="button button3" onclick="toggleAudio('center', this)">左右スピーカー</button>
   </div>
+  <div style="margin-top: 12px;">
+    <button class="button button2" onclick="toggleAudio('river', this)">ボリュームテスト</button>
+  </div>
 </div>
 <hr style="margin: 10px auto; width: 20%; border: 1px solid #ccc;"> 
-<p class="explanation-text">ちゃんと音が出たらOK😺</p>
-
+<p class="explanation-text">ちゃんと音が出たらok😺</p>
 <div class="nav-buttons">
   <div class="nav-left">
     <button onclick="playAndNavigate('sound-previous', 'touchpad-test.html')">⬅ 前のテスト</button>
   </div>
+
+
   <div class="nav-center">
     <button class="button button3">不合格</button>
     <button class="button button2">判定保留</button>
@@ -81,6 +91,7 @@
   <audio id="left" src="../media/audio/left-speaker.mp3"></audio>
   <audio id="right" src="../media/audio/right-speaker.mp3"></audio>
   <audio id="center" src="../media/audio/center-speaker.mp3"></audio>
+  <audio id="river" src="../media/audio/river.mp3"></audio>
 
   <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
   <audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
@@ -165,6 +176,8 @@ function setBottomToggleButtons() {
   });
 }
 window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
+
+
   </script>
 
 </body>
