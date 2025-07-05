@@ -2,7 +2,9 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>👻Test Title👻</title>
+<title>テストアプリ</title>
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script>
 <link rel="stylesheet" href="common-layout2.css">
 <style>
 
@@ -10,24 +12,20 @@ img {
 width: 369px;
 max-width: 90%;
 display: block;
-border: 1px solid black;
 margin:30px auto 10px auto; /* 상하좌우 여백을 10px로 설정 */
 
-box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* 부드러운 그림자 효과 추가 */
+filter: drop-shadow(0 4px 16px rgba(0,0,0,0.25));
 }
+ /* ★여기 수정: 비눗방울 아이돌 이미지 스타일 */
+    #idol-bubble {
+        position: fixed; /* 뷰포트에 고정되어 다른 레이아웃에 영향 안 줌 */
+        z-index: 9999;   /* 항상 맨 위에 뜨도록 */
+        /* 초기 위치는 JS에서 설정할 거라 여기서는 최소한으로 */
+        width: 240px; /* ★원하는 이미지 크기로 조절해줘 (예시 100px) */
+        height: auto;
+    }
 
-/* 버튼 간격 조정 */
-.nav-center > button.button3 {
-margin-left: 20px; /* 前のテスト와 不合格 사이 */
-}
-.nav-center > button.nav-btn.next {
-margin-left: 20px; /* 合格과 次のテスト 사이 */
-}
 
-.nav-center > button.nav-btn.prev,
-.nav-center > button.nav-btn.next {
-  min-width: 200px; /* 원하는 가로폭(px)으로 조절 */
-}
 </style>
 
 </head>
@@ -47,57 +45,147 @@ margin-left: 20px; /* 合格과 次のテスト 사이 */
 
 <div class="nav-buttons">
   <div class="nav-left">
-    <!-- 기존 버튼 삭제 -->
+    <button onclick="playAndNavigate('sound-previous', 'mac-test.html')">⬅ 前のテスト</button>
   </div>
   <div class="nav-center">
-    <!-- 기존 nav-left의 버튼을 이 위치로 이동 -->
-    <button onclick="location.href='whitespot-test.html'" class="nav-btn prev">&lt;&lt; 前のテスト</button>
     <button class="button button3">不合格</button>
     <button class="button button2">判定保留</button>
     <button class="button button1">合格</button>
-    <!-- 기존 nav-right의 버튼을 이 위치로 이동 -->
-    <button onclick="location.href='touchpad-test.html'" class="nav-btn next">次のテスト &gt;&gt;</button>
   </div>
   <div class="nav-right">
-    <!-- 기존 버튼 삭제 -->
+    <button onclick="playAndNavigate('sound-next', 'indi-test.html')">次のテスト ➡</button>
   </div>
 </div>
 
+<audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
+<audio id="sound-next" src="../media/audio/next-button-sound.mp3" preload="auto"></audio>
+<audio id="bts-sound" src="../media/audio/bts.mp3" preload="auto"></audio>
 
 
 <script>
-// 필요 없으니 삭제해도 됨!
 function playAndNavigate(soundId, nextPage) {
-  const audio = document.getElementById(soundId);
-  if (!audio) {
-    location.href = nextPage;
-    return;
-  }
-  audio.currentTime = 0;
-  audio.play().then(() => {
-    setTimeout(() => {
-      location.href = nextPage;
-    }, 400);
-  }).catch(() => {
-    location.href = nextPage;
-  });
+const audio = document.getElementById(soundId);
+if (!audio) {
+location.href = nextPage;
+return;
 }
 
-// 하단 중앙 3개 버튼 토글 기능 (CSS 우선순위 강화)
+audio.currentTime = 0;
+audio.play().then(() => {
+setTimeout(() => {
+location.href = nextPage;
+}, 400);
+}).catch(() => {
+location.href = nextPage;
+});
+}
+
+// 하단 중앙 3개 버튼 토글 + 결과 저장/해제 기능
 function setBottomToggleButtons() {
-  document.querySelectorAll('.nav-center .button').forEach(btn => {
+  const key = 'testResult_Bluetooth';
+  const btns = document.querySelectorAll('.nav-center .button');
+  // 진입 시 localStorage 값에 따라 선택 복원
+  const saved = localStorage.getItem(key);
+  btns.forEach(btn => {
+    if (btn.textContent === saved) {
+      btn.classList.add('selected');
+    } else {
+      btn.classList.remove('selected');
+    }
     btn.addEventListener('click', function() {
       if (this.classList.contains('selected')) {
         this.classList.remove('selected');
+        localStorage.removeItem(key); // 선택 해제 시 삭제
         return;
       }
-      document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
+      btns.forEach(b => b.classList.remove('selected'));
       this.classList.add('selected');
+      localStorage.setItem(key, this.textContent); // 선택 시 저장
     });
   });
 }
 window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
 </script>
+
+
+
+
+ <img src="../media/images/bts.png" id="idol-bubble" alt="bts"> 
+
+  <script>
+    const bubble = document.getElementById('idol-bubble');
+    const btsSound = document.getElementById('bts-sound');
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // ★이미지의 현재 크기를 가져와서 움직임 범위 계산에 사용
+    // 이미지가 아직 로드되지 않았다면 0이 될 수 있으니 onload 또는 DOMContentLoaded 이후에 실행 권장
+    let bubbleWidth = bubble.offsetWidth || 100; // 기본값 100
+    let bubbleHeight = bubble.offsetHeight || 100; // 기본값 100
+
+    // 비눗방울이 화면 가장자리에 너무 붙지 않도록 여유 공간을 줌 (예: 20px)
+    const padding = 20;
+
+    // ★getRandomPosition 함수 수정: 이미지 크기와 여백을 고려하여 위치 계산
+    function getRandomPosition(dimension, elementDimension) {
+      return anime.random(padding, dimension - elementDimension - padding);
+    }
+
+    // ★첫 애니메이션 시작 전에 이미지를 화면 내 랜덤 위치에 배치
+    // 이미지가 로드된 후 정확한 크기를 가져와야 하므로, window.onload 또는 이미지.onload 이벤트 안에서 실행하는 게 더 정확
+    // 여기서는 일단 직접 설정.
+    if (bubble.complete) { // 이미지가 이미 로드되어 있으면 바로 크기 가져옴
+        bubbleWidth = bubble.offsetWidth;
+        bubbleHeight = bubble.offsetHeight;
+        bubble.style.left = getRandomPosition(windowWidth, bubbleWidth) + 'px';
+        bubble.style.top = getRandomPosition(windowHeight, bubbleHeight) + 'px';
+        animateBubble(); // 애니메이션 시작
+    } else { // 이미지가 아직 로드되지 않았으면 로드 후 실행
+        bubble.onload = () => {
+            bubbleWidth = bubble.offsetWidth;
+            bubbleHeight = bubble.offsetHeight;
+            bubble.style.left = getRandomPosition(windowWidth, bubbleWidth) + 'px';
+            bubble.style.top = getRandomPosition(windowHeight, bubbleHeight) + 'px';
+            animateBubble(); // 애니메이션 시작
+        };
+    }
+    
+    function animateBubble() {
+      anime({
+        targets: bubble,
+        // ★translateX, translateY 대신 left와 top 사용
+        left: () => getRandomPosition(windowWidth, bubbleWidth),
+        top: () => getRandomPosition(windowHeight, bubbleHeight),
+        // ★scale (줌인/아웃) 및 opacity 랜덤 변경 제거 - 잔잔한 움직임
+        // opacity: () => anime.random(0.9, 1), // 아주 미세한 변화를 원하면 이 코드
+        easing: 'easeInOutSine', // 잔잔하고 부드러운 움직임
+        duration: anime.random(6000, 12000), // ★움직이는 시간을 더 길게 (6초 ~ 12초) 설정해서 잔잔하게
+        complete: animateBubble // 애니메이션이 끝나면 다시 호출해서 무한 반복
+      });
+    }
+
+    // animateBubble(); // 이제 이미지가 로드된 후 또는 onload에서 호출될 것이므로 여기서 주석 처리
+
+     // ★여기 추가: idol-bubble 클릭 이벤트 리스너
+    bubble.addEventListener('click', function() {
+      if (btsSound) { // 오디오 요소가 존재하는지 확인
+        btsSound.currentTime = 0; // 사운드를 처음부터 재생
+        btsSound.play(); // 사운드 재생
+      }
+      
+
+        // confetti효과추가
+      if (window.confetti){ // confetti 라이브러리가 로드되었는지 확인
+          confetti({
+              particleCount:150,
+              spread: 250,
+              origin:{y:0.4} // 화면 중앙보다 살짝 위에서 터지도록 설정
+          });
+      }
+    });
+  </script>
+
 </body>
 
 
