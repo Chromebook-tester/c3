@@ -21,37 +21,31 @@
     }
 
     .button1 { border-color: #04AA6D; color: #04AA6D; }
-    .button2 { border-color: #008CBA; color: #008CBA; }
+    .button4 { border-color: #008CBA; color: #008CBA; }
     .button3 { border-color: #f44336; color: #f44336; }
+    .button2 { border-color: #ff9800;color:  #ff9800; }
 
     .button1:hover { background-color: #04AA6D; color: white; }
-    .button2:hover { background-color: #008CBA; color: white; }
+    .button4:hover { background-color: #008CBA; color: white; }
     .button3:hover { background-color: #f44336; color: white; }
+    .button2:hover { background-color: #ff9800; color: white; }
 
     .selected.button1 { background-color: #04AA6D; color: white; }
-    .selected.button2 { background-color: #008CBA; color: white; }
+    .selected.button4 { background-color: #008CBA; color: white; }
     .selected.button3 { background-color: #f44336; color: white; }
+    .selected.button2 { background-color: #ff9800; color: white; }
 
     audio {
       display: none;
     }
-    #river-audio{
+  
+    .button3,
+    .button4 {
+      width: 180px; /* 원하는 동일한 크기로 지정 */
       display: inline-block;
     }
-
-    #audio-player-wrap {
-      display: flex;
-      justify-content: center;
-      margin: 16px 0;
-    }
-
-    #river-audio {
-      width: 320px;           /* 플레이어 전체 너비 */
-      background: #f8f8ff;    /* 배경색 */
-      border: 2px solid #000000; /* 테두리 색상 */
-      border-radius: 8px;     /* 둥근 테두리 */
-      padding: 3px;           /* 안쪽 여백 */
-    }
+  
+  
   </style>
 </head>
 <body>
@@ -71,11 +65,12 @@
   <div style="margin-top: 12px;">
     <button class="button button3" onclick="toggleAudio('center', this)">左右スピーカー</button>
   </div>
+  <div style="margin-top: 12px;">
+    <button class="button button4" onclick="toggleAudio('river', this)">音量テスト用</button>
+  </div>
 </div>
-<div id="audio-player-wrap">
-  <audio id="river-audio" src="../media/audio/river.mp3" controls></audio>
-</div>
-<p class="explanation-text">プレイボタンを押して音量テストもしてネ😺</p>
+
+<p class="explanation-text">ちゃんと音が出たらok😺</p>
 <div class="nav-buttons">
   <div class="nav-left">
     <button onclick="playAndNavigate('sound-previous', 'touchpad-test.html')">⬅ 前のテスト</button>
@@ -93,6 +88,7 @@
   <audio id="left" src="../media/audio/left-speaker.mp3"></audio>
   <audio id="right" src="../media/audio/right-speaker.mp3"></audio>
   <audio id="center" src="../media/audio/center-speaker.mp3"></audio>
+  <audio id="river" src="../media/audio/river.mp3"></audio>
 
   <audio id="sound-previous" src="../media/audio/previous-button-sound.mp3" preload="auto"></audio>
   <audio id="sound-home" src="../media/audio/home-button-sound.mp3" preload="auto"></audio>
@@ -178,26 +174,7 @@ function setBottomToggleButtons() {
 }
 window.addEventListener('DOMContentLoaded', setBottomToggleButtons);
 
-// river.mp3 재생 시 다른 오디오 멈춤
-document.addEventListener('DOMContentLoaded', function() {
-  const riverAudio = document.getElementById('river-audio');
-  riverAudio.addEventListener('play', function() {
-    // center, left, right 오디오 모두 멈춤
-    ['left', 'right', 'center'].forEach(id => {
-      const audio = document.getElementById(id);
-      if (audio && !audio.paused) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
-    });
-    // 버튼 선택 해제
-    if (window.currentButton) {
-      window.currentButton.classList.remove('selected');
-      window.currentButton = null;
-    }
-    window.currentAudio = null;
-  });
-});
+
   </script>
 
 </body>
