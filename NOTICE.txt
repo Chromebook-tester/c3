@@ -1,0 +1,21 @@
+Third-Party Libraries
+
+- anime.js  
+  Copyright © Julian Garnier  
+  License: MIT License  
+  Source: https://animejs.com/
+
+- canvas-confetti  
+  Copyright © Kiril Vatev  
+  License: MIT License  
+  Source: https://www.npmjs.com/package/canvas-confetti
+
+- onneko.js (Oneko)  
+  Copyright © 2022 adryd  
+  License: MIT License  
+  Source: https://github.com/adryd325/oneko.js
+
+- YouTube IFrame API  
+  Copyright © Google  
+  License: Free to use under YouTube API Terms of Service  
+  Source: https://developers.google.com/youtube/iframe_api_reference
