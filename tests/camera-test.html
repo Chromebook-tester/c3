@@ -5,10 +5,9 @@
 <title>テストアプリ</title>
 <link rel="stylesheet" href="common-layout2.css">
 <style>
-/* 이 페이지에만 적용되는 스타일 */
 body {
 
-background-color: #f0f8ff; /* common-layout.css의 배경색을 덮어씀 */
+background-color: #f0f8ff;
 }
 
 p {
@@ -20,7 +19,7 @@ margin-bottom: 30px;
 img {
 width: 350px;
 max-width: 90%;
-margin: 20px auto 10px auto; /* 중앙 정렬 및 하단 마진 */
+margin: 20px auto 10px auto;
 display: block;
 }
 
@@ -80,24 +79,20 @@ location.href = nextPage;
 });
 }
 
-// 하단 중앙 3개 버튼 토글 기능 + 결과 저장
 function setBottomToggleButtons() {
-  const testName = 'カメラ'; // 이 페이지의 테스트명(간단하게)
+  const testName = 'カメラ';
   document.querySelectorAll('.nav-center .button').forEach(btn => {
     btn.addEventListener('click', function() {
       if (this.classList.contains('selected')) {
         this.classList.remove('selected');
-        // 선택 해제 시 결과도 삭제
         localStorage.removeItem('testResult_' + testName);
         return;
       }
       document.querySelectorAll('.nav-center .button').forEach(b => b.classList.remove('selected'));
       this.classList.add('selected');
-      // 결과 저장 (不合格/判定保留/合格)
       localStorage.setItem('testResult_' + testName, this.textContent);
     });
   });
-  // 페이지 로드시 이전 선택 복원
   const saved = localStorage.getItem('testResult_' + testName);
   if (saved) {
     document.querySelectorAll('.nav-center .button').forEach(btn => {
