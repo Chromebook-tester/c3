@@ -19,3 +19,12 @@ Third-Party Libraries
   Copyright © Google  
   License: Free to use under YouTube API Terms of Service  
   Source: https://developers.google.com/youtube/iframe_api_reference
+
+- VOICEVOX
+  無料・商用利用可、クレジット表記は任意
+  https://voicevox.hiroshiba.jp/
+
+
+- 効果音ラボ
+  無料・商用利用可、クレジット表記は任意（推奨）
+  https://soundeffect-lab.info/
