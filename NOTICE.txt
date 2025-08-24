@@ -20,6 +20,11 @@ Third-Party Libraries
   License: Free to use under YouTube API Terms of Service  
   Source: https://developers.google.com/youtube/iframe_api_reference
 
+- Uiverse.io
+ Open-source UI components (CSS/HTML/JS)
+ License: MIT License
+ Source: https://uiverse.io/
+
 - VOICEVOX
   無料・商用利用可、クレジット表記は任意
   https://voicevox.hiroshiba.jp/

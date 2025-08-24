@@ -5,9 +5,8 @@
 <title>テストアプリ</title>
 <link rel="stylesheet" href="common-layout2.css">
 <style>
-/* 이 페이지에만 적용되는 스타일 */
 body {
-background-color: #f0f8ff; /* common-layout.css의 배경색을 덮어씀 */
+background-color: #f0f8ff;
 }
 
 p {
@@ -19,12 +18,11 @@ margin-bottom: 30px;
 img {
     width: 408px;
     max-width: 90%;
-    margin: 20px auto 10px auto; /* 중앙 정렬 및 하단 마진 */
+    margin: 20px auto 10px auto;
     display: block;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* 그림자 효과 추가 */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 
-/* input 영역을 중앙에 배치하는 새로운 스타일 */
 #input-area {
   display: flex;
   justify-content: center;
@@ -35,21 +33,20 @@ img {
 .input-group {
   display: flex;
   align-items: center;
-  /* gap: 0;  불필요하므로 제거 (기본값 0) */
 }
 
 .input-wrapper {
   position: relative;
-  display: flex; /* inline-block → flex로 변경하여 일관성 유지 */
+  display: flex;
   align-items: center;
 }
 
 .input-wrapper input {
   font-size: 20px;
-  padding: 12px 32px 12px 16px; /* 오른쪽에 % 공간 확보 */
+  padding: 12px 32px 12px 16px;
   width: 150px;
   border: 2px solid #7DB249;
-  border-radius: 4px 4px 4px 4px; /* 왼쪽만 둥글게 */
+  border-radius: 4px 4px 4px 4px;
   box-sizing: border-box;
   outline: none;
 }
@@ -69,13 +66,13 @@ img {
   font-size: 20px;
   padding: 0 20px;
   border: 2px solid #7DB249;
-  border-left: none; /* input과 연결되도록 왼쪽 테두리 제거 */
-  border-radius: 4px; /* 양쪽 모두 둥글게 */
+  border-left: none;
+  border-radius: 4px;
   background-color: #7DB249;
   color: white;
   cursor: pointer;
-  height: 48px; /* input과 같은 높이 */
-  line-height: 48px;   /* 버튼 높이와 동일하게! */
+  height: 48px;
+  line-height: 48px;
   box-sizing: border-box;
 }
 
@@ -167,7 +164,7 @@ function sendText() {
     if (userInput.trim()) {
         sendBtn.disabled = true;
         sendBtn.textContent = "転送済";
-        inputBox.classList.add('gray-input'); // 회색 효과!
+        inputBox.classList.add('gray-input');
     } else {
         alert("バッテリーヘルスを書いてくださいね");
     }
@@ -175,7 +172,7 @@ function sendText() {
 
 document.getElementById('userText').addEventListener('input', function() {
     const sendBtn = document.querySelector('#input-area button');
-    this.classList.remove('gray-input'); // 입력 시작하면 원래 색으로 복귀!
+    this.classList.remove('gray-input');
     if (this.value.trim()) {
         sendBtn.disabled = false;
         sendBtn.textContent = '転送';
@@ -189,7 +186,6 @@ window.addEventListener('DOMContentLoaded', function() {
     const inputBox = document.getElementById("userText");
     const sendBtn = document.querySelector('#input-area button');
     inputBox.value = localStorage.getItem("batteryMessage") || "";
-    // 페이지 열릴 때 값이 있으면 회색 효과와 버튼 비활성화 적용
     if (inputBox.value.trim()) {
         inputBox.classList.add('gray-input');
         sendBtn.disabled = true;
@@ -203,12 +199,10 @@ window.addEventListener('DOMContentLoaded', function() {
     setBottomToggleButtons();
 });
 
-// 하단 중앙 3개 버튼 토글 기능 + 결과 저장/복원
 function setBottomToggleButtons() {
   const testKey = 'バッテリー';
   const storageKey = 'testResult_' + testKey;
   const btns = document.querySelectorAll('.nav-center .button');
-  // 선택 복원
   const saved = localStorage.getItem(storageKey);
   btns.forEach(btn => {
     if (btn.textContent === saved) btn.classList.add('selected');
