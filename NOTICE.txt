@@ -1,35 +1,89 @@
-Third-Party Libraries
 
-- anime.js  
-  Copyright © Julian Garnier  
-  License: MIT License  
-  Source: https://animejs.com/
+#Notice (Third-Party Libraries)
 
-- canvas-confetti  
-  Copyright © Kiril Vatev  
-  License: MIT License  
-  Source: https://www.npmjs.com/package/canvas-confetti
+This application (Chromebook Test App Y.U.M.I) uses the following third-party libraries, open-source codes, and APIs.
+All listed software/tools are licensed for free and commercial use.
+Attributions are provided as required by each license.
 
-- onneko.js (Oneko)  
-  Copyright © 2022 adryd  
-  License: MIT License  
-  Source: https://github.com/adryd325/oneko.js
+---
 
-- YouTube IFrame API  
-  Copyright © Google  
-  License: Free to use under YouTube API Terms of Service  
-  Source: https://developers.google.com/youtube/iframe_api_reference
+## MIT License
 
-- Uiverse.io
- Open-source UI components (CSS/HTML/JS)
- License: MIT License
- Source: https://uiverse.io/
+* **anime.js (Effect Library)**
+  Copyright © Julian Garnier
+  License: MIT License
+  Source: [https://animejs.com/](https://animejs.com/)
 
-- VOICEVOX
-  無料・商用利用可、クレジット表記は任意
-  https://voicevox.hiroshiba.jp/
+* **canvas-confetti (Effect Library)**
+  Copyright © Kiril Vatev
+  License: MIT License
+  Source: [https://www.npmjs.com/package/canvas-confetti](https://www.npmjs.com/package/canvas-confetti)
 
+* **oneko.js (Effect Library)**
+  Copyright © 2022 adryd
+  License: MIT License
+  Source: [https://github.com/adryd325/oneko.js](https://github.com/adryd325/oneko.js)
 
-- 効果音ラボ
-  無料・商用利用可、クレジット表記は任意（推奨）
-  https://soundeffect-lab.info/
+* **Uiverse.io (UI / Button Components)**
+  License: MIT License
+  Source: [https://uiverse.io/](https://uiverse.io/)
+
+* **Accelerometer Display (Rotation Test)**
+  Based on CodePen examples by:
+  Yukiiro-Nite ([https://codepen.io/Yukiiro-Nite/pen/gOWrYQE](https://codepen.io/Yukiiro-Nite/pen/gOWrYQE))
+  verticalgrain ([https://codepen.io/verticalgrain/pen/LGbXVz](https://codepen.io/verticalgrain/pen/LGbXVz))
+  Licensed under the MIT License
+
+* **Mouse Cursor Position (Touchpad Test)**
+  Based on CodePen example by ahmedbnabouelezz
+  Source: [https://codepen.io/ahmedbnabouelezz/pen/wvWZWjO](https://codepen.io/ahmedbnabouelezz/pen/wvWZWjO)
+  Licensed under the MIT License
+
+* **Stylus Input (Stylus Test)**
+  Based on CodePen examples by w2sw2sw2s ([https://codepen.io/w2sw2sw2s/pen/VLKEdq](https://codepen.io/w2sw2sw2s/pen/VLKEdq))
+  and solygambas ([https://codepen.io/solygambas/pen/wvzREMx](https://codepen.io/solygambas/pen/wvzREMx))
+  Licensed under the MIT License
+
+* **Touch Input (Touchscreen Test)**
+  Based on CodePen example by pansonic
+  Source: [https://codepen.io/pansonic/pen/QRgEGR](https://codepen.io/pansonic/pen/QRgEGR)
+  Licensed under the MIT License
+
+* **Screen Color Change (White Spot Test)**
+  Based on CodePen example by rothkj1022
+  Source: [https://codepen.io/rothkj1022/pen/oXvNEK](https://codepen.io/rothkj1022/pen/oXvNEK)
+  Licensed under the MIT License
+
+---
+
+## GPL License
+
+* **Audacity (Audio Editor / Recorder)**
+  Copyright © The Audacity Team
+  License: GNU General Public License (GPL)
+  Source: [https://www.audacityteam.org/](https://www.audacityteam.org/)
+
+---
+
+## Other Licenses
+
+* **Visual Studio Code (Code Editor)**
+  Copyright © Microsoft
+  License: MIT License (Open Source License)
+  Source: [https://code.visualstudio.com/](https://code.visualstudio.com/)
+
+* **YouTube IFrame API**
+  Copyright © Google
+  License: Free to use under YouTube API Terms of Service
+  Source: [https://developers.google.com/youtube/iframe\_api\_reference](https://developers.google.com/youtube/iframe_api_reference)
+
+* **Voicevox (Text-to-Speech Engine)**
+  License: Free / 商用利用可 (Commercial use allowed)
+  *利用条件: 作者明記（クレジット表記必須）*
+  Source: [https://voicevox.hiroshiba.jp/](https://voicevox.hiroshiba.jp/)
+
+---
+
+📌 **Note:**
+Some resources (e.g., いらすとや, 効果音ラボ, Canva, Affinity, Filmora, LumaFusion, etc.) are 商用利用可 with no credit required.
+They are not listed here as they do not fall under mandatory attribution rules, but credits can be added optionally.
