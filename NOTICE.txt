@@ -83,6 +83,12 @@ Attributions are provided as required by each license.
   Source: [https://voicevox.hiroshiba.jp/](https://voicevox.hiroshiba.jp/)
 
 ---
+Pixabay Sound
+Source: https://pixabay.com/sound-effects/
+
+License: Pixabay License (Free to use, including commercial use. No attribution required.)
+Attribution is not mandatory, but crediting Pixabay is appreciated.
+
 
 📌 **Note:**
 Some resources (e.g., いらすとや, 効果音ラボ, Canva, Affinity, Filmora, LumaFusion, etc.) are 商用利用可 with no credit required.
