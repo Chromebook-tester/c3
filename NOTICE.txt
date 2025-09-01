@@ -84,12 +84,12 @@ Attributions are provided as required by each license.
 
 ---
 Pixabay Sound
-Source: https://pixabay.com/sound-effects/
+Source: https://pixabay.com/sound-effects/ 
 
 License: Pixabay License (Free to use, including commercial use. No attribution required.)
 Attribution is not mandatory, but crediting Pixabay is appreciated.
 
 
 📌 **Note:**
-Some resources (e.g., いらすとや, 効果音ラボ, Canva, Affinity, Filmora, LumaFusion, etc.) are 商用利用可 with no credit required.
+Some resources (e.g., いらすとや, 効果音ラボ, Canva, Affinity photo, Affinity designer,LumaFusion, etc.) are 商用利用可 with no credit required.
 They are not listed here as they do not fall under mandatory attribution rules, but credits can be added optionally.
