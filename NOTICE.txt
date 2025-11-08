@@ -1,95 +1,102 @@
+**This application itself is free to use, both for personal and commercial purposes.  
+It may be freely copied, distributed, and modified as long as this notice is included.**
 
-#Notice (Third-Party Libraries)
 
-This application (Chromebook Test App Y.U.M.I) uses the following third-party libraries, open-source codes, and APIs.
-All listed software/tools are licensed for free and commercial use.
+
+NOTICE (Third-Party Libraries)  
+This application uses the following third-party libraries, open-source codes, and APIs.  
+All listed software/tools are licensed for free and commercial use.  
 Attributions are provided as required by each license.
 
 ---
 
-## MIT License
+### MIT License
 
-* **anime.js (Effect Library)**
-  Copyright © Julian Garnier
-  License: MIT License
-  Source: [https://animejs.com/](https://animejs.com/)
+**anime.js (Effect Library)**  
+Copyright © Julian Garnier  
+License: MIT License  
+Source: https://animejs.com/
 
-* **canvas-confetti (Effect Library)**
-  Copyright © Kiril Vatev
-  License: MIT License
-  Source: [https://www.npmjs.com/package/canvas-confetti](https://www.npmjs.com/package/canvas-confetti)
+**canvas-confetti (Effect Library)**  
+Copyright © Kiril Vatev  
+License: MIT License  
+Source: https://www.npmjs.com/package/canvas-confetti
 
-* **oneko.js (Effect Library)**
-  Copyright © 2022 adryd
-  License: MIT License
-  Source: [https://github.com/adryd325/oneko.js](https://github.com/adryd325/oneko.js)
+**oneko.js (Effect Library)**  
+Copyright © 2022 adryd  
+License: MIT License  
+Source: https://github.com/adryd325/oneko.js
 
-* **Uiverse.io (UI / Button Components)**
-  License: MIT License
-  Source: [https://uiverse.io/](https://uiverse.io/)
-
-* **Accelerometer Display (Rotation Test)**
-  Based on CodePen examples by:
-  Yukiiro-Nite ([https://codepen.io/Yukiiro-Nite/pen/gOWrYQE](https://codepen.io/Yukiiro-Nite/pen/gOWrYQE))
-  verticalgrain ([https://codepen.io/verticalgrain/pen/LGbXVz](https://codepen.io/verticalgrain/pen/LGbXVz))
-  Licensed under the MIT License
-
-* **Mouse Cursor Position (Touchpad Test)**
-  Based on CodePen example by ahmedbnabouelezz
-  Source: [https://codepen.io/ahmedbnabouelezz/pen/wvWZWjO](https://codepen.io/ahmedbnabouelezz/pen/wvWZWjO)
-  Licensed under the MIT License
-
-* **Stylus Input (Stylus Test)**
-  Based on CodePen examples by w2sw2sw2s ([https://codepen.io/w2sw2sw2s/pen/VLKEdq](https://codepen.io/w2sw2sw2s/pen/VLKEdq))
-  and solygambas ([https://codepen.io/solygambas/pen/wvzREMx](https://codepen.io/solygambas/pen/wvzREMx))
-  Licensed under the MIT License
-
-* **Touch Input (Touchscreen Test)**
-  Based on CodePen example by pansonic
-  Source: [https://codepen.io/pansonic/pen/QRgEGR](https://codepen.io/pansonic/pen/QRgEGR)
-  Licensed under the MIT License
-
-* **Screen Color Change (White Spot Test)**
-  Based on CodePen example by rothkj1022
-  Source: [https://codepen.io/rothkj1022/pen/oXvNEK](https://codepen.io/rothkj1022/pen/oXvNEK)
-  Licensed under the MIT License
+**Uiverse.io (UI / Button Components)**  
+License: MIT License  
+Source: https://uiverse.io/
 
 ---
 
-## GPL License
+### GPL License
 
-* **Audacity (Audio Editor / Recorder)**
-  Copyright © The Audacity Team
-  License: GNU General Public License (GPL)
-  Source: [https://www.audacityteam.org/](https://www.audacityteam.org/)
-
----
-
-## Other Licenses
-
-* **Visual Studio Code (Code Editor)**
-  Copyright © Microsoft
-  License: MIT License (Open Source License)
-  Source: [https://code.visualstudio.com/](https://code.visualstudio.com/)
-
-* **YouTube IFrame API**
-  Copyright © Google
-  License: Free to use under YouTube API Terms of Service
-  Source: [https://developers.google.com/youtube/iframe\_api\_reference](https://developers.google.com/youtube/iframe_api_reference)
-
-* **Voicevox (Text-to-Speech Engine)**
-  License: Free / 商用利用可 (Commercial use allowed)
-  *利用条件: 作者明記（クレジット表記必須）*
-  Source: [https://voicevox.hiroshiba.jp/](https://voicevox.hiroshiba.jp/)
+**Audacity (Audio Editor / Recorder)**  
+Copyright © The Audacity Team  
+License: GNU General Public License (GPL)  
+Source: https://www.audacityteam.org/  
+Note: Used as an external tool for audio editing only.
 
 ---
-Pixabay Sound
-Source: https://pixabay.com/sound-effects/ 
 
-License: Pixabay License (Free to use, including commercial use. No attribution required.)
+### Other Licenses
+
+**Visual Studio Code (Code Editor)**  
+Copyright © Microsoft  
+License: MIT License (Open Source License)  
+Source: https://code.visualstudio.com/
+
+**YouTube IFrame API**  
+Copyright © Google  
+License: Free to use under YouTube API Terms of Service  
+Source: https://developers.google.com/youtube/iframe_api_reference  
+Note: YouTube logos and thumbnails remain property of Google.
+
+**Voicevox (Text-to-Speech Engine)**  
+License: Free / 商用利用可 (Commercial use allowed)  
+Condition: クレジット表記必須 (Author attribution required)  
+Source: https://voicevox.hiroshiba.jp/
+
+**Pixabay Sound**  
+Source: https://pixabay.com/sound-effects/  
+License: Pixabay License (Free to use, including commercial use. No attribution required.)  
 Attribution is not mandatory, but crediting Pixabay is appreciated.
 
+**Canva (Graphic Design Platform)**  
+License: Commercial Software (No open-source license)  
+Source: https://www.canva.com/  
+Note: Used for creating design materials in this application.
 
-📌 **Note:**
-Some resources (e.g., いらすとや, 効果音ラボ, Canva, Affinity photo, Affinity designer,LumaFusion, etc.) are 商用利用可 with no credit required.
-They are not listed here as they do not fall under mandatory attribution rules, but credits can be added optionally.
+**Affinity Photo / Affinity Designer (Image Editing Software)**  
+Copyright © Serif (Europe) Ltd.  
+License: Commercial Software (No open-source license)  
+Source: https://affinity.serif.com/  
+Note: Used for creating and editing graphic materials included in this application.
+
+**LumaFusion (Video Editing Application)**  
+Copyright © LumaTouch LLC  
+License: Commercial Software (No open-source license)  
+Source: https://luma-touch.com/  
+Note: Used for editing and compositing video materials included in this application.
+
+
+### Code References
+
+Some interactive features (e.g., Accelerometer Sensor Display, Mouse Cursor Position Display,  
+Stylus Input Test, and Touchscreen Test) were inspired by publicly available examples  
+on CodePen (by Yukiiro-Nite, verticalgrain, ahmedbnabouelezz, w2sw2sw2s, solygambas, and pansonic).  
+All source code was independently customized and rewritten for this application.
+
+
+
+
+### Additional Notes
+
+Some resources (e.g., いらすとや, 効果音ラボ, etc.)  
+are 商用利用可 (commercial use allowed) with no credit required.  
+They are not listed above if attribution is not mandatory.  
+Use of these resources complies with each site’s terms of use as of November 2025.
