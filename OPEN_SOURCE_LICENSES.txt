@@ -1,7 +1,9 @@
-LICENSE NOTICE
-(Last Updated and Revised: November 2025)
+LICENSE AND THIRD-PARTY NOTICES
+(Last Updated: November 2025)
 
-## This Application's License
+============================================================
+A. THIS APPLICATION'S LICENSE (MIT)
+============================================================
 
 Copyright (c) 2025 TestApp (Ri)
 
@@ -14,32 +16,28 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
----
+============================================================
+B. THIRD-PARTY NOTICES AND LICENSES
+============================================================
 
-## NOTICE (Third-Party Libraries)
+The Software uses the following third-party components. Their license terms
+are reproduced below or summarized where appropriate.
 
-This application uses the following third-party libraries, open-source codes, and APIs.
-Attributions are provided as required by each license.
-
-Note: Full license texts for bundled third-party components are included in:
-`/licenses/THIRD-PARTY-LICENSES.txt`
-
----
-
-## MIT License
-
-**anime.js (Effect Library)**
+------------------------------------------------------------
+B-1) anime.js (Effect Library) — MIT License
+------------------------------------------------------------
 Copyright © Julian Garnier
-License: MIT License
 Source: https://animejs.com/
 
 MIT License
@@ -64,11 +62,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
-
-**oneko.js (Effect Library)**
+------------------------------------------------------------
+B-2) oneko.js (Effect Library) — MIT License
+------------------------------------------------------------
 Copyright © 2022 adryd
-License: MIT License
 Source: https://github.com/adryd325/oneko.js
 
 MIT License
@@ -93,23 +90,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
-
-**Uiverse.io (UI / Button Components)**
-License: MIT License
-Source: https://uiverse.io/
-
-Note: UI components were designed > Inspired by examples published on Uiverse.io.
-No third-party code from Uiverse.io is bundled in this application; all implementation code is original.
-If any specific component author should be credited, please contact us and we will add or correct attribution promptly.
-
----
-
-## ISC License
-
-**canvas-confetti (Effect Library)**
+------------------------------------------------------------
+B-3) canvas-confetti — ISC License
+------------------------------------------------------------
 Copyright © Kiril Vatev
-License: ISC License
 Source: https://www.npmjs.com/package/canvas-confetti
 
 ISC License
@@ -128,55 +112,60 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
----
+------------------------------------------------------------
+B-4) Uiverse.io (UI / Button Components) — NOTICE
+------------------------------------------------------------
+Source: https://uiverse.io/
 
-## GPL License
+Note: UI components are inspired by examples published on Uiverse.io.
+No third-party code from Uiverse.io is bundled in this application; all implementation code is original.
+If any specific component author should be credited, please contact at <email>; attribution will be added or corrected promptly.
 
-**Audacity (Audio Editor / Recorder)**
+------------------------------------------------------------
+B-5) Audacity (Audio Editor / Recorder) — GPL Notice
+------------------------------------------------------------
 Copyright © The Audacity Team
-License: GNU General Public License (GPL)
 Source: https://www.audacityteam.org/
+License: GNU General Public License (GPL)
 
-Note: Used as an external tool for audio editing only. Audio files edited with Audacity are included in this application.
-Audacity is not distributed or linked with this application; only the output audio files created with Audacity are included.
-The GPL license does not apply to the audio files themselves.
+Usage Note:
+- Audacity is used externally to edit audio; the application does not distribute
+  or link Audacity binaries or code. Only output audio files created with Audacity
+  are included in this product. The GPL does not apply to the audio files themselves.
 
----
-
-## LGPL License
-
-**VOICEVOX (Text-to-Speech Engine)**
-License: LGPL / Commercial use allowed
-Condition: Credit attribution required
+------------------------------------------------------------
+B-6) VOICEVOX (Text-to-Speech Engine) — LGPL Notice
+------------------------------------------------------------
+Source: https://voicevox.hiroshiba.jp/
+License: LGPL (commercial use allowed)
 Required Credit Format:
 - For character voices: "VOICEVOX:ずんだもん"
-Source: https://voicevox.hiroshiba.jp/
 
-Note: Used as an external tool for voice generation only. Generated audio files are included in this application.
-VOICEVOX is not distributed or linked with this application; only the generated audio files are included.
+Usage Note:
+- VOICEVOX is used externally to generate audio; the application does not
+  distribute or link VOICEVOX binaries or code. Only generated audio files
+  are included in this product. Required credits are displayed as above.
 
----
-
-## Other Licenses
-
-**YouTube IFrame API**
+------------------------------------------------------------
+B-7) YouTube IFrame API — API & Branding Notices
+------------------------------------------------------------
 Copyright © Google
-License: Free to use under YouTube API Services
 Source: https://developers.google.com/youtube/iframe_api_reference
+Terms: Use subject to the YouTube API Services Terms of Service and Developer Policies.
+Branding: Follows YouTube Brand Resources/Guidelines.
+Privacy: Users are also subject to the Google Privacy Policy.
 
-Use subject to the YouTube API Services Terms of Service and Developer Policies.
-Brand assets follow YouTube Brand Resources/Guidelines.
-Users are also subject to the Google Privacy Policy.
-
-**Pixabay Sound**
+------------------------------------------------------------
+B-8) Pixabay Sound — Pixabay License Notice
+------------------------------------------------------------
 Source: https://pixabay.com/sound-effects/
-License: Pixabay License (Free to use, including commercial use. No attribution required.)
+License: Pixabay License (free for commercial use; no attribution required).
 Attribution is not mandatory, but crediting Pixabay is appreciated.
 
----
+============================================================
+C. CONTACT / ATTRIBUTION CORRECTIONS
+============================================================
 
-## Additional Notes
-
-Some resources (e.g., いらすとや, 効果音ラボ, etc.) are commercially usable with no credit required.
-They are not listed above if attribution is not mandatory.
-Use of these resources complies with each site's terms of use as of November 2025.
+If you are an author of any third-party component or asset used in this product
+and wish to be credited, have your credit corrected, or request removal, please
+send a request to <attackofjellyfish@gmail.com>. A prompt response will be provided.
