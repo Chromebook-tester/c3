@@ -99,7 +99,7 @@ SOFTWARE.
 License: MIT License
 Source: https://uiverse.io/
 
-Note: UI components were designed *inspired by* examples published on Uiverse.io.
+Note: UI components were designed > Inspired by examples published on Uiverse.io.
 No third-party code from Uiverse.io is bundled in this application; all implementation code is original.
 If any specific component author should be credited, please contact us and we will add or correct attribution promptly.
 
