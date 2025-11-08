@@ -105,7 +105,7 @@ Source: https://uiverse.io/
 
 MIT License
 
-Copyright (c) 2024 uiverse-io <--- 정확한 저작권자 표기!
+Copyright (c) 2024 uiverse-io 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -189,8 +189,6 @@ Note: YouTube logos and thumbnails remain property of Google.
 Source: https://pixabay.com/sound-effects/  
 License: Pixabay License (Free to use, including commercial use. No attribution required.)  
 Attribution is not mandatory, but crediting Pixabay is appreciated.
-
-
 
 
 ---
