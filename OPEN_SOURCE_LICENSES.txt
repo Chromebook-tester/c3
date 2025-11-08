@@ -1,14 +1,9 @@
-LICENSE NOTICE 
+LICENSE NOTICE
 (Last Updated and Revised: November 2025)
-
-
 
 ## This Application's License
 
-
-
 Copyright (c) 2025 TestApp (Ri)
-
 
 This application is licensed under the MIT License. https://opensource.org/license/mit
 
@@ -22,28 +17,29 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---
 
 ## NOTICE (Third-Party Libraries)
 
-This application uses the following third-party libraries, open-source codes, and APIs.  
+This application uses the following third-party libraries, open-source codes, and APIs.
 Attributions are provided as required by each license.
+
+Note: Full license texts for bundled third-party components are included in:
+`/licenses/THIRD-PARTY-LICENSES.txt`
 
 ---
 
 ## MIT License
 
-**anime.js (Effect Library)**  
-Copyright © Julian Garnier  
-License: MIT License  
+**anime.js (Effect Library)**
+Copyright © Julian Garnier
+License: MIT License
 Source: https://animejs.com/
 
 MIT License
@@ -57,8 +53,8 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -70,9 +66,9 @@ SOFTWARE.
 
 ---
 
-**oneko.js (Effect Library)**  
-Copyright © 2022 adryd  
-License: MIT License  
+**oneko.js (Effect Library)**
+Copyright © 2022 adryd
+License: MIT License
 Source: https://github.com/adryd325/oneko.js
 
 MIT License
@@ -86,8 +82,8 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -99,39 +95,21 @@ SOFTWARE.
 
 ---
 
-**Uiverse.io (UI / Button Components)**  
-License: MIT License  
-Attribution: Not mandatory, but appreciated  
+**Uiverse.io (UI / Button Components)**
+License: MIT License
 Source: https://uiverse.io/
 
-MIT License
+Note: UI components were designed *inspired by* examples published on Uiverse.io.
+No third-party code from Uiverse.io is bundled in this application; all implementation code is original.
+If any specific component author should be credited, please contact us and we will add or correct attribution promptly.
 
-Copyright (c) 2024 uiverse-io 
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 ---
 
 ## ISC License
 
-**canvas-confetti (Effect Library)**  
-Copyright © Kiril Vatev  
-License: ISC License  
+**canvas-confetti (Effect Library)**
+Copyright © Kiril Vatev
+License: ISC License
 Source: https://www.npmjs.com/package/canvas-confetti
 
 ISC License
@@ -150,63 +128,55 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-
-
 ---
 
 ## GPL License
 
-**Audacity (Audio Editor / Recorder)**  
-Copyright © The Audacity Team  
-License: GNU General Public License (GPL)  
-Source: https://www.audacityteam.org/  
-Note: Used as an external tool for audio editing only. Audio files edited with Audacity are included in this application. 
-The GPL license does not apply to the audio files themselves. 
+**Audacity (Audio Editor / Recorder)**
+Copyright © The Audacity Team
+License: GNU General Public License (GPL)
+Source: https://www.audacityteam.org/
 
-Audacity are not distributed or linked with this application; only the output media files created by them are included.
+Note: Used as an external tool for audio editing only. Audio files edited with Audacity are included in this application.
+Audacity is not distributed or linked with this application; only the output audio files created with Audacity are included.
+The GPL license does not apply to the audio files themselves.
 
 ---
 
 ## LGPL License
 
-**VOICEVOX (Text-to-Speech Engine)**  
-License: LGPL / Commercial use allowed  
-Condition: Credit attribution required  
-Required Credit Format:  
+**VOICEVOX (Text-to-Speech Engine)**
+License: LGPL / Commercial use allowed
+Condition: Credit attribution required
+Required Credit Format:
 - For character voices: "VOICEVOX:ずんだもん"
-Source: https://voicevox.hiroshiba.jp/  
-Note: Used as an external tool for voice generation only. Generated audio files are included in this application.
+Source: https://voicevox.hiroshiba.jp/
 
-VOICEVOX are not distributed or linked with this application; only the output media files created by them are included.
+Note: Used as an external tool for voice generation only. Generated audio files are included in this application.
+VOICEVOX is not distributed or linked with this application; only the generated audio files are included.
 
 ---
+
 ## Other Licenses
 
-**YouTube IFrame API**  
-Copyright © Google  
-License: Free to use under YouTube API Terms of Service  
-Source: https://developers.google.com/youtube/iframe_api_reference  
-Note: YouTube logos and thumbnails remain property of Google.
-https://youtu.be/1u6fRer9oVw
+**YouTube IFrame API**
+Copyright © Google
+License: Free to use under YouTube API Services
+Source: https://developers.google.com/youtube/iframe_api_reference
 
+Use subject to the YouTube API Services Terms of Service and Developer Policies.
+Brand assets follow YouTube Brand Resources/Guidelines.
+Users are also subject to the Google Privacy Policy.
 
-
-**Pixabay Sound**  
-Source: https://pixabay.com/sound-effects/  
-License: Pixabay License (Free to use, including commercial use. No attribution required.)  
+**Pixabay Sound**
+Source: https://pixabay.com/sound-effects/
+License: Pixabay License (Free to use, including commercial use. No attribution required.)
 Attribution is not mandatory, but crediting Pixabay is appreciated.
 
-
 ---
-
-
 
 ## Additional Notes
 
-Some resources (e.g., いらすとや, 効果音ラボ, etc.) are commercially usable with no credit required. 
-
+Some resources (e.g., いらすとや, 効果音ラボ, etc.) are commercially usable with no credit required.
 They are not listed above if attribution is not mandatory.
-
 Use of these resources complies with each site's terms of use as of November 2025.
-
----
