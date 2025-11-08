@@ -7,7 +7,8 @@ LICENSE NOTICE
 
 
 
-Copyright (c) [2025] [TestApp, Ri]
+Copyright (c) 2025 TestApp (Ri)
+
 
 This application is licensed under the MIT License. https://opensource.org/license/mit
 
@@ -162,8 +163,9 @@ Source: https://www.audacityteam.org/
 Note: Used as an external tool for audio editing only. Audio files edited with Audacity are included in this application. 
 The GPL license does not apply to the audio files themselves. 
 
----
+Audacity are not distributed or linked with this application; only the output media files created by them are included.
 
+---
 
 ## LGPL License
 
@@ -175,8 +177,9 @@ Required Credit Format:
 Source: https://voicevox.hiroshiba.jp/  
 Note: Used as an external tool for voice generation only. Generated audio files are included in this application.
 
----
+VOICEVOX are not distributed or linked with this application; only the output media files created by them are included.
 
+---
 ## Other Licenses
 
 **YouTube IFrame API**  
@@ -184,6 +187,9 @@ Copyright © Google
 License: Free to use under YouTube API Terms of Service  
 Source: https://developers.google.com/youtube/iframe_api_reference  
 Note: YouTube logos and thumbnails remain property of Google.
+https://youtu.be/1u6fRer9oVw
+
+
 
 **Pixabay Sound**  
 Source: https://pixabay.com/sound-effects/  
